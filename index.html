@@ -5,13 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dice Pirate</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
   </head>
   <body>
     <section>
       <div class="menuContainer">
         <h1>Würfel-Piraten</h1>
-        <button>Spiel starten</button>
-        <button>Spielregeln</button>
+        <div class="navBtnContainer">
+          <button>Spiel starten</button>
+          <button onclick="window.location.href = 'game-rules.html'">
+            Spielregeln
+          </button>
+        </div>
+        <img src="assets/img/menu-dice.png" />
       </div>
     </section>
   </body>

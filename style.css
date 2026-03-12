@@ -2,6 +2,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  cursor: default;
 }
 
 body {
@@ -10,18 +11,19 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 section {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  padding: 60px 160px;
 }
 
 .menuContainer {
-  /* width: 500px;
-  height: 500px; */
   background-color: #7fbcf179;
   box-shadow:
     0 4px 8px 0 rgba(0, 0, 0, 0.6),
@@ -29,16 +31,32 @@ section {
   border-radius: 40px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 80px;
+  padding: 40px 64px;
+  width: 600px;
+  height: 100%;
+}
+
+.navBtnContainer {
+  display: flex;
+  justify-content: center;
   flex-direction: column;
   gap: 40px;
-  padding: 80px 64px;
 }
 
 h1 {
   color: white;
   text-shadow: 4px 2px black;
-  padding-bottom: 40px;
   font-size: 58px;
+}
+
+p {
+  font-size: 24px;
+  color: white;
+  text-align: center;
+  text-shadow: 2px 2px black;
 }
 
 button {
@@ -48,10 +66,15 @@ button {
   font-size: 24px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
   color: #2494f5;
+  border: none;
 }
 
 button:hover {
   cursor: pointer;
   background-color: #2494f5;
   color: white;
+}
+
+img {
+  width: 80%;
 }
