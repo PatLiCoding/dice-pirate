@@ -1,6 +1,6 @@
 function getTemplateByGameStart() {
   document.getElementById("playgroundContainer").innerHTML +=
-    `<button onclick="playerRollTheDice()">klick</button>`;
+    `<button onclick="playerRollTheDice()">Würfeln</button>`;
 }
 
 function getTemplateFromRollDice(curretNumber) {
