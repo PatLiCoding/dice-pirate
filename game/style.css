@@ -1,0 +1,29 @@
+body {
+  /* background-image: url("../assets/img/game-background.jpg"); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.playgroundContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.diceContainer {
+  display: flex;
+  gap: 8px;
+}
+
+.dice {
+  padding: 32px;
+  border: 1px solid black;
+}

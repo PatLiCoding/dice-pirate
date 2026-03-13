@@ -10,15 +10,21 @@ crew = false;
 curretRound = 1;
 gameRound = 1;
 
+function oninit() {
+  getTemplateByGameStart();
+}
+
 function playerRollTheDice() {
   if (curretRound === 1) {
     curretRoll();
     curretRound++;
   } else if (curretRound < 4) {
+    document.getElementById("diceContainer").innerHTML = "";
     curretRoll();
     curretRound++;
   } else if (curretRound === 4) {
-    console.log("game zu ende " + rollDice);
+    getTemplateRoundFinished();
+    curretRound++;
   }
 }
 
@@ -27,6 +33,7 @@ function curretRoll() {
   for (let index = 0; index < 6 - saveRolledDice; index++) {
     const curretNumber = Math.floor(Math.random() * 6) + 1;
     rollDice.push(curretNumber);
+    getTemplateFromRollDice(curretNumber);
   }
   console.log(rollDice);
   checkCondition();

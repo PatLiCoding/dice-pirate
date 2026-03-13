@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dice Pirate</title>
     <link rel="shortcut icon" href="assets/img/fav.png" type="image/x-icon" />
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="templates.js"></script>
+    <script src="script.js" defer></script>
   </head>
-  <body>
-    <button onclick="playerRollTheDice()">klick</button>
+  <body onload="oninit()">
+    <div class="playgroundContainer" id="playgroundContainer">
+      <div class="diceContainer" id="diceContainer"></div>
+    </div>
   </body>
 </html>
