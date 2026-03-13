@@ -38,7 +38,7 @@ function playerRollTheDice() {
         let i = rollDice.indexOf(4);
         i !== -1 && rollDice.splice(i, 1);
         let e = rollDice.indexOf(5);
-        e !== -1 && rollDice.splice(i, 1);
+        e !== -1 && rollDice.splice(e, 1);
       }
       getTemplateSaveLoot(rollDice);
       curretRound++;
