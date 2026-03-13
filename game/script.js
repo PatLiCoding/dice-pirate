@@ -23,8 +23,15 @@ function playerRollTheDice() {
     curretRoll();
     curretRound++;
   } else if (curretRound === 4) {
+    curretRoll();
     getTemplateRoundFinished();
     curretRound++;
+    document.getElementById("diceContainer").innerHTML = "";
+    document.getElementById("btnSection").innerHTML = "";
+    if (crew === true) {
+      getTemplateSaveLoot(rollDice);
+      curretRound++;
+    }
   }
 }
 
@@ -42,8 +49,11 @@ function curretRoll() {
 function checkCondition() {
   checkShip();
   if (ship) {
+    document.getElementById("gameConditionContainer").innerHTML = "";
+    getTemplateShipImage();
     checkCaptain();
-    if (captain) checkCrew();
+    if (captain) (checkCrew(), getTemplateCaptainImage());
+    if (crew) (checkCrew(), getTemplateCrewImage());
   }
 }
 
@@ -69,4 +79,19 @@ function checkCrew() {
       if (!crew) (saveRolledDice++, (crew = true));
     }
   }
+}
+
+function gameRestart() {
+  document.getElementById("playgroundContainer").innerHTML = "";
+  getTemplateByGameStart();
+  rollDice = [];
+  saveRolledDice = 0;
+  playDiceCounter = [];
+  playerPoints = 0;
+  enemyDiceCounter = [];
+  enemy = 0;
+  ship = false;
+  captain = false;
+  crew = false;
+  curretRound = 1;
 }

@@ -29,6 +29,9 @@ body {
   min-height: 350px;
   min-width: 600px;
 }
+.conditionImages {
+  height: 100px;
+}
 
 .diceContainer {
   display: flex;
