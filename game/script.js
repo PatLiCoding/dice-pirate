@@ -18,17 +18,28 @@ function playerRollTheDice() {
   if (curretRound === 1) {
     curretRoll();
     curretRound++;
-  } else if (curretRound < 4) {
+  } else if (curretRound < 3) {
     document.getElementById("diceContainer").innerHTML = "";
     curretRoll();
     curretRound++;
-  } else if (curretRound === 4) {
+  } else if (curretRound === 3) {
+    document.getElementById("diceContainer").innerHTML = "";
     curretRoll();
-    getTemplateRoundFinished();
     curretRound++;
+    document.getElementById("btnSection").innerHTML = "";
+    getTemplateLastRound();
+  } else {
     document.getElementById("diceContainer").innerHTML = "";
     document.getElementById("btnSection").innerHTML = "";
+    getTemplateRoundFinished();
+    curretRound++;
     if (crew === true) {
+      if (rollDice.length > 3) {
+        let i = rollDice.indexOf(4);
+        i !== -1 && rollDice.splice(i, 1);
+        let e = rollDice.indexOf(5);
+        e !== -1 && rollDice.splice(i, 1);
+      }
       getTemplateSaveLoot(rollDice);
       curretRound++;
     }

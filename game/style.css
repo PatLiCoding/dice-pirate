@@ -45,6 +45,14 @@ body {
   font-size: 32px;
 }
 
+.btnSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
 button {
   height: 52px;
   width: 250px;

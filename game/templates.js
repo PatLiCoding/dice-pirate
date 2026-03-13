@@ -33,8 +33,13 @@ function getTemplateFromRollDice(curretNumber) {
     `<div class="dice">${curretNumber}</div>`;
 }
 
+function getTemplateLastRound() {
+  document.getElementById("btnSection").innerHTML +=
+    `<button onclick="playerRollTheDice()">Runde Beenden</button>`;
+}
+
 function getTemplateRoundFinished() {
-  document.getElementById("playgroundContainer").innerHTML +=
+  document.getElementById("btnSection").innerHTML +=
     `<button onclick="gameRestart()">Neustart</button>
     <p>Die Runde ist beendet.</p>`;
 }
