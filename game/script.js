@@ -34,8 +34,8 @@ function playerRollTheDice() {
     getTemplateRoundFinished();
     curretRound++;
     if (crew === true) {
+      addUpPlayerPoints();
       getTemplateSaveLoot(rollDice);
-      setLootDice();
       curretRound++;
     }
   }
@@ -63,9 +63,8 @@ function curretRoll() {
       selected: false,
     });
   }
-  rollDice = rollDice.filter((d) => d.type === "condition");
+  rollDice = rollDice.filter((d) => d.type === "condition" || d.selected);
   rollDice = rollDice.concat(newRoll);
-  console.log(rollDice);
   checkCondition();
   renderDice();
 }
@@ -120,6 +119,7 @@ function setLootDice() {
       rollDice[i].type = "loot";
     }
   }
+  getTemplateSaveLoot(rollDice);
   renderDice();
 }
 
@@ -127,7 +127,18 @@ function clickDice(index) {
   let dice = rollDice[index];
   if (dice.type !== "loot") return;
   dice.selected = !dice.selected;
+  checkCondition();
   renderDice();
+}
+
+function addUpPlayerPoints() {
+  playerPoints = 0;
+  for (let i = 0; i < rollDice.length; i++) {
+    let dice = rollDice[i];
+    if (dice.type === "loot" && dice.selected) {
+      playerPoints += dice.value;
+    }
+  }
 }
 
 function gameRestart() {

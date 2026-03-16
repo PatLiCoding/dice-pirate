@@ -1,6 +1,7 @@
 function getTemplateByGameStart() {
   document.getElementById("playgroundContainer").innerHTML +=
     `<div class="gameConditionContainer" id="gameConditionContainer"></div>
+    <div class="pointsContainer" id="pointsContainer"></div>
     <div class="diceContainer" id="diceContainer"></div>
     <div class="btnSection" id="btnSection">
       <button onclick="playerRollTheDice()">Würfeln</button>
@@ -23,9 +24,11 @@ function getTemplateCrewImage() {
 }
 
 function getTemplateSaveLoot(rollDice) {
-  document.getElementById("gameConditionContainer").innerHTML +=
-    `<div class="pointsContainer"><img src="../assets/img/lootbox.png" class="conditionImages"> 
-   ${rollDice.reduce((sum, dice) => sum + dice.value, 0)} Punkte</div>`;
+  document.getElementById("pointsContainer").innerHTML =
+    `<img src="../assets/img/lootbox.png" class="conditionImages"> 
+   ${rollDice
+     .filter((dice) => dice.type === "loot" && dice.selected)
+     .reduce((sum, dice) => sum + dice.value, 0)} Punkte`;
 }
 
 function getTemplateFromRollDice(cssClass, i, value) {
