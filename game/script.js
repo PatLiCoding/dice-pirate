@@ -34,27 +34,40 @@ function playerRollTheDice() {
     getTemplateRoundFinished();
     curretRound++;
     if (crew === true) {
-      if (rollDice.length > 3) {
-        let i = rollDice.indexOf(4);
-        i !== -1 && rollDice.splice(i, 1);
-        let e = rollDice.indexOf(5);
-        e !== -1 && rollDice.splice(e, 1);
-      }
       getTemplateSaveLoot(rollDice);
+      setLootDice();
       curretRound++;
     }
   }
 }
 
-function curretRoll() {
-  rollDice = [];
-  for (let index = 0; index < 6 - saveRolledDice; index++) {
-    const curretNumber = Math.floor(Math.random() * 6) + 1;
-    rollDice.push(curretNumber);
-    getTemplateFromRollDice(curretNumber);
+function renderDice() {
+  document.getElementById("diceContainer").innerHTML = "";
+  for (let i = 0; i < rollDice.length; i++) {
+    let dice = rollDice[i];
+    let cssClass = "dice defaultDice";
+    if (dice.type === "condition") cssClass = "dice conditionDice";
+    if (dice.type === "loot") cssClass = "dice lootDice";
+    if (dice.selected) cssClass = "dice saveLootDice";
+    getTemplateFromRollDice(cssClass, i, dice.value);
   }
+}
+
+function curretRoll() {
+  let newRoll = [];
+  for (let i = 0; i < 6 - saveRolledDice; i++) {
+    const num = Math.floor(Math.random() * 6) + 1;
+    newRoll.push({
+      value: num,
+      type: "default",
+      selected: false,
+    });
+  }
+  rollDice = rollDice.filter((d) => d.type === "condition");
+  rollDice = rollDice.concat(newRoll);
   console.log(rollDice);
   checkCondition();
+  renderDice();
 }
 
 function checkCondition() {
@@ -64,32 +77,57 @@ function checkCondition() {
     getTemplateShipImage();
     checkCaptain();
     if (captain) (checkCrew(), getTemplateCaptainImage());
-    if (crew) (checkCrew(), getTemplateCrewImage());
+    if (crew) (checkCrew(), getTemplateCrewImage(), setLootDice());
   }
 }
 
 function checkShip() {
-  for (let index = 0; index < rollDice.length; index++) {
-    if (rollDice[index] === 6) {
-      if (!ship) (saveRolledDice++, (ship = true));
+  for (let i = 0; i < rollDice.length; i++) {
+    if (rollDice[i].value === 6 && !ship) {
+      ship = true;
+      saveRolledDice++;
+      rollDice[i].type = "condition";
+      return;
     }
   }
 }
 
 function checkCaptain() {
-  for (let index = 0; index < rollDice.length; index++) {
-    if (rollDice[index] === 5) {
-      if (!captain) (saveRolledDice++, (captain = true));
+  for (let i = 0; i < rollDice.length; i++) {
+    if (rollDice[i].value === 5 && !captain) {
+      captain = true;
+      saveRolledDice++;
+      rollDice[i].type = "condition";
+      return;
     }
   }
 }
 
 function checkCrew() {
-  for (let index = 0; index < rollDice.length; index++) {
-    if (rollDice[index] === 4) {
-      if (!crew) (saveRolledDice++, (crew = true));
+  for (let i = 0; i < rollDice.length; i++) {
+    if (rollDice[i].value === 4 && !crew) {
+      crew = true;
+      saveRolledDice++;
+      rollDice[i].type = "condition";
+      return;
     }
   }
+}
+
+function setLootDice() {
+  for (let i = 0; i < rollDice.length; i++) {
+    if (rollDice[i].type === "default") {
+      rollDice[i].type = "loot";
+    }
+  }
+  renderDice();
+}
+
+function clickDice(index) {
+  let dice = rollDice[index];
+  if (dice.type !== "loot") return;
+  dice.selected = !dice.selected;
+  renderDice();
 }
 
 function gameRestart() {

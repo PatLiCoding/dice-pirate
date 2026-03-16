@@ -24,13 +24,17 @@ function getTemplateCrewImage() {
 
 function getTemplateSaveLoot(rollDice) {
   document.getElementById("gameConditionContainer").innerHTML +=
-    `<div><img src="../assets/img/lootbox.png" class="conditionImages"> 
-    ${rollDice}</div>`;
+    `<div class="pointsContainer"><img src="../assets/img/lootbox.png" class="conditionImages"> 
+   ${rollDice.reduce((sum, dice) => sum + dice.value, 0)} Punkte</div>`;
 }
 
-function getTemplateFromRollDice(curretNumber) {
-  document.getElementById("diceContainer").innerHTML +=
-    `<div class="dice">${curretNumber}</div>`;
+function getTemplateFromRollDice(cssClass, i, value) {
+  document.getElementById("diceContainer").innerHTML += `<div 
+        class="${cssClass}" 
+        onclick="clickDice(${i})"
+      >
+        ${value}
+      </div>`;
 }
 
 function getTemplateLastRound() {
