@@ -35,7 +35,7 @@ function playerRollTheDice() {
     curretRound++;
     if (crew === true) {
       addUpPlayerPoints();
-      getTemplateSaveLoot(rollDice);
+      getTemplateEndgameLoot(playerPoints);
       curretRound++;
     }
   }
@@ -54,19 +54,22 @@ function renderDice() {
 }
 
 function curretRoll() {
-  let newRoll = [];
-  for (let i = 0; i < 6 - saveRolledDice; i++) {
-    const num = Math.floor(Math.random() * 6) + 1;
-    newRoll.push({
-      value: num,
-      type: "default",
-      selected: false,
-    });
-  }
-  rollDice = rollDice.filter((d) => d.type === "condition" || d.selected);
-  rollDice = rollDice.concat(newRoll);
-  checkCondition();
-  renderDice();
+  getTemplateRollDiceAnimation();
+  setTimeout(() => {
+    let newRoll = [];
+    rollDice = rollDice.filter((d) => d.type === "condition" || d.selected);
+    for (let i = rollDice.length; i < 6; i++) {
+      const num = Math.floor(Math.random() * 6) + 1;
+      newRoll.push({
+        value: num,
+        type: "default",
+        selected: false,
+      });
+    }
+    rollDice = rollDice.concat(newRoll);
+    checkCondition();
+    renderDice();
+  }, 3500);
 }
 
 function checkCondition() {
@@ -135,7 +138,7 @@ function addUpPlayerPoints() {
   playerPoints = 0;
   for (let i = 0; i < rollDice.length; i++) {
     let dice = rollDice[i];
-    if (dice.type === "loot" && dice.selected) {
+    if (dice.type === "loot") {
       playerPoints += dice.value;
     }
   }
