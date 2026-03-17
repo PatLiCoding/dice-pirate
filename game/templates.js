@@ -4,7 +4,7 @@ function getTemplateByGameStart() {
     <div class="pointsContainer" id="pointsContainer"></div>
     <div class="diceContainer" id="diceContainer"></div>
     <div class="btnSection" id="btnSection">
-      <button onclick="playerRollTheDice()">Würfeln</button>
+      <button class="gameBtn" onclick="playerRollTheDice()">Würfeln</button>
     </div>`;
 }
 
@@ -53,11 +53,11 @@ function getTemplateEndgameLoot(playerPoints) {
 
 function getTemplateLastRound() {
   document.getElementById("btnSection").innerHTML +=
-    `<button onclick="playerRollTheDice()">Runde Beenden</button>`;
+    `<button class="gameBtn" onclick="playerRollTheDice()">Runde Beenden</button>`;
 }
 
-function getTemplateRoundFinished(playerPoints) {
+function getTemplateRoundFinished() {
   document.getElementById("btnSection").innerHTML +=
-    `<button onclick="gameRestart()">Neustart</button>
-    <p>Die Runde ist beendet.</p>`;
+    `<button class="gameBtn" onclick="gameRestart()">Neustart</button>
+    <p class="infoText">Die Runde ist beendet.</p>`;
 }
