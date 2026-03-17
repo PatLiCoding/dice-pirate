@@ -54,20 +54,22 @@ function renderDice() {
 }
 
 function curretRoll() {
-  let newRoll = [];
-  rollDice = rollDice.filter((d) => d.type === "condition" || d.selected);
-  for (let i = rollDice.length; i < 6; i++) {
-    const num = Math.floor(Math.random() * 6) + 1;
-    newRoll.push({
-      value: num,
-      type: "default",
-      selected: false,
-    });
-  }
-
-  rollDice = rollDice.concat(newRoll);
-  checkCondition();
-  renderDice();
+  getTemplateRollDiceAnimation();
+  setTimeout(() => {
+    let newRoll = [];
+    rollDice = rollDice.filter((d) => d.type === "condition" || d.selected);
+    for (let i = rollDice.length; i < 6; i++) {
+      const num = Math.floor(Math.random() * 6) + 1;
+      newRoll.push({
+        value: num,
+        type: "default",
+        selected: false,
+      });
+    }
+    rollDice = rollDice.concat(newRoll);
+    checkCondition();
+    renderDice();
+  }, 3500);
 }
 
 function checkCondition() {

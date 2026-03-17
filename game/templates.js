@@ -23,9 +23,14 @@ function getTemplateCrewImage() {
     `<img src="../assets/img/crew.png" class="conditionImages">`;
 }
 
+function getTemplateRollDiceAnimation() {
+  document.getElementById("diceContainer").innerHTML =
+    `<img src="../assets/img/player-roll.gif" class="rollAnimation">`;
+}
+
 function getTemplateSaveLoot(rollDice) {
   document.getElementById("pointsContainer").innerHTML =
-    `<img src="../assets/img/lootbox.png" class="conditionImages"> 
+    `<img src="../assets/img/lootbox.png" class="lootboxImages"> 
    ${rollDice
      .filter((dice) => dice.type === "loot" && dice.selected)
      .reduce((sum, dice) => sum + dice.value, 0)} Punkte`;
@@ -42,7 +47,7 @@ function getTemplateFromRollDice(cssClass, i, value) {
 
 function getTemplateEndgameLoot(playerPoints) {
   document.getElementById("pointsContainer").innerHTML =
-    `<img src="../assets/img/lootbox.png" class="conditionImages"> 
+    `<img src="../assets/img/lootbox.png" class="lootboxImages"> 
    ${playerPoints} Punkte`;
 }
 
