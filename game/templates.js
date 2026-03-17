@@ -40,12 +40,18 @@ function getTemplateFromRollDice(cssClass, i, value) {
       </div>`;
 }
 
+function getTemplateEndgameLoot(playerPoints) {
+  document.getElementById("pointsContainer").innerHTML =
+    `<img src="../assets/img/lootbox.png" class="conditionImages"> 
+   ${playerPoints} Punkte`;
+}
+
 function getTemplateLastRound() {
   document.getElementById("btnSection").innerHTML +=
     `<button onclick="playerRollTheDice()">Runde Beenden</button>`;
 }
 
-function getTemplateRoundFinished() {
+function getTemplateRoundFinished(playerPoints) {
   document.getElementById("btnSection").innerHTML +=
     `<button onclick="gameRestart()">Neustart</button>
     <p>Die Runde ist beendet.</p>`;
