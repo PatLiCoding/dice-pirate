@@ -15,6 +15,7 @@ function oninit() {
 }
 
 function playerRollTheDice() {
+  setButtonsDisabled(true);
   if (curretRound === 1) {
     curretRoll();
     curretRound++;
@@ -27,9 +28,9 @@ function playerRollTheDice() {
     curretRoll();
     curretRound++;
     getTemplateLastRound();
+    setButtonsDisabled(true);
   } else {
     document.getElementById("diceContainer").innerHTML = "";
-    document.getElementById("btnSection").innerHTML = "";
     getTemplateRoundFinished();
     curretRound++;
     if (crew === true) {
@@ -38,6 +39,13 @@ function playerRollTheDice() {
       curretRound++;
     }
   }
+}
+
+function setButtonsDisabled(state) {
+  const buttons = document.querySelectorAll("#btnSection button");
+  buttons.forEach((btn) => {
+    btn.disabled = state;
+  });
 }
 
 function renderDice() {
@@ -68,6 +76,7 @@ function curretRoll() {
     rollDice = rollDice.concat(newRoll);
     checkCondition();
     renderDice();
+    setButtonsDisabled(false);
   }, 3500);
 }
 

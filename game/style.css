@@ -170,6 +170,14 @@ p {
   color: white;
 }
 
+button:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+  background-color: #cccccc;
+  color: #666666;
+  border: 1px solid #999999;
+}
+
 .infoText {
   color: black;
   font-size: 40px;

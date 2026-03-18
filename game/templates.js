@@ -1,5 +1,5 @@
 function getTemplateSelectMode() {
-  document.getElementById("playgroundContainer").innerHTML += `
+  document.getElementById("playgroundContainer").innerHTML = `
     <div class="SelectMode" id="SelectMode">
       <div>
         <h2>Spielmodus</h2>
@@ -12,7 +12,7 @@ function getTemplateSelectMode() {
 }
 
 function getTemplateByGameStart() {
-  document.getElementById("playgroundContainer").innerHTML +=
+  document.getElementById("playgroundContainer").innerHTML =
     `<div class="gameConditionContainer" id="gameConditionContainer"></div>
     <div class="pointsContainer" id="pointsContainer"></div>
     <div class="diceContainer" id="diceContainer"></div>
