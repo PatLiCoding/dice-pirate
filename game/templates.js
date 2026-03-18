@@ -11,6 +11,31 @@ function getTemplateSelectMode() {
     </div>`;
 }
 
+function getTemplateByGameOverview(
+  gameRound,
+  curretRound,
+  playerPoints,
+  enemyPoints,
+) {
+  document.getElementById("gameOverview").innerHTML = `
+  <div>
+        <p>Runde</p>
+        <p>${gameRound} / 5</p>
+      </div>
+      <div>
+        <p>Wurf</p>
+        <p>${curretRound} / 3</p>
+      </div>
+      <div>
+        <p>Spieler</p>
+        <p>${playerPoints}</p>
+      </div>
+      <div>
+        <p>Gegner</p>
+        <p>${enemyPoints}</p>
+      </div>`;
+}
+
 function getTemplateByGameStart() {
   document.getElementById("playgroundContainer").innerHTML =
     `<div class="gameConditionContainer" id="gameConditionContainer"></div>

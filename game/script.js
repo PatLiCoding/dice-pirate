@@ -3,11 +3,11 @@ saveRolledDice = 0;
 playDiceCounter = [];
 playerPoints = 0;
 enemyDiceCounter = [];
-enemy = 0;
+enemyPoints = 0;
 ship = false;
 captain = false;
 crew = false;
-curretRound = 1;
+curretRound = 0;
 gameRound = 1;
 
 function oninit() {
@@ -16,27 +16,46 @@ function oninit() {
 
 function playerRollTheDice() {
   setButtonsDisabled(true);
-  if (curretRound === 1) {
+  if (curretRound === 0) {
     curretRoll();
-    curretRound++;
-  } else if (curretRound < 3) {
+    getTemplateByGameOverview(
+      gameRound,
+      curretRound,
+      playerPoints,
+      enemyPoints,
+    );
+  } else if (curretRound < 2) {
     document.getElementById("diceContainer").innerHTML = "";
     curretRoll();
-    curretRound++;
-  } else if (curretRound === 3) {
+    getTemplateByGameOverview(
+      gameRound,
+      curretRound,
+      playerPoints,
+      enemyPoints,
+    );
+  } else if (curretRound === 2) {
     document.getElementById("diceContainer").innerHTML = "";
     curretRoll();
-    curretRound++;
     getTemplateLastRound();
     setButtonsDisabled(true);
+    getTemplateByGameOverview(
+      gameRound,
+      curretRound,
+      playerPoints,
+      enemyPoints,
+    );
   } else {
     document.getElementById("diceContainer").innerHTML = "";
     getTemplateRoundFinished();
-    curretRound++;
+    getTemplateByGameOverview(
+      gameRound,
+      curretRound,
+      playerPoints,
+      enemyPoints,
+    );
     if (crew === true) {
       addUpPlayerPoints();
       getTemplateEndgameLoot(playerPoints);
-      curretRound++;
     }
   }
 }
@@ -78,6 +97,7 @@ function curretRoll() {
     renderDice();
     setButtonsDisabled(false);
   }, 3500);
+  curretRound++;
 }
 
 function checkCondition() {
@@ -154,15 +174,16 @@ function addUpPlayerPoints() {
 
 function gameRestart() {
   document.getElementById("playgroundContainer").innerHTML = "";
-  getTemplateByGameStart();
   rollDice = [];
   saveRolledDice = 0;
   playDiceCounter = [];
   playerPoints = 0;
   enemyDiceCounter = [];
-  enemy = 0;
+  enemyPoints = 0;
   ship = false;
   captain = false;
   crew = false;
-  curretRound = 1;
+  curretRound = 0;
+  getTemplateByGameStart();
+  getTemplateByGameOverview(gameRound, curretRound, playerPoints, enemyPoints);
 }
