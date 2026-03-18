@@ -187,3 +187,11 @@ function gameRestart() {
   getTemplateByGameStart();
   getTemplateByGameOverview(gameRound, curretRound, playerPoints, enemyPoints);
 }
+
+function openDialog() {
+  document.getElementById("dialogOverlay").classList.remove("d-none");
+}
+
+function closeDialog() {
+  document.getElementById("dialogOverlay").classList.add("d-none");
+}

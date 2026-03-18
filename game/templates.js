@@ -1,6 +1,7 @@
 function getTemplateSelectMode() {
   document.getElementById("playgroundContainer").innerHTML = `
     <div class="SelectMode" id="SelectMode">
+      <img class="backToIndex" src="../assets/icon/arrow-back.png" onclick="window.location.href = '../index.html'">
       <div>
         <h2>Spielmodus</h2>
         <p>Wähle den Spiel-Modus aus:</p>
@@ -38,7 +39,11 @@ function getTemplateByGameOverview(
 
 function getTemplateByGameStart() {
   document.getElementById("playgroundContainer").innerHTML =
-    `<div class="gameConditionContainer" id="gameConditionContainer"></div>
+    `<div class="gameHeadline">
+      <div class="gameHeadlineBox" onclick="openDialog()"><img src="../assets/icon/game-overview.png">Punktestand</div>
+      <div class="gameHeadlineBox" onclick="openDialog()">Setings<img src="../assets/icon/settings.png"></div>
+    </div>
+    <div class="gameConditionContainer" id="gameConditionContainer"></div>
     <div class="pointsContainer" id="pointsContainer"></div>
     <div class="diceContainer" id="diceContainer"></div>
     <div class="btnSection" id="btnSection">

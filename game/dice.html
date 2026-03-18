@@ -16,5 +16,21 @@
   <body onload="oninit()">
     <div class="playgroundContainer" id="playgroundContainer"></div>
     <div class="gameOverview" id="gameOverview"></div>
+
+    <div
+      id="dialogOverlay"
+      class="dialogOverlay d-none"
+      onclick="closeDialog()"
+    >
+      <div class="dialogBox" onclick="event.stopPropagation()">
+        <div class="dialogHeader">
+          <span id="dialogTitle">Titel</span>
+          <img src="../assets/icon/close.png" onclick="closeDialog()" />
+        </div>
+
+        <div id="dialogText" class="dialogText"></div>
+        <div id="dialogButtons" class="dialogButtons"></div>
+      </div>
+    </div>
   </body>
 </html>
