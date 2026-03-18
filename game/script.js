@@ -11,7 +11,7 @@ curretRound = 1;
 gameRound = 1;
 
 function oninit() {
-  getTemplateByGameStart();
+  getTemplateSelectMode();
 }
 
 function playerRollTheDice() {
@@ -26,7 +26,6 @@ function playerRollTheDice() {
     document.getElementById("diceContainer").innerHTML = "";
     curretRoll();
     curretRound++;
-    document.getElementById("btnSection").innerHTML = "";
     getTemplateLastRound();
   } else {
     document.getElementById("diceContainer").innerHTML = "";

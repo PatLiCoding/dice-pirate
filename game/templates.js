@@ -1,3 +1,16 @@
+function getTemplateSelectMode() {
+  document.getElementById("playgroundContainer").innerHTML += `
+    <div class="SelectMode" id="SelectMode">
+      <div>
+        <h2>Spielmodus</h2>
+        <p>Wähle den Spiel-Modus aus:</p>
+      </div>
+      <button class="gameBtn" onclick="gameRestart()">Solo</button>
+      <button class="gameBtn" onclick="gameRestart()">Gegen KI</button>
+      <button class="gameBtn" onclick="gameRestart()">2 Spieler</button>
+    </div>`;
+}
+
 function getTemplateByGameStart() {
   document.getElementById("playgroundContainer").innerHTML +=
     `<div class="gameConditionContainer" id="gameConditionContainer"></div>
@@ -52,12 +65,12 @@ function getTemplateEndgameLoot(playerPoints) {
 }
 
 function getTemplateLastRound() {
-  document.getElementById("btnSection").innerHTML +=
+  document.getElementById("btnSection").innerHTML =
     `<button class="gameBtn" onclick="playerRollTheDice()">Runde Beenden</button>`;
 }
 
 function getTemplateRoundFinished() {
-  document.getElementById("btnSection").innerHTML +=
+  document.getElementById("btnSection").innerHTML =
     `<button class="gameBtn" onclick="gameRestart()">Neustart</button>
     <p class="infoText">Die Runde ist beendet.</p>`;
 }
