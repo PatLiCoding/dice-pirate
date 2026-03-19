@@ -174,7 +174,7 @@ function getTemplateDialogSetings() {
     </div>
   <div id="dialogButtonContainer" class="dialogButtonContainer">
     <button class="dialogBtn" onclick="closeDialog()">Zurück</button>
-    <button class="dialogBtn" onclick="closeDialog(); getTemplateSelectMode()">Spielmodus</button>
+    <button class="dialogBtn" onclick="closeDialog(); location.reload(true);">Spielmodus</button>
     <button class="dialogBtn" onclick="closeDialog(); window.location.href = '../game-rules.html'">Spielregeln</button>
     <button class="dialogBtn" onclick="closeDialog(); window.location.href = '../index.html'">Startseite</button>
   </div>`;
