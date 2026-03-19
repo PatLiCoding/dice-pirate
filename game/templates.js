@@ -40,8 +40,8 @@ function getTemplateByGameOverview(
 function getTemplateByGameStart() {
   document.getElementById("playgroundContainer").innerHTML =
     `<div class="gameHeadline">
-      <div class="gameHeadlineBox" onclick="openDialog()"><img src="../assets/icon/game-overview.png">Punktestand</div>
-      <div class="gameHeadlineBox" onclick="openDialog()">Setings<img src="../assets/icon/settings.png"></div>
+      <div class="gameHeadlineBox" onclick="openDialogGameOverview()"><img src="../assets/icon/game-overview.png">Punktestand</div>
+      <div class="gameHeadlineBox" onclick="openDialogSetings()">Setings<img src="../assets/icon/settings.png"></div>
     </div>
     <div class="gameConditionContainer" id="gameConditionContainer"></div>
     <div class="pointsContainer" id="pointsContainer"></div>
@@ -103,4 +103,79 @@ function getTemplateRoundFinished() {
   document.getElementById("btnSection").innerHTML =
     `<button class="gameBtn" onclick="gameRestart()">Neustart</button>
     <p class="infoText">Die Runde ist beendet.</p>`;
+}
+
+function getTemplateDialogGameOverview() {
+  document.getElementById("dialogBox").innerHTML = `
+  <div class="dialogHeader">
+          <span id="dialogTitle">Punktestand</span>
+          <img
+            src="../assets/icon/close.png"
+            class="dialogCloseBtn"
+            onclick="closeDialog()"
+          />
+        </div>
+
+        <div id="dialogText" class="dialogText">
+          <div class="pointsTableContainer">
+            <table>
+              <tr>
+                <th>Runden</th>
+                <th>Spieler</th>
+                <th>Gegner</th>
+              </tr>
+              <tr>
+                <td>Runde 1</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>Runde 2</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>Runde 3</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>Runde 4</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>Runde 5</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>Gesamt</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div id="dialogButtonContainer" class="dialogButtonContainer">
+          <button class="dialogBtn" onclick="closeDialog()">Zurück</button>
+        </div>`;
+}
+
+function getTemplateDialogSetings() {
+  document.getElementById("dialogBox").innerHTML = `
+  <div class="dialogHeader">
+          <span id="dialogTitle">Setings</span>
+          <img
+            src="../assets/icon/close.png"
+            class="dialogCloseBtn"
+            onclick="closeDialog()"
+          />
+    </div>
+  <div id="dialogButtonContainer" class="dialogButtonContainer">
+    <button class="dialogBtn" onclick="closeDialog()">Zurück</button>
+    <button class="dialogBtn" onclick="closeDialog(); getTemplateSelectMode()">Spielmodus</button>
+    <button class="dialogBtn" onclick="closeDialog(); window.location.href = '../game-rules.html'">Spielregeln</button>
+    <button class="dialogBtn" onclick="closeDialog(); window.location.href = '../index.html'">Startseite</button>
+  </div>`;
 }

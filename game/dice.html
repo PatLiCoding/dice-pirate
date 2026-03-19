@@ -22,15 +22,11 @@
       class="dialogOverlay d-none"
       onclick="closeDialog()"
     >
-      <div class="dialogBox" onclick="event.stopPropagation()">
-        <div class="dialogHeader">
-          <span id="dialogTitle">Titel</span>
-          <img src="../assets/icon/close.png" onclick="closeDialog()" />
-        </div>
-
-        <div id="dialogText" class="dialogText"></div>
-        <div id="dialogButtons" class="dialogButtons"></div>
-      </div>
+      <div
+        class="dialogBox"
+        id="dialogBox"
+        onclick="event.stopPropagation()"
+      ></div>
     </div>
   </body>
 </html>

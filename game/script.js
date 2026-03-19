@@ -188,10 +188,19 @@ function gameRestart() {
   getTemplateByGameOverview(gameRound, curretRound, playerPoints, enemyPoints);
 }
 
-function openDialog() {
+function openDialogGameOverview() {
+  getTemplateDialogGameOverview();
+  document.body.classList.add("noScroll");
+  document.getElementById("dialogOverlay").classList.remove("d-none");
+}
+
+function openDialogSetings() {
+  getTemplateDialogSetings();
+  document.body.classList.add("noScroll");
   document.getElementById("dialogOverlay").classList.remove("d-none");
 }
 
 function closeDialog() {
   document.getElementById("dialogOverlay").classList.add("d-none");
+  document.body.classList.remove("noScroll");
 }
