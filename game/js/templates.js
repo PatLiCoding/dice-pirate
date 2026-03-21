@@ -1,4 +1,4 @@
-function getTemplateSelectMode() {
+export function getTemplateSelectMode() {
   document.getElementById("playgroundContainer").innerHTML = `
     <div class="SelectMode" id="SelectMode">
       <img class="backToIndex" src="../assets/icon/arrow-back.png" onclick="window.location.href = '../index.html'">
@@ -12,7 +12,7 @@ function getTemplateSelectMode() {
     </div>`;
 }
 
-function getTemplateByGameOverview(
+export function getTemplateByGameOverview(
   gameRound,
   curretRound,
   playerPoints,
@@ -37,7 +37,7 @@ function getTemplateByGameOverview(
       </div>`;
 }
 
-function getTemplateByGameStart() {
+export function getTemplateByGameStart() {
   document.getElementById("playgroundContainer").innerHTML =
     `<div class="gameHeadline">
       <div class="gameHeadlineBox" onclick="openDialogGameOverview()"><img src="../assets/icon/game-overview.png">Punktestand</div>
@@ -51,27 +51,27 @@ function getTemplateByGameStart() {
     </div>`;
 }
 
-function getTemplateShipImage() {
+export function getTemplateShipImage() {
   document.getElementById("gameConditionContainer").innerHTML +=
     `<img src="../assets/img/ship.png" class="conditionImages">`;
 }
 
-function getTemplateCaptainImage() {
+export function getTemplateCaptainImage() {
   document.getElementById("gameConditionContainer").innerHTML +=
     `<img src="../assets/img/captain.png" class="conditionImages">`;
 }
 
-function getTemplateCrewImage() {
+export function getTemplateCrewImage() {
   document.getElementById("gameConditionContainer").innerHTML +=
     `<img src="../assets/img/crew.png" class="conditionImages">`;
 }
 
-function getTemplateRollDiceAnimation() {
+export function getTemplateRollDiceAnimation() {
   document.getElementById("diceContainer").innerHTML =
     `<img src="../assets/img/player-roll.gif" class="rollAnimation">`;
 }
 
-function getTemplateSaveLoot(rollDice) {
+export function getTemplateSaveLoot(rollDice) {
   document.getElementById("pointsContainer").innerHTML =
     `<img src="../assets/img/lootbox.png" class="lootboxImages"> 
    ${rollDice
@@ -79,7 +79,7 @@ function getTemplateSaveLoot(rollDice) {
      .reduce((sum, dice) => sum + dice.value, 0)} Punkte`;
 }
 
-function getTemplateFromRollDice(cssClass, i, value) {
+export function getTemplateFromRollDice(cssClass, i, value) {
   document.getElementById("diceContainer").innerHTML += `<div 
         class="${cssClass}" 
         onclick="clickDice(${i})"
@@ -88,24 +88,24 @@ function getTemplateFromRollDice(cssClass, i, value) {
       </div>`;
 }
 
-function getTemplateEndgameLoot(playerPoints) {
+export function getTemplateEndgameLoot(playerPoints) {
   document.getElementById("pointsContainer").innerHTML =
     `<img src="../assets/img/lootbox.png" class="lootboxImages"> 
    ${playerPoints} Punkte`;
 }
 
-function getTemplateLastRound() {
+export function getTemplateLastRound() {
   document.getElementById("btnSection").innerHTML =
     `<button class="gameBtn" onclick="playerRollTheDice()">Runde Beenden</button>`;
 }
 
-function getTemplateRoundFinished() {
+export function getTemplateRoundFinished() {
   document.getElementById("btnSection").innerHTML =
     `<button class="gameBtn" onclick="gameRestart()">Neustart</button>
     <p class="infoText">Die Runde ist beendet.</p>`;
 }
 
-function getTemplateDialogGameOverview() {
+export function getTemplateDialogGameOverview() {
   document.getElementById("dialogBox").innerHTML = `
   <div class="dialogHeader">
           <span id="dialogTitle">Punktestand</span>
@@ -162,7 +162,7 @@ function getTemplateDialogGameOverview() {
         </div>`;
 }
 
-function getTemplateDialogSetings() {
+export function getTemplateDialogSetings() {
   document.getElementById("dialogBox").innerHTML = `
   <div class="dialogHeader">
           <span id="dialogTitle">Setings</span>
