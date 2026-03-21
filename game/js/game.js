@@ -9,6 +9,8 @@ import {
   getTemplateEndgameLoot,
   getTemplateLastRound,
   getTemplateRoundFinished,
+  getTemplateByGameOverviewSolo,
+  getTemplateByGameStartSolo,
 } from "./templates.js";
 import { state } from "./state.js";
 import {
@@ -25,13 +27,36 @@ import {
   ANIMATION_DURATION,
 } from "./config.js";
 
-function playerRollTheDice() {
+function checkSelectMode(mode) {
+  if (mode === "solo") playerRollTheDiceSolo(mode);
+  if (mode === "ki") playerRollTheDice(mode);
+  if (mode === "local") playerRollTheDice(mode);
+}
+
+function playerRollTheDiceSolo(mode) {
   setButtonsDisabled(true);
   state.currentRound++;
   if (state.currentRound < MAX_ROLLS) curretRoll();
   if (state.currentRound > MAX_ROLLS) {
     document.getElementById("diceContainer").innerHTML = "";
-    getTemplateRoundFinished();
+    getTemplateRoundFinished(mode);
+    getTemplateByGameOverviewSolo(MAX_ROLLS);
+    if (state.crew === true)
+      (addUpPlayerPoints(), getTemplateEndgameLoot(state.playerPoints));
+    return;
+  }
+  if (state.currentRound === MAX_ROLLS)
+    (curretRoll(), getTemplateLastRound(mode));
+  getTemplateByGameOverviewSolo(state.currentRound);
+}
+
+function playerRollTheDice(mode) {
+  setButtonsDisabled(true);
+  state.currentRound++;
+  if (state.currentRound < MAX_ROLLS) curretRoll();
+  if (state.currentRound > MAX_ROLLS) {
+    document.getElementById("diceContainer").innerHTML = "";
+    getTemplateRoundFinished(mode);
     getTemplateByGameOverview(
       state.gameRound,
       MAX_ROLLS,
@@ -42,7 +67,8 @@ function playerRollTheDice() {
       (addUpPlayerPoints(), getTemplateEndgameLoot(state.playerPoints));
     return;
   }
-  if (state.currentRound === MAX_ROLLS) (curretRoll(), getTemplateLastRound());
+  if (state.currentRound === MAX_ROLLS)
+    (curretRoll(), getTemplateLastRound(mode));
   getTemplateByGameOverview(
     state.gameRound,
     state.currentRound,
@@ -146,7 +172,27 @@ function addUpPlayerPoints() {
   }
 }
 
-function gameRestart() {
+function checkRestartGame(mode) {
+  if (mode === "solo") soloGameStart(mode);
+  if (mode === "ki") gameRestart(mode);
+  if (mode === "local") gameRestart(mode);
+}
+
+function soloGameStart(mode) {
+  document.getElementById("playgroundContainer").innerHTML = "";
+  state.rollDice = [];
+  state.saveRolledDice = 0;
+  state.playDiceCounter = [];
+  state.playerPoints = 0;
+  state.ship = false;
+  state.captain = false;
+  state.crew = false;
+  state.currentRound = 0;
+  getTemplateByGameStartSolo(mode);
+  getTemplateByGameOverviewSolo(state.currentRound);
+}
+
+function gameRestart(mode) {
   document.getElementById("playgroundContainer").innerHTML = "";
   state.rollDice = [];
   state.saveRolledDice = 0;
@@ -158,7 +204,7 @@ function gameRestart() {
   state.captain = false;
   state.crew = false;
   state.currentRound = 0;
-  getTemplateByGameStart();
+  getTemplateByGameStart(mode);
   getTemplateByGameOverview(
     state.gameRound,
     state.currentRound,
@@ -167,8 +213,11 @@ function gameRestart() {
   );
 }
 
+window.checkSelectMode = checkSelectMode;
 window.playerRollTheDice = playerRollTheDice;
+window.checkRestartGame = checkRestartGame;
 window.gameRestart = gameRestart;
+window.soloGameStart = soloGameStart;
 window.clickDice = clickDice;
 window.openDialogGameOverview = openDialogGameOverview;
 window.openDialogSettings = openDialogSettings;

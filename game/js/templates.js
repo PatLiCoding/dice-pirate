@@ -14,9 +14,17 @@ export function getTemplateSelectMode() {
         <h2>${BUTTON_LABELS.modeSelect}</h2>
         <p>Wähle den Spiel-Modus aus:</p>
       </div>
-      <button class="gameBtn" onclick="gameRestart()">${BUTTON_LABELS.mode[0]}</button>
-      <button class="gameBtn" onclick="gameRestart()">${BUTTON_LABELS.mode[1]}</button>
-      <button class="gameBtn" onclick="gameRestart()">${BUTTON_LABELS.mode[2]}</button>
+      <button class="gameBtn" onclick="soloGameStart('solo')">${BUTTON_LABELS.mode[0]}</button>
+      <button class="gameBtn" onclick="gameRestart('ki')">${BUTTON_LABELS.mode[1]}</button>
+      <button class="gameBtn" onclick="gameRestart('local')">${BUTTON_LABELS.mode[2]}</button>
+    </div>`;
+}
+
+export function getTemplateByGameOverviewSolo(currentRound) {
+  document.getElementById("gameOverview").innerHTML = `
+    <div>
+      <p>Wurf</p>
+      <p>${currentRound} / ${MAX_ROLLS}</p>
     </div>`;
 }
 
@@ -45,7 +53,7 @@ export function getTemplateByGameOverview(
     </div>`;
 }
 
-export function getTemplateByGameStart() {
+export function getTemplateByGameStart(mode) {
   document.getElementById("playgroundContainer").innerHTML = `
     <div class="gameHeadline">
       <div class="gameHeadlineBox" onclick="openDialogGameOverview()">
@@ -59,7 +67,24 @@ export function getTemplateByGameStart() {
     <div class="pointsContainer" id="pointsContainer"></div>
     <div class="diceContainer" id="diceContainer"></div>
     <div class="btnSection" id="btnSection">
-      <button class="gameBtn" onclick="playerRollTheDice()">${BUTTON_LABELS.roll}</button>
+      <button class="gameBtn" onclick="checkSelectMode('${mode}')">${BUTTON_LABELS.roll}</button>
+    </div>`;
+}
+
+export function getTemplateByGameStartSolo(mode) {
+  document.getElementById("playgroundContainer").innerHTML = `
+    <div class="gameHeadline">
+      <div class="gameHeadlineBox" onclick="openDialogGameOverview()">
+      </div>
+      <div class="gameHeadlineBox" onclick="openDialogSettings()">
+        ${TEXTS.settingsTitle}<img src="${IMAGE_PATHS.settingsIcon}">
+      </div>
+    </div>
+    <div class="gameConditionContainer" id="gameConditionContainer"></div>
+    <div class="pointsContainer" id="pointsContainer"></div>
+    <div class="diceContainer" id="diceContainer"></div>
+    <div class="btnSection" id="btnSection">
+      <button class="gameBtn" onclick="checkSelectMode('${mode}')">${BUTTON_LABELS.roll}</button>
     </div>`;
 }
 
@@ -105,14 +130,14 @@ export function getTemplateEndgameLoot(playerPoints) {
     `<img src="${IMAGE_PATHS.lootbox}" class="lootboxImages">${playerPoints} Punkte`;
 }
 
-export function getTemplateLastRound() {
+export function getTemplateLastRound(mode) {
   document.getElementById("btnSection").innerHTML =
-    `<button class="gameBtn" onclick="playerRollTheDice()">${BUTTON_LABELS.endRound}</button>`;
+    `<button class="gameBtn" onclick="checkSelectMode('${mode}')">${BUTTON_LABELS.endRound}</button>`;
 }
 
-export function getTemplateRoundFinished() {
+export function getTemplateRoundFinished(mode) {
   document.getElementById("btnSection").innerHTML =
-    `<button class="gameBtn" onclick="gameRestart()">${BUTTON_LABELS.restart}</button>
+    `<button class="gameBtn" onclick="checkRestartGame('${mode}')">${BUTTON_LABELS.restart}</button>
      <p class="infoText">${TEXTS.roundFinished}</p>`;
 }
 
