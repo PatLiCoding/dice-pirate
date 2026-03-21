@@ -18,61 +18,48 @@ import {
   openDialogSettings,
   closeDialog,
 } from "./ui.js";
+import {
+  MAX_ROUNDS,
+  MAX_ROLLS,
+  NUM_DICE,
+  ANIMATION_DURATION,
+} from "./config.js";
 
 function playerRollTheDice() {
   setButtonsDisabled(true);
-  if (state.curretRound === 0) {
-    curretRoll();
-    getTemplateByGameOverview(
-      state.gameRound,
-      state.curretRound,
-      state.playerPoints,
-      state.enemyPoints,
-    );
-  } else if (state.curretRound < 2) {
-    document.getElementById("diceContainer").innerHTML = "";
-    curretRoll();
-    getTemplateByGameOverview(
-      state.gameRound,
-      state.curretRound,
-      state.playerPoints,
-      state.enemyPoints,
-    );
-  } else if (state.curretRound === 2) {
-    document.getElementById("diceContainer").innerHTML = "";
-    curretRoll();
-    getTemplateLastRound();
-    setButtonsDisabled(true);
-    getTemplateByGameOverview(
-      state.gameRound,
-      state.curretRound,
-      state.playerPoints,
-      state.enemyPoints,
-    );
-  } else {
+  state.currentRound++;
+  if (state.currentRound < MAX_ROLLS) curretRoll();
+  if (state.currentRound > MAX_ROLLS) {
     document.getElementById("diceContainer").innerHTML = "";
     getTemplateRoundFinished();
     getTemplateByGameOverview(
       state.gameRound,
-      state.curretRound,
+      MAX_ROLLS,
       state.playerPoints,
       state.enemyPoints,
     );
-    if (state.crew === true) {
-      addUpPlayerPoints();
-      getTemplateEndgameLoot(state.playerPoints);
-    }
+    if (state.crew === true)
+      (addUpPlayerPoints(), getTemplateEndgameLoot(state.playerPoints));
+    return;
   }
+  if (state.currentRound === MAX_ROLLS) (curretRoll(), getTemplateLastRound());
+  getTemplateByGameOverview(
+    state.gameRound,
+    state.currentRound,
+    state.playerPoints,
+    state.enemyPoints,
+  );
 }
 
 function curretRoll() {
+  document.getElementById("diceContainer").innerHTML = "";
   getTemplateRollDiceAnimation();
   setTimeout(() => {
     let newRoll = [];
     state.rollDice = state.rollDice.filter(
       (d) => d.type === "condition" || d.selected,
     );
-    for (let i = state.rollDice.length; i < 6; i++) {
+    for (let i = state.rollDice.length; i < NUM_DICE; i++) {
       const num = Math.floor(Math.random() * 6) + 1;
       newRoll.push({
         value: num,
@@ -84,8 +71,7 @@ function curretRoll() {
     checkCondition();
     renderDice();
     setButtonsDisabled(false);
-  }, 3500);
-  state.curretRound++;
+  }, ANIMATION_DURATION);
 }
 
 function checkCondition() {
@@ -171,11 +157,11 @@ function gameRestart() {
   state.ship = false;
   state.captain = false;
   state.crew = false;
-  state.curretRound = 0;
+  state.currentRound = 0;
   getTemplateByGameStart();
   getTemplateByGameOverview(
     state.gameRound,
-    state.curretRound,
+    state.currentRound,
     state.playerPoints,
     state.enemyPoints,
   );

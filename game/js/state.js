@@ -8,6 +8,6 @@ export const state = {
   ship: false,
   captain: false,
   crew: false,
-  curretRound: 0,
+  currentRound: 0,
   gameRound: 1,
 };
