@@ -78,9 +78,9 @@ export function getTemplateCrewImage() {
     `<img src="${IMAGE_PATHS.crew}" class="conditionImages">`;
 }
 
-export function getTemplateRollDiceAnimation() {
+export function getTemplateRollDicePlayerAnimation() {
   document.getElementById("diceContainer").innerHTML =
-    `<img src="${IMAGE_PATHS.rollAnimation}" class="rollAnimation">`;
+    `<img src="${IMAGE_PATHS.rollAnimationPlayer}" class="rollAnimation">`;
 }
 
 export function getTemplateSaveLoot(rollDice) {

@@ -4,11 +4,12 @@ export const NUM_DICE = 6;
 export const ANIMATION_DURATION = 3400;
 
 export const IMAGE_PATHS = {
-  ship: "../assets/img/ship.png",
-  captain: "../assets/img/captain.png",
-  crew: "../assets/img/crew.png",
-  lootbox: "../assets/img/lootbox.png",
-  rollAnimation: "../assets/img/player-roll.gif",
+  ship: "../assets/img/game/ship.png",
+  captain: "../assets/img/game/captain.png",
+  crew: "../assets/img/game/crew.png",
+  lootbox: "../assets/img/game/lootbox.png",
+  rollAnimationPlayer: "../assets/img/game/player-roll.gif",
+  rollAnimationEnemy: "../assets/img/game/enemy-roll.gif",
   arrowBack: "../assets/icon/arrow-back.png",
   gameOverviewIcon: "../assets/icon/game-overview.png",
   settingsIcon: "../assets/icon/settings.png",

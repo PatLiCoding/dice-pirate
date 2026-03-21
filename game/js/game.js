@@ -4,7 +4,7 @@ import {
   getTemplateShipImage,
   getTemplateCaptainImage,
   getTemplateCrewImage,
-  getTemplateRollDiceAnimation,
+  getTemplateRollDicePlayerAnimation,
   getTemplateSaveLoot,
   getTemplateEndgameLoot,
   getTemplateLastRound,
@@ -53,7 +53,7 @@ function playerRollTheDice() {
 
 function curretRoll() {
   document.getElementById("diceContainer").innerHTML = "";
-  getTemplateRollDiceAnimation();
+  getTemplateRollDicePlayerAnimation();
   setTimeout(() => {
     let newRoll = [];
     state.rollDice = state.rollDice.filter(
