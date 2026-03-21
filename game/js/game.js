@@ -1,5 +1,4 @@
 import {
-  getTemplateSelectMode,
   getTemplateByGameOverview,
   getTemplateByGameStart,
   getTemplateShipImage,
@@ -7,14 +6,18 @@ import {
   getTemplateCrewImage,
   getTemplateRollDiceAnimation,
   getTemplateSaveLoot,
-  getTemplateFromRollDice,
   getTemplateEndgameLoot,
   getTemplateLastRound,
   getTemplateRoundFinished,
-  getTemplateDialogGameOverview,
-  getTemplateDialogSetings,
 } from "./templates.js";
 import { state } from "./state.js";
+import {
+  setButtonsDisabled,
+  renderDice,
+  openDialogGameOverview,
+  openDialogSettings,
+  closeDialog,
+} from "./ui.js";
 
 function playerRollTheDice() {
   setButtonsDisabled(true);
@@ -59,25 +62,6 @@ function playerRollTheDice() {
       addUpPlayerPoints();
       getTemplateEndgameLoot(state.playerPoints);
     }
-  }
-}
-
-function setButtonsDisabled(state) {
-  const buttons = document.querySelectorAll("#btnSection button");
-  buttons.forEach((btn) => {
-    btn.disabled = state;
-  });
-}
-
-function renderDice() {
-  document.getElementById("diceContainer").innerHTML = "";
-  for (let i = 0; i < state.rollDice.length; i++) {
-    let dice = state.rollDice[i];
-    let cssClass = "dice defaultDice";
-    if (dice.type === "condition") cssClass = "dice conditionDice";
-    if (dice.type === "loot") cssClass = "dice lootDice";
-    if (dice.selected) cssClass = "dice saveLootDice";
-    getTemplateFromRollDice(cssClass, i, dice.value);
   }
 }
 
@@ -197,26 +181,9 @@ function gameRestart() {
   );
 }
 
-function openDialogGameOverview() {
-  getTemplateDialogGameOverview();
-  document.body.classList.add("noScroll");
-  document.getElementById("dialogOverlay").classList.remove("d-none");
-}
-
-function openDialogSetings() {
-  getTemplateDialogSetings();
-  document.body.classList.add("noScroll");
-  document.getElementById("dialogOverlay").classList.remove("d-none");
-}
-
-function closeDialog() {
-  document.getElementById("dialogOverlay").classList.add("d-none");
-  document.body.classList.remove("noScroll");
-}
-
 window.playerRollTheDice = playerRollTheDice;
 window.gameRestart = gameRestart;
 window.clickDice = clickDice;
 window.openDialogGameOverview = openDialogGameOverview;
-window.openDialogSetings = openDialogSetings;
+window.openDialogSettings = openDialogSettings;
 window.closeDialog = closeDialog;

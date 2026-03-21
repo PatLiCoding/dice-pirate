@@ -41,7 +41,7 @@ export function getTemplateByGameStart() {
   document.getElementById("playgroundContainer").innerHTML =
     `<div class="gameHeadline">
       <div class="gameHeadlineBox" onclick="openDialogGameOverview()"><img src="../assets/icon/game-overview.png">Punktestand</div>
-      <div class="gameHeadlineBox" onclick="openDialogSetings()">Setings<img src="../assets/icon/settings.png"></div>
+      <div class="gameHeadlineBox" onclick="openDialogSettings()">Settings<img src="../assets/icon/settings.png"></div>
     </div>
     <div class="gameConditionContainer" id="gameConditionContainer"></div>
     <div class="pointsContainer" id="pointsContainer"></div>
@@ -162,10 +162,10 @@ export function getTemplateDialogGameOverview() {
         </div>`;
 }
 
-export function getTemplateDialogSetings() {
+export function getTemplateDialogSettings() {
   document.getElementById("dialogBox").innerHTML = `
   <div class="dialogHeader">
-          <span id="dialogTitle">Setings</span>
+          <span id="dialogTitle">Settings</span>
           <img
             src="../assets/icon/close.png"
             class="dialogCloseBtn"
