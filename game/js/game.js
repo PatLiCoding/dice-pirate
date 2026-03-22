@@ -1,3 +1,5 @@
+import { playerRollTheDiceSolo } from "./modes/soloMode.js";
+import { startAiTurn } from "./modes/aiMode.js";
 import {
   getTemplateByGameOverview,
   getTemplateByGameStart,
@@ -5,14 +7,10 @@ import {
   getTemplateCaptainImage,
   getTemplateCrewImage,
   getTemplateRollDicePlayerAnimation,
-  getTemplateRollDiceAiAnimation,
   getTemplateSaveLoot,
   getTemplateEndgameLoot,
   getTemplateLastRound,
-  getTemplateRoundFinished,
   getTemplateStartAiRound,
-  getTemplateByGameOverviewSolo,
-  getTemplateByGameStartSolo,
 } from "./templates.js";
 import { state } from "./state.js";
 import {
@@ -29,29 +27,14 @@ import {
   ANIMATION_DURATION,
 } from "./config.js";
 
-function checkSelectMode(mode) {
+export function checkSelectMode(mode) {
   state.mode = mode;
   if (mode === "solo") playerRollTheDiceSolo(mode);
   if (mode === "ai") playerRollTheDice(mode);
   if (mode === "local") playerRollTheDice(mode);
 }
 
-function playerRollTheDiceSolo(mode) {
-  state.currentRound++;
-  if (state.currentRound < MAX_ROLLS) (setButtonsDisabled(true), currentRoll());
-  if (state.currentRound > MAX_ROLLS) {
-    document.getElementById("diceContainer").innerHTML = "";
-    getTemplateRoundFinished(mode);
-    getTemplateByGameOverviewSolo(MAX_ROLLS);
-    if (state.crew === true)
-      (addUpPlayerPoints(), getTemplateEndgameLoot(state.playerPoints));
-  }
-  if (state.currentRound === MAX_ROLLS)
-    (getTemplateLastRound(mode), setButtonsDisabled(true), currentRoll());
-  getTemplateByGameOverviewSolo(state.currentRound);
-}
-
-function playerRollTheDice(mode) {
+export function playerRollTheDice(mode) {
   state.currentRound++;
   getTemplateByGameOverview(state.gameRound, state.currentRound);
   if (state.currentRound < MAX_ROLLS) (setButtonsDisabled(true), currentRoll());
@@ -66,19 +49,7 @@ function playerRollTheDice(mode) {
     (getTemplateLastRound(mode), setButtonsDisabled(true), currentRoll());
 }
 
-function startAiTurn() {
-  document.getElementById("gameConditionContainer").innerHTML = "";
-  document.getElementById("pointsContainer").innerHTML = "";
-  document.getElementById("btnSection").innerHTML = "";
-  state.currentRound = 0;
-  state.rollDice = [];
-  state.ship = false;
-  state.captain = false;
-  state.crew = false;
-  aiRollLoop();
-}
-
-function currentRoll() {
+export function currentRoll() {
   document.getElementById("diceContainer").innerHTML = "";
   getTemplateRollDicePlayerAnimation();
   setTimeout(() => {
@@ -89,34 +60,7 @@ function currentRoll() {
   }, ANIMATION_DURATION);
 }
 
-function aiRollLoop() {
-  state.currentRound++;
-  getTemplateByGameOverview(state.gameRound, state.currentRound);
-  if (state.currentRound > MAX_ROLLS) {
-    finishAiTurn();
-    return;
-  }
-  getTemplateRollDiceAiAnimation();
-  setTimeout(() => {
-    rerollUnselectedDice();
-    checkCondition();
-    aiRollLoop();
-  }, ANIMATION_DURATION);
-}
-
-function finishAiTurn() {
-  document.getElementById("diceContainer").innerHTML = "";
-  state.enemyPoints = 0;
-  for (let i = 0; i < state.rollDice.length; i++) {
-    let dice = state.rollDice[i];
-    if (dice.type === "loot") state.enemyPoints += dice.value;
-  }
-  getTemplateByGameOverview(state.gameRound, MAX_ROLLS);
-  getTemplateRoundFinished(state.mode);
-  if (state.crew === true) getTemplateEndgameLoot(state.enemyPoints);
-}
-
-function rerollUnselectedDice() {
+export function rerollUnselectedDice() {
   let newRoll = [];
   state.rollDice = state.rollDice.filter(
     (d) => d.type === "condition" || d.selected,
@@ -132,7 +76,7 @@ function rerollUnselectedDice() {
   state.rollDice = state.rollDice.concat(newRoll);
 }
 
-function checkCondition() {
+export function checkCondition() {
   checkShip();
   if (state.ship) {
     document.getElementById("gameConditionContainer").innerHTML = "";
@@ -143,7 +87,7 @@ function checkCondition() {
   }
 }
 
-function checkShip() {
+export function checkShip() {
   for (let i = 0; i < state.rollDice.length; i++) {
     if (state.rollDice[i].value === 6 && !state.ship) {
       state.ship = true;
@@ -154,7 +98,7 @@ function checkShip() {
   }
 }
 
-function checkCaptain() {
+export function checkCaptain() {
   for (let i = 0; i < state.rollDice.length; i++) {
     if (state.rollDice[i].value === 5 && !state.captain) {
       state.captain = true;
@@ -165,7 +109,7 @@ function checkCaptain() {
   }
 }
 
-function checkCrew() {
+export function checkCrew() {
   for (let i = 0; i < state.rollDice.length; i++) {
     if (state.rollDice[i].value === 4 && !state.crew) {
       state.crew = true;
@@ -176,18 +120,16 @@ function checkCrew() {
   }
 }
 
-function setLootDice() {
+export function setLootDice() {
   for (let i = 0; i < state.rollDice.length; i++) {
-    if (state.rollDice[i].type === "default") {
-      state.rollDice[i].type = "loot";
-    }
+    if (state.rollDice[i].type === "default") state.rollDice[i].type = "loot";
   }
   getTemplateSaveLoot(state.rollDice);
   if (state.mode === "ai") return;
   renderDice();
 }
 
-function clickDice(index) {
+export function clickDice(index) {
   let dice = state.rollDice[index];
   if (dice.type !== "loot") return;
   dice.selected = !dice.selected;
@@ -195,37 +137,21 @@ function clickDice(index) {
   renderDice();
 }
 
-function addUpPlayerPoints() {
+export function addUpPlayerPoints() {
   state.playerPoints = 0;
   for (let i = 0; i < state.rollDice.length; i++) {
     let dice = state.rollDice[i];
-    if (dice.type === "loot") {
-      state.playerPoints += dice.value;
-    }
+    if (dice.type === "loot") state.playerPoints += dice.value;
   }
 }
 
-function checkRestartGame(mode) {
+export function checkRestartGame(mode) {
   if (mode === "solo") soloGameStart(mode);
   if (mode === "ai") gameStart(mode);
   if (mode === "local") gameStart(mode);
 }
 
-function soloGameStart(mode) {
-  document.getElementById("playgroundContainer").innerHTML = "";
-  state.rollDice = [];
-  state.saveRolledDice = 0;
-  state.playDiceCounter = [];
-  state.playerPoints = 0;
-  state.ship = false;
-  state.captain = false;
-  state.crew = false;
-  state.currentRound = 0;
-  getTemplateByGameStartSolo(mode);
-  getTemplateByGameOverviewSolo(state.currentRound);
-}
-
-function gameStart(mode) {
+export function gameStart(mode) {
   document.getElementById("playgroundContainer").innerHTML = "";
   state.rollDice = [];
   state.saveRolledDice = 0;
@@ -245,8 +171,6 @@ window.checkSelectMode = checkSelectMode;
 window.playerRollTheDice = playerRollTheDice;
 window.checkRestartGame = checkRestartGame;
 window.gameStart = gameStart;
-window.soloGameStart = soloGameStart;
-window.startAiTurn = startAiTurn;
 window.clickDice = clickDice;
 window.openDialogGameOverview = openDialogGameOverview;
 window.openDialogSettings = openDialogSettings;
