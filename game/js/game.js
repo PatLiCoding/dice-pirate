@@ -5,6 +5,7 @@ import {
   getTemplateCaptainImage,
   getTemplateCrewImage,
   getTemplateRollDicePlayerAnimation,
+  getTemplateRollDiceAiAnimation,
   getTemplateSaveLoot,
   getTemplateEndgameLoot,
   getTemplateLastRound,
@@ -34,9 +35,8 @@ function checkSelectMode(mode) {
 }
 
 function playerRollTheDiceSolo(mode) {
-  setButtonsDisabled(true);
   state.currentRound++;
-  if (state.currentRound < MAX_ROLLS) curretRoll();
+  if (state.currentRound < MAX_ROLLS) (setButtonsDisabled(true), currentRoll());
   if (state.currentRound > MAX_ROLLS) {
     document.getElementById("diceContainer").innerHTML = "";
     getTemplateRoundFinished(mode);
@@ -46,58 +46,51 @@ function playerRollTheDiceSolo(mode) {
     return;
   }
   if (state.currentRound === MAX_ROLLS)
-    (curretRoll(), getTemplateLastRound(mode));
+    (getTemplateLastRound(mode), setButtonsDisabled(true), currentRoll());
   getTemplateByGameOverviewSolo(state.currentRound);
 }
 
 function playerRollTheDice(mode) {
-  setButtonsDisabled(true);
   state.currentRound++;
-  if (state.currentRound < MAX_ROLLS) curretRoll();
+  if (state.currentRound < MAX_ROLLS) (setButtonsDisabled(true), currentRoll());
   if (state.currentRound > MAX_ROLLS) {
     document.getElementById("diceContainer").innerHTML = "";
     getTemplateRoundFinished(mode);
-    getTemplateByGameOverview(
-      state.gameRound,
-      MAX_ROLLS,
-      state.playerPoints,
-      state.enemyPoints,
-    );
+    getTemplateByGameOverview(state.gameRound, MAX_ROLLS);
     if (state.crew === true)
       (addUpPlayerPoints(), getTemplateEndgameLoot(state.playerPoints));
     return;
   }
   if (state.currentRound === MAX_ROLLS)
-    (curretRoll(), getTemplateLastRound(mode));
-  getTemplateByGameOverview(
-    state.gameRound,
-    state.currentRound,
-    state.playerPoints,
-    state.enemyPoints,
-  );
+    (getTemplateLastRound(mode), setButtonsDisabled(true), currentRoll());
+  getTemplateByGameOverview(state.gameRound, state.currentRound);
 }
 
-function curretRoll() {
+function currentRoll() {
   document.getElementById("diceContainer").innerHTML = "";
   getTemplateRollDicePlayerAnimation();
   setTimeout(() => {
-    let newRoll = [];
-    state.rollDice = state.rollDice.filter(
-      (d) => d.type === "condition" || d.selected,
-    );
-    for (let i = state.rollDice.length; i < NUM_DICE; i++) {
-      const num = Math.floor(Math.random() * 6) + 1;
-      newRoll.push({
-        value: num,
-        type: "default",
-        selected: false,
-      });
-    }
-    state.rollDice = state.rollDice.concat(newRoll);
+    rerollUnselectedDice();
     checkCondition();
     renderDice();
     setButtonsDisabled(false);
   }, ANIMATION_DURATION);
+}
+
+function rerollUnselectedDice() {
+  let newRoll = [];
+  state.rollDice = state.rollDice.filter(
+    (d) => d.type === "condition" || d.selected,
+  );
+  for (let i = state.rollDice.length; i < NUM_DICE; i++) {
+    const num = Math.floor(Math.random() * 6) + 1;
+    newRoll.push({
+      value: num,
+      type: "default",
+      selected: false,
+    });
+  }
+  state.rollDice = state.rollDice.concat(newRoll);
 }
 
 function checkCondition() {
@@ -174,8 +167,8 @@ function addUpPlayerPoints() {
 
 function checkRestartGame(mode) {
   if (mode === "solo") soloGameStart(mode);
-  if (mode === "ki") gameRestart(mode);
-  if (mode === "local") gameRestart(mode);
+  if (mode === "ki") gameStart(mode);
+  if (mode === "local") gameStart(mode);
 }
 
 function soloGameStart(mode) {
@@ -192,7 +185,7 @@ function soloGameStart(mode) {
   getTemplateByGameOverviewSolo(state.currentRound);
 }
 
-function gameRestart(mode) {
+function gameStart(mode) {
   document.getElementById("playgroundContainer").innerHTML = "";
   state.rollDice = [];
   state.saveRolledDice = 0;
@@ -205,18 +198,13 @@ function gameRestart(mode) {
   state.crew = false;
   state.currentRound = 0;
   getTemplateByGameStart(mode);
-  getTemplateByGameOverview(
-    state.gameRound,
-    state.currentRound,
-    state.playerPoints,
-    state.enemyPoints,
-  );
+  getTemplateByGameOverview(state.gameRound, state.currentRound);
 }
 
 window.checkSelectMode = checkSelectMode;
 window.playerRollTheDice = playerRollTheDice;
 window.checkRestartGame = checkRestartGame;
-window.gameRestart = gameRestart;
+window.gameStart = gameStart;
 window.soloGameStart = soloGameStart;
 window.clickDice = clickDice;
 window.openDialogGameOverview = openDialogGameOverview;

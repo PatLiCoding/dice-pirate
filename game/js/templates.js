@@ -5,6 +5,7 @@ import {
   BUTTON_LABELS,
   TEXTS,
 } from "./config.js";
+import { state } from "./state.js";
 
 export function getTemplateSelectMode() {
   document.getElementById("playgroundContainer").innerHTML = `
@@ -15,8 +16,8 @@ export function getTemplateSelectMode() {
         <p>Wähle den Spiel-Modus aus:</p>
       </div>
       <button class="gameBtn" onclick="soloGameStart('solo')">${BUTTON_LABELS.mode[0]}</button>
-      <button class="gameBtn" onclick="gameRestart('ki')">${BUTTON_LABELS.mode[1]}</button>
-      <button class="gameBtn" onclick="gameRestart('local')">${BUTTON_LABELS.mode[2]}</button>
+      <button class="gameBtn" onclick="gameStart('ki')">${BUTTON_LABELS.mode[1]}</button>
+      <button class="gameBtn" onclick="gameStart('local')">${BUTTON_LABELS.mode[2]}</button>
     </div>`;
 }
 
@@ -28,12 +29,7 @@ export function getTemplateByGameOverviewSolo(currentRound) {
     </div>`;
 }
 
-export function getTemplateByGameOverview(
-  gameRound,
-  currentRound,
-  playerPoints,
-  enemyPoints,
-) {
+export function getTemplateByGameOverview(gameRound, currentRound) {
   document.getElementById("gameOverview").innerHTML = `
     <div>
       <p>${TEXTS.rounds}</p>
@@ -45,11 +41,11 @@ export function getTemplateByGameOverview(
     </div>
     <div>
       <p>${TEXTS.player}</p>
-      <p>${playerPoints}</p>
+      <p>${state.playerPoints}</p>
     </div>
     <div>
       <p>${TEXTS.enemy}</p>
-      <p>${enemyPoints}</p>
+      <p>${state.enemyPoints}</p>
     </div>`;
 }
 
@@ -108,6 +104,11 @@ export function getTemplateRollDicePlayerAnimation() {
     `<img src="${IMAGE_PATHS.rollAnimationPlayer}" class="rollAnimation">`;
 }
 
+export function getTemplateRollDiceAiAnimation() {
+  document.getElementById("diceContainer").innerHTML =
+    `<img src="${IMAGE_PATHS.rollAnimationEnemy}" class="rollAnimation">`;
+}
+
 export function getTemplateSaveLoot(rollDice) {
   const points = rollDice
     .filter((d) => d.type === "loot" && d.selected)
@@ -149,7 +150,7 @@ export function getTemplateDialogGameOverview() {
     </div>
     <div id="dialogText" class="dialogText">
       <div class="pointsTableContainer">
-        <table>
+        <table id="pointsTable">
           <tr>
             <th>${TEXTS.rounds}</th>
             <th>${TEXTS.player}</th>
