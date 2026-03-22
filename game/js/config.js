@@ -22,7 +22,7 @@ export const BUTTON_LABELS = {
   restart: "Neustart",
   back: "Zurück",
   modeSelect: "Spielmodus",
-  mode: ["Solo", "Mit KI", "2 Spieler"],
+  mode: ["Solo", "Mit COM", "2 Spieler"],
   rules: "Spielregeln",
   home: "Startseite",
 };

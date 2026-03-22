@@ -1,5 +1,4 @@
 import { playerRollTheDiceSolo } from "./modes/soloMode.js";
-import { startAiTurn } from "./modes/aiMode.js";
 import {
   getTemplateByGameOverview,
   getTemplateByGameStart,
@@ -13,13 +12,7 @@ import {
   getTemplateStartAiRound,
 } from "./templates.js";
 import { state } from "./state.js";
-import {
-  setButtonsDisabled,
-  renderDice,
-  openDialogGameOverview,
-  openDialogSettings,
-  closeDialog,
-} from "./ui.js";
+import { setButtonsDisabled, renderDice } from "./ui.js";
 import {
   MAX_ROUNDS,
   MAX_ROLLS,
@@ -44,6 +37,7 @@ export function playerRollTheDice(mode) {
     if (state.crew === true)
       (addUpPlayerPoints(), getTemplateEndgameLoot(state.playerPoints));
     if (mode === "ai") getTemplateStartAiRound();
+    state.playDiceCounter.push(state.playerPoints);
   }
   if (state.currentRound === MAX_ROLLS)
     (getTemplateLastRound(mode), setButtonsDisabled(true), currentRoll());
@@ -163,6 +157,7 @@ export function gameStart(mode) {
   state.captain = false;
   state.crew = false;
   state.currentRound = 0;
+  state.gameRound = 1;
   getTemplateByGameStart(mode);
   getTemplateByGameOverview(state.gameRound, state.currentRound);
 }

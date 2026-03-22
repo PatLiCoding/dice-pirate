@@ -41,11 +41,11 @@ export function getTemplateByGameOverview(gameRound, currentRound) {
     </div>
     <div>
       <p>${TEXTS.player}</p>
-      <p>${state.playerPoints}</p>
+      <p>${state.playDiceCounter.reduce((totalValue, currentValue) => totalValue + currentValue, 0)}</p>
     </div>
     <div>
       <p>${TEXTS.enemy}</p>
-      <p>${state.enemyPoints}</p>
+      <p>${state.enemyDiceCounter.reduce((totalValue, currentValue) => totalValue + currentValue, 0)}</p>
     </div>`;
 }
 
@@ -148,6 +148,22 @@ export function getTemplateRoundFinished(mode) {
      <p class="infoText">${TEXTS.roundFinished}</p>`;
 }
 
+export function getTemplateGameEnd(mode) {
+  document.getElementById("playgroundContainer").innerHTML =
+    `<div class="gameHeadline">
+      <div class="gameHeadlineBox" onclick="openDialogGameOverview()">
+        <img src="${IMAGE_PATHS.gameOverviewIcon}">${TEXTS.gameOverviewTitle}
+      </div>
+      <div class="gameHeadlineBox" onclick="openDialogSettings()">
+        ${TEXTS.settingsTitle}<img src="${IMAGE_PATHS.settingsIcon}">
+      </div>
+    </div>
+    <div class="btnSection" id="btnSection">
+      <button class="gameBtn" onclick="checkRestartGame('${mode}')">${BUTTON_LABELS.restart}</button>
+      <p class="infoText">${TEXTS.roundFinished}</p>
+    </div>`;
+}
+
 export function getTemplateDialogGameOverview() {
   document.getElementById("dialogBox").innerHTML = `
     <div class="dialogHeader">
@@ -195,8 +211,8 @@ export function getTemplatePointsTableRound(index) {
 export function getTemplatePointsTableTotalNumber() {
   document.getElementById("pointsTable").innerHTML += `<tr>
     <td>Gesamt</td>
-    <td>0</td>
-    <td>0</td>
+    <td>${state.playDiceCounter.reduce((totalValue, currentValue) => totalValue + currentValue, 0)}</td>
+    <td>${state.enemyDiceCounter.reduce((totalValue, currentValue) => totalValue + currentValue, 0)}</td>
   </tr>`;
 }
 

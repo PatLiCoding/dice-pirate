@@ -1,44 +1,13 @@
-import {
-  currentRoll,
-  checkRestartGame,
-  addUpPlayerPoints,
-  clickDice,
-  setLootDice,
-  checkCrew,
-  checkCaptain,
-  checkCondition,
-  rerollUnselectedDice,
-} from "../game.js";
+import { checkCondition, rerollUnselectedDice } from "../game.js";
 import {
   getTemplateByGameOverview,
   getTemplateByGameStart,
-  getTemplateShipImage,
-  getTemplateCaptainImage,
-  getTemplateCrewImage,
-  getTemplateRollDicePlayerAnimation,
   getTemplateRollDiceAiAnimation,
-  getTemplateSaveLoot,
   getTemplateEndgameLoot,
-  getTemplateLastRound,
-  getTemplateRoundFinished,
-  getTemplateStartAiRound,
-  getTemplateByGameOverviewSolo,
-  getTemplateByGameStartSolo,
+  getTemplateGameEnd,
 } from "../templates.js";
 import { state } from "../state.js";
-import {
-  setButtonsDisabled,
-  renderDice,
-  openDialogGameOverview,
-  openDialogSettings,
-  closeDialog,
-} from "../ui.js";
-import {
-  MAX_ROUNDS,
-  MAX_ROLLS,
-  NUM_DICE,
-  ANIMATION_DURATION,
-} from "../config.js";
+import { MAX_ROUNDS, MAX_ROLLS, ANIMATION_DURATION } from "../config.js";
 
 export function startAiTurn() {
   document.getElementById("gameConditionContainer").innerHTML = "";
@@ -74,7 +43,20 @@ function finishAiTurn() {
     let dice = state.rollDice[i];
     if (dice.type === "loot") state.enemyPoints += dice.value;
   }
+  state.enemyDiceCounter.push(state.enemyPoints);
   getTemplateByGameOverview(state.gameRound, MAX_ROLLS);
-  getTemplateRoundFinished(state.mode);
   if (state.crew === true) getTemplateEndgameLoot(state.enemyPoints);
+  checkEndgame();
+}
+
+function checkEndgame() {
+  if (state.gameRound === MAX_ROUNDS)
+    (getTemplateByGameStart(state.mode), getTemplateGameEnd(state.mode));
+  if (state.gameRound < MAX_ROUNDS) {
+    document.getElementById("playgroundContainer").innerHTML = "";
+    getTemplateByGameStart(state.mode);
+    getTemplateByGameOverview(state.gameRound, MAX_ROLLS);
+  }
+  state.gameRound++;
+  state.currentRound = 0;
 }
