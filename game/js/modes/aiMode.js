@@ -78,5 +78,3 @@ function finishAiTurn() {
   getTemplateRoundFinished(state.mode);
   if (state.crew === true) getTemplateEndgameLoot(state.enemyPoints);
 }
-
-window.startAiTurn = startAiTurn;

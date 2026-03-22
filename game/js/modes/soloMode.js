@@ -26,7 +26,7 @@ export function playerRollTheDiceSolo(mode) {
     (getTemplateLastRound(mode), setButtonsDisabled(true), currentRoll());
 }
 
-function soloGameStart(mode) {
+export function soloGameStart(mode) {
   document.getElementById("playgroundContainer").innerHTML = "";
   state.rollDice = [];
   state.saveRolledDice = 0;
@@ -39,5 +39,3 @@ function soloGameStart(mode) {
   getTemplateByGameStartSolo(mode);
   getTemplateByGameOverviewSolo(state.currentRound);
 }
-
-window.soloGameStart = soloGameStart;

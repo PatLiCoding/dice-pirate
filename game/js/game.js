@@ -166,9 +166,3 @@ export function gameStart(mode) {
   getTemplateByGameStart(mode);
   getTemplateByGameOverview(state.gameRound, state.currentRound);
 }
-
-window.checkSelectMode = checkSelectMode;
-window.playerRollTheDice = playerRollTheDice;
-window.checkRestartGame = checkRestartGame;
-window.gameStart = gameStart;
-window.clickDice = clickDice;

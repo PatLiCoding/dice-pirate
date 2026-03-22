@@ -39,7 +39,3 @@ export function closeDialog() {
   document.getElementById("dialogOverlay").classList.add("d-none");
   document.body.classList.remove("noScroll");
 }
-
-window.openDialogGameOverview = openDialogGameOverview;
-window.openDialogSettings = openDialogSettings;
-window.closeDialog = closeDialog;
