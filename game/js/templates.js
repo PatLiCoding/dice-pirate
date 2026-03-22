@@ -16,7 +16,7 @@ export function getTemplateSelectMode() {
         <p>Wähle den Spiel-Modus aus:</p>
       </div>
       <button class="gameBtn" onclick="soloGameStart('solo')">${BUTTON_LABELS.mode[0]}</button>
-      <button class="gameBtn" onclick="gameStart('ki')">${BUTTON_LABELS.mode[1]}</button>
+      <button class="gameBtn" onclick="gameStart('ai')">${BUTTON_LABELS.mode[1]}</button>
       <button class="gameBtn" onclick="gameStart('local')">${BUTTON_LABELS.mode[2]}</button>
     </div>`;
 }
@@ -126,14 +126,20 @@ export function getTemplateFromRollDice(cssClass, i, value) {
       </div>`;
 }
 
-export function getTemplateEndgameLoot(playerPoints) {
+export function getTemplateEndgameLoot(points) {
   document.getElementById("pointsContainer").innerHTML =
-    `<img src="${IMAGE_PATHS.lootbox}" class="lootboxImages">${playerPoints} Punkte`;
+    `<img src="${IMAGE_PATHS.lootbox}" class="lootboxImages">${points} Punkte`;
 }
 
 export function getTemplateLastRound(mode) {
   document.getElementById("btnSection").innerHTML =
     `<button class="gameBtn" onclick="checkSelectMode('${mode}')">${BUTTON_LABELS.endRound}</button>`;
+}
+
+export function getTemplateStartAiRound() {
+  document.getElementById("btnSection").innerHTML =
+    `<button class="gameBtn" onclick="startAiTurn()">Gegner Würfeln</button>
+     <p class="infoText">${TEXTS.roundFinished}</p>`;
 }
 
 export function getTemplateRoundFinished(mode) {
@@ -168,6 +174,30 @@ export function getTemplateDialogGameOverview() {
     <div id="dialogButtonContainer" class="dialogButtonContainer">
       <button class="dialogBtn" onclick="closeDialog()">${BUTTON_LABELS.back}</button>
     </div>`;
+}
+
+export function getTemplatePointsTableHeader() {
+  document.getElementById("pointsTable").innerHTML += `<tr>
+            <th>${TEXTS.rounds}</th>
+            <th>${TEXTS.player}</th>
+            <th>${TEXTS.enemy}</th>
+          </tr>`;
+}
+
+export function getTemplatePointsTableRound(index) {
+  document.getElementById("pointsTable").innerHTML += ` <tr>
+    <td>Runde ${index}</td>
+    <td>${state.playDiceCounter[index]}</td>
+    <td>${state.enemyDiceCounter[index]}</td>
+  </tr>`;
+}
+
+export function getTemplatePointsTableTotalNumber() {
+  document.getElementById("pointsTable").innerHTML += `<tr>
+    <td>Gesamt</td>
+    <td>0</td>
+    <td>0</td>
+  </tr>`;
 }
 
 export function getTemplateDialogSettings() {

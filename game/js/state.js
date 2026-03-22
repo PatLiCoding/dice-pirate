@@ -10,4 +10,5 @@ export const state = {
   crew: false,
   currentRound: 0,
   gameRound: 1,
+  mode: "",
 };
