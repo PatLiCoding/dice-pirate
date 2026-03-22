@@ -172,6 +172,3 @@ window.playerRollTheDice = playerRollTheDice;
 window.checkRestartGame = checkRestartGame;
 window.gameStart = gameStart;
 window.clickDice = clickDice;
-window.openDialogGameOverview = openDialogGameOverview;
-window.openDialogSettings = openDialogSettings;
-window.closeDialog = closeDialog;

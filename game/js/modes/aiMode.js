@@ -52,7 +52,7 @@ export function startAiTurn() {
   aiRollLoop();
 }
 
-export function aiRollLoop() {
+function aiRollLoop() {
   state.currentRound++;
   getTemplateByGameOverview(state.gameRound, state.currentRound);
   if (state.currentRound > MAX_ROLLS) {
@@ -67,7 +67,7 @@ export function aiRollLoop() {
   }, ANIMATION_DURATION);
 }
 
-export function finishAiTurn() {
+function finishAiTurn() {
   document.getElementById("diceContainer").innerHTML = "";
   state.enemyPoints = 0;
   for (let i = 0; i < state.rollDice.length; i++) {
