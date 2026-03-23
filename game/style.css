@@ -129,7 +129,7 @@ p {
   display: flex;
   align-items: center;
   gap: 8px;
-  min-height: 120px;
+  height: 120px;
 }
 
 .dice {
@@ -382,4 +382,315 @@ tr:hover {
 
 .d-none {
   display: none;
+}
+
+@media (max-width: 900px) {
+  body {
+    padding: 32px;
+  }
+
+  h2 {
+    font-size: 40px;
+  }
+
+  .playgroundContainer {
+    width: 100%;
+    max-height: 90vh;
+    padding: 20px;
+  }
+
+  .gameHeadline {
+    position: static;
+    width: 100%;
+  }
+
+  .gameOverview {
+    max-height: 90vh;
+    font-size: 18px;
+  }
+
+  .pointsContainer {
+    height: 80px;
+  }
+
+  .diceContainer {
+    min-height: 80px;
+  }
+
+  .dice {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+
+  .gameBtn {
+    width: 200px;
+    font-size: 18px;
+  }
+
+  .infoText {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 24px;
+  }
+  h2 {
+    font-size: 28px;
+  }
+
+  .SelectMode {
+    gap: 20px;
+    font-size: 18px;
+  }
+
+  .playgroundContainer {
+    width: 100%;
+    padding: 16px;
+  }
+
+  .gameOverview {
+    font-size: 16px;
+    padding: 16px;
+  }
+
+  .gameHeadline {
+    position: static;
+    width: 100%;
+  }
+
+  .conditionImages {
+    height: 80px;
+  }
+
+  .lootboxImages {
+    height: 60px;
+  }
+
+  .rollAnimation {
+    height: 80px;
+  }
+
+  .diceContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: 80px;
+  }
+
+  .dice {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .pointsContainer {
+    font-size: 22px;
+  }
+
+  .endRoundContanainer {
+    font-size: 24px;
+  }
+
+  .gameOverviewEndGame {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .gameBtn {
+    width: 180px;
+    height: 44px;
+    font-size: 16px;
+  }
+
+  .dialogBox {
+    min-width: 280px;
+    width: auto;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  th,
+  td {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 450px) {
+  h2 {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .SelectMode {
+    font-size: 16px;
+    gap: 12px;
+  }
+
+  .playgroundContainer {
+    padding: 10px;
+  }
+
+  .gameOverview {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .conditionImages {
+    height: 60px;
+  }
+
+  .lootboxImages {
+    height: 40px;
+  }
+
+  .rollAnimation {
+    height: auto;
+    width: 100%;
+  }
+
+  .dice {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .gameBtn {
+    width: 140px;
+    height: 38px;
+    font-size: 14px;
+  }
+
+  .pointsContainer {
+    font-size: 18px;
+  }
+
+  .infoText {
+    font-size: 20px;
+  }
+
+  .dialogHeader {
+    display: flex;
+    align-items: flex-end;
+    font-size: 18px;
+  }
+
+  .dialogCloseBtn {
+    height: 24px;
+  }
+
+  .dialogBtn {
+    font-size: 16px;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  th,
+  td {
+    padding: 4px;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  body {
+    padding: 12px;
+  }
+
+  h2 {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .playgroundContainer {
+    max-height: 90vh;
+    width: 90vw;
+    padding: 8px;
+    padding-bottom: 14px;
+    gap: 8px;
+  }
+
+  .gameOverview {
+    max-height: 90vh;
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .gameHeadline {
+    position: static;
+    height: auto;
+    font-size: 16px;
+  }
+
+  .conditionImages {
+    height: 60px;
+  }
+
+  .lootboxImages {
+    height: 40px;
+  }
+
+  .diceContainer {
+    height: auto;
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .dice {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .rollAnimation {
+    height: 60px;
+  }
+
+  .pointsContainer {
+    height: auto;
+    font-size: 18px;
+  }
+
+  .btnSection {
+    gap: 6px;
+    min-height: auto;
+  }
+
+  .gameBtn {
+    width: 140px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .infoText {
+    font-size: 20px;
+  }
+
+  .endRoundContanainer {
+    max-height: 90vh;
+    font-size: 20px;
+  }
+
+  .gameOverviewEndGame {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .dialogBox {
+    max-height: 90vh;
+  }
+
+  table {
+    font-size: 16px;
+  }
+
+  th,
+  td {
+    padding: 4px;
+  }
 }
