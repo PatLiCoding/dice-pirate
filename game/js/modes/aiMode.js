@@ -1,8 +1,9 @@
-import { checkCondition, rerollUnselectedDice } from "../game.js";
+import { checkCondition, rerollUnselectedDice, checkWinner } from "../game.js";
 import {
   getTemplateByGameOverview,
   getTemplateByGameStart,
   getTemplateRollDiceAiAnimation,
+  getTemplateRoundFinished,
   getTemplateEndgameLoot,
   getTemplateGameEnd,
 } from "../templates.js";
@@ -50,13 +51,19 @@ function finishAiTurn() {
 }
 
 function checkEndgame() {
+  state.currentRound = 0;
   if (state.gameRound === MAX_ROUNDS)
-    (getTemplateByGameStart(state.mode), getTemplateGameEnd(state.mode));
+    (getTemplateByGameStart(state.mode), checkWinner());
   if (state.gameRound < MAX_ROUNDS) {
     document.getElementById("playgroundContainer").innerHTML = "";
-    getTemplateByGameStart(state.mode);
+    getTemplateRoundFinished(state.mode);
     getTemplateByGameOverview(state.gameRound, MAX_ROLLS);
   }
   state.gameRound++;
-  state.currentRound = 0;
+}
+
+export function startNewRound() {
+  document.getElementById("playgroundContainer").innerHTML = "";
+  getTemplateByGameStart(state.mode);
+  getTemplateByGameOverview(state.gameRound, state.currentRound);
 }

@@ -13,7 +13,7 @@ import {
   closeDialog,
 } from "./ui.js";
 import { soloGameStart } from "./modes/soloMode.js";
-import { startAiTurn } from "./modes/aiMode.js";
+import { startAiTurn, startNewRound } from "./modes/aiMode.js";
 import { getTemplateSelectMode } from "./templates.js";
 
 getTemplateSelectMode();
@@ -28,3 +28,4 @@ window.gameStart = gameStart;
 window.clickDice = clickDice;
 window.soloGameStart = soloGameStart;
 window.startAiTurn = startAiTurn;
+window.startNewRound = startNewRound;

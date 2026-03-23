@@ -138,17 +138,16 @@ export function getTemplateLastRound(mode) {
 
 export function getTemplateStartAiRound() {
   document.getElementById("btnSection").innerHTML =
-    `<button class="gameBtn" onclick="startAiTurn()">Gegner Würfeln</button>
-     <p class="infoText">${TEXTS.roundFinished}</p>`;
+    `<button class="gameBtn" onclick="startAiTurn()">Gegner Würfeln</button>`;
 }
 
-export function getTemplateRoundFinished(mode) {
+export function getTemplateRoundFinishedSolo(mode) {
   document.getElementById("btnSection").innerHTML =
     `<button class="gameBtn" onclick="checkRestartGame('${mode}')">${BUTTON_LABELS.restart}</button>
      <p class="infoText">${TEXTS.roundFinished}</p>`;
 }
 
-export function getTemplateGameEnd(mode) {
+export function getTemplateRoundFinished() {
   document.getElementById("playgroundContainer").innerHTML =
     `<div class="gameHeadline">
       <div class="gameHeadlineBox" onclick="openDialogGameOverview()">
@@ -158,9 +157,32 @@ export function getTemplateGameEnd(mode) {
         ${TEXTS.settingsTitle}<img src="${IMAGE_PATHS.settingsIcon}">
       </div>
     </div>
-    <div class="btnSection" id="btnSection">
-      <button class="gameBtn" onclick="checkRestartGame('${mode}')">${BUTTON_LABELS.restart}</button>
-      <p class="infoText">${TEXTS.roundFinished}</p>
+    <div class="endRoundContanainer">
+      <p>Die Runde ist beendet.</p>
+      <p>Du hast diese Runde
+      <span class="point">${state.playerPoints}</span> und dein Gegner 
+      <span class="point">${state.enemyPoints}</span> erzielt.</p>
+      <button class="gameBtn" onclick="startNewRound('${state.mode}')">Nächste Runde</button>
+    </div>`;
+}
+
+export function getTemplateGameEnd(mode, pointDifference, gameResult) {
+  document.getElementById("playgroundContainer").innerHTML =
+    `<div class="gameHeadline">
+      <div class="gameHeadlineBox" onclick="openDialogGameOverview()">
+        <img src="${IMAGE_PATHS.gameOverviewIcon}">${TEXTS.gameOverviewTitle}
+      </div>
+      <div class="gameHeadlineBox" onclick="openDialogSettings()">
+        ${TEXTS.settingsTitle}<img src="${IMAGE_PATHS.settingsIcon}">
+      </div>
+    </div>
+    <div class="endRoundContanainer">
+      <p>Das Spiel ist beendet.</p>
+      <p>Du hast mit <span class="point">${pointDifference}</span> Punkten unterschied ein ${gameResult}.</p>
+      <div class="btnSection" id="btnSection">
+        <div class="gameOverviewEndGame" onclick="openDialogGameOverview()">Punktetabelle ansehen</div>
+        <button class="gameBtn" onclick="checkRestartGame('${mode}')">${BUTTON_LABELS.restart}</button>
+      </div>
     </div>`;
 }
 

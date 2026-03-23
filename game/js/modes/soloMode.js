@@ -2,7 +2,7 @@ import { currentRoll, addUpPlayerPoints } from "../game.js";
 import {
   getTemplateEndgameLoot,
   getTemplateLastRound,
-  getTemplateRoundFinished,
+  getTemplateRoundFinishedSolo,
   getTemplateByGameOverviewSolo,
   getTemplateByGameStartSolo,
 } from "../templates.js";
@@ -17,7 +17,7 @@ export function playerRollTheDiceSolo(mode) {
   if (state.currentRound < MAX_ROLLS) (setButtonsDisabled(true), currentRoll());
   if (state.currentRound > MAX_ROLLS) {
     document.getElementById("diceContainer").innerHTML = "";
-    getTemplateRoundFinished(mode);
+    getTemplateRoundFinishedSolo(mode);
     getTemplateByGameOverviewSolo(MAX_ROLLS);
     if (state.crew === true)
       (addUpPlayerPoints(), getTemplateEndgameLoot(state.playerPoints));

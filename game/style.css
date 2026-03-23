@@ -90,7 +90,7 @@ p {
   background-color: rgba(240, 255, 255, 0.6);
   border-radius: 25px 0 0 25px;
   height: 550px;
-  min-width: 600px;
+  width: 600px;
   position: relative;
 }
 
@@ -193,6 +193,27 @@ p {
   min-height: 120px;
 }
 
+.endRoundContanainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  font-size: 40px;
+  font-weight: bold;
+  word-break: normal;
+}
+
+.point {
+  display: inline-block;
+  width: 60px;
+  background-color: #ffffff80;
+  color: #2494f5;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
 .gameBtn {
   height: 52px;
   width: 250px;
@@ -220,6 +241,19 @@ button:disabled {
 .infoText {
   color: black;
   font-size: 40px;
+}
+
+.gameOverviewEndGame {
+  font-size: 28px;
+  border-bottom: 2px solid #2494f5;
+}
+
+.gameOverviewEndGame:hover {
+  cursor: pointer;
+  padding: 2px 12px;
+  border-radius: 25px;
+  color: white;
+  background-color: #2494f5;
 }
 
 .dialogOverlay {

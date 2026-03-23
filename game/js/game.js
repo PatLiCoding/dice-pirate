@@ -10,6 +10,7 @@ import {
   getTemplateEndgameLoot,
   getTemplateLastRound,
   getTemplateStartAiRound,
+  getTemplateGameEnd,
 } from "./templates.js";
 import { state } from "./state.js";
 import { setButtonsDisabled, renderDice } from "./ui.js";
@@ -137,6 +138,20 @@ export function addUpPlayerPoints() {
     let dice = state.rollDice[i];
     if (dice.type === "loot") state.playerPoints += dice.value;
   }
+}
+
+export function checkWinner() {
+  const sum = (arr) => arr.reduce((a, b) => a + b, 0);
+  const playerTotal = sum(state.playDiceCounter);
+  const enemyTotal = sum(state.enemyDiceCounter);
+  const pointDifference = Math.abs(playerTotal - enemyTotal);
+  let gameResult =
+    playerTotal > enemyTotal
+      ? "Sieg"
+      : playerTotal < enemyTotal
+        ? "Lose"
+        : "Unentschieden";
+  getTemplateGameEnd(state.mode, pointDifference, gameResult);
 }
 
 export function checkRestartGame(mode) {
