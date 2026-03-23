@@ -161,6 +161,11 @@ export function getTemplateRoundFinishedSolo(mode) {
      <p class="infoText">${TEXTS.roundFinished}</p>`;
 }
 
+export function getTemplateFinishPlayerTurnLocal(mode) {
+  document.getElementById("btnSection").innerHTML =
+    `<button class="gameBtn" onclick="finishLocalTurn()">Weiter</button>`;
+}
+
 export function getTemplateRoundFinished() {
   document.getElementById("playgroundContainer").innerHTML =
     `<div class="gameHeadline">

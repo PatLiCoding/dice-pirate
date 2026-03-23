@@ -5,6 +5,8 @@ export const state = {
   playerPoints: 0,
   enemyDiceCounter: [],
   enemyPoints: 0,
+  player1Points: 0,
+  player2Points: 0,
   ship: false,
   captain: false,
   crew: false,

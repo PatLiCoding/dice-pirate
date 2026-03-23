@@ -1,4 +1,5 @@
 import { playerRollTheDiceSolo } from "./modes/soloMode.js";
+import { playerRollLocal } from "./modes/localMode.js";
 import {
   getTemplateByGameOverview,
   getTemplateByGameStart,
@@ -27,7 +28,7 @@ export function checkSelectMode(mode) {
   state.mode = mode;
   if (mode === "solo") playerRollTheDiceSolo(mode);
   if (mode === "ai") playerRollTheDice(mode);
-  if (mode === "local") playerRollTheDice(mode);
+  if (mode === "local") playerRollLocal(mode);
 }
 
 export function playerRollTheDice(mode) {
