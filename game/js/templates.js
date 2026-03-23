@@ -199,19 +199,7 @@ export function getTemplateDialogGameOverview() {
     </div>
     <div id="dialogText" class="dialogText">
       <div class="pointsTableContainer">
-        <table id="pointsTable">
-          <tr>
-            <th>${TEXTS.rounds}</th>
-            <th>${TEXTS.player}</th>
-            <th>${TEXTS.enemy}</th>
-          </tr>
-          <tr><td>Runde 1</td><td>0</td><td>0</td></tr>
-          <tr><td>Runde 2</td><td>0</td><td>0</td></tr>
-          <tr><td>Runde 3</td><td>0</td><td>0</td></tr>
-          <tr><td>Runde 4</td><td>0</td><td>0</td></tr>
-          <tr><td>Runde 5</td><td>0</td><td>0</td></tr>
-          <tr><td>Gesamt</td><td>0</td><td>0</td></tr>
-        </table>
+        <table id="pointsTable"></table>
       </div>
     </div>
     <div id="dialogButtonContainer" class="dialogButtonContainer">
@@ -229,7 +217,7 @@ export function getTemplatePointsTableHeader() {
 
 export function getTemplatePointsTableRound(index) {
   document.getElementById("pointsTable").innerHTML += ` <tr>
-    <td>Runde ${index}</td>
+    <td>Runde ${index + 1}</td>
     <td>${state.playDiceCounter[index]}</td>
     <td>${state.enemyDiceCounter[index]}</td>
   </tr>`;

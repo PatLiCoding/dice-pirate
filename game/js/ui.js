@@ -1,5 +1,12 @@
 import { state } from "./state.js";
-import { getTemplateFromRollDice, getTemplateSaveLoot } from "./templates.js";
+import {
+  getTemplateFromRollDice,
+  getTemplateDialogSettings,
+  getTemplateDialogGameOverview,
+  getTemplatePointsTableHeader,
+  getTemplatePointsTableRound,
+  getTemplatePointsTableTotalNumber,
+} from "./templates.js";
 
 export function setButtonsDisabled(disabled) {
   const buttons = document.querySelectorAll("#btnSection button");
@@ -14,25 +21,24 @@ export function renderDice() {
     if (dice.type === "condition") cssClass = "dice conditionDice";
     if (dice.type === "loot") cssClass = "dice lootDice";
     if (dice.selected) cssClass = "dice saveLootDice";
-
     getTemplateFromRollDice(cssClass, i, dice.value);
   }
 }
 
 export function openDialogGameOverview() {
-  import("./templates.js").then(({ getTemplateDialogGameOverview }) => {
-    getTemplateDialogGameOverview();
-    document.body.classList.add("noScroll");
-    document.getElementById("dialogOverlay").classList.remove("d-none");
-  });
+  getTemplateDialogGameOverview();
+  getTemplatePointsTableHeader();
+  for (let index = 0; index < state.enemyDiceCounter.length; index++)
+    getTemplatePointsTableRound(index);
+  getTemplatePointsTableTotalNumber();
+  document.body.classList.add("noScroll");
+  document.getElementById("dialogOverlay").classList.remove("d-none");
 }
 
 export function openDialogSettings() {
-  import("./templates.js").then(({ getTemplateDialogSettings }) => {
-    getTemplateDialogSettings();
-    document.body.classList.add("noScroll");
-    document.getElementById("dialogOverlay").classList.remove("d-none");
-  });
+  getTemplateDialogSettings();
+  document.body.classList.add("noScroll");
+  document.getElementById("dialogOverlay").classList.remove("d-none");
 }
 
 export function closeDialog() {
