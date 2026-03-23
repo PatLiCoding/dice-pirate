@@ -4,6 +4,7 @@ import {
   getTemplateByGameStart,
   getTemplateRollDiceAiAnimation,
   getTemplateRoundFinished,
+  getTemplateEndgameLootAi,
   getTemplateEndgameLoot,
   getTemplateGameEnd,
 } from "../templates.js";
@@ -33,6 +34,7 @@ function aiRollLoop() {
   setTimeout(() => {
     rerollUnselectedDice();
     checkCondition();
+    if (state.crew === true) getTemplateEndgameLootAi();
     aiRollLoop();
   }, ANIMATION_DURATION);
 }
@@ -46,7 +48,7 @@ function finishAiTurn() {
   }
   state.enemyDiceCounter.push(state.enemyPoints);
   getTemplateByGameOverview(state.gameRound, MAX_ROLLS);
-  if (state.crew === true) getTemplateEndgameLoot(state.enemyPoints);
+  if (state.crew === true) getTemplateEndgameLootAi();
   checkEndgame();
 }
 

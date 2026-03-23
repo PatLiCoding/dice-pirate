@@ -131,6 +131,11 @@ export function getTemplateEndgameLoot(points) {
     `<img src="${IMAGE_PATHS.lootbox}" class="lootboxImages">${points} Punkte`;
 }
 
+export function getTemplateEndgameLootAi() {
+  document.getElementById("pointsContainer").innerHTML =
+    `<img src="${IMAGE_PATHS.lootbox}" class="lootboxImages">`;
+}
+
 export function getTemplateLastRound(mode) {
   document.getElementById("btnSection").innerHTML =
     `<button class="gameBtn" onclick="checkSelectMode('${mode}')">${BUTTON_LABELS.endRound}</button>`;
