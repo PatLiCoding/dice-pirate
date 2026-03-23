@@ -15,7 +15,11 @@ import {
 } from "./ui.js";
 import { soloGameStart } from "./modes/soloMode.js";
 import { startAiTurn, startNewRound } from "./modes/aiMode.js";
-import { playerRollLocal, finishLocalTurn } from "./modes/localMode.js";
+import {
+  startLocalTurn,
+  playerRollLocal,
+  finishLocalTurn,
+} from "./modes/localMode.js";
 import { getTemplateSelectMode } from "./templates.js";
 
 window.onload = getTemplateSelectMode();
@@ -29,6 +33,7 @@ window.gameStart = gameStart;
 window.clickDice = clickDice;
 window.soloGameStart = soloGameStart;
 window.startAiTurn = startAiTurn;
+window.startLocalTurn = startLocalTurn;
 window.playerRollLocal = playerRollLocal;
 window.finishLocalTurn = finishLocalTurn;
 window.startNewRound = startNewRound;

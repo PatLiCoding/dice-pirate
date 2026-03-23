@@ -17,7 +17,7 @@ export function getTemplateSelectMode() {
       </div>
       <button class="gameBtn" onclick="soloGameStart('solo')">${BUTTON_LABELS.mode[0]}</button>
       <button class="gameBtn" onclick="gameStart('ai')">${BUTTON_LABELS.mode[1]}</button>
-      <button class="gameBtn" onclick="gameStart('local')">${BUTTON_LABELS.mode[2]}</button>
+      <button class="gameBtn" onclick="startLocalTurn('local')">${BUTTON_LABELS.mode[2]}</button>
     </div>`;
 }
 
@@ -161,9 +161,12 @@ export function getTemplateRoundFinishedSolo(mode) {
      <p class="infoText">${TEXTS.roundFinished}</p>`;
 }
 
-export function getTemplateFinishPlayerTurnLocal(mode) {
-  document.getElementById("btnSection").innerHTML =
-    `<button class="gameBtn" onclick="finishLocalTurn()">Weiter</button>`;
+export function getTemplateFinishPlayerTurnLocal() {
+  document.getElementById("playgroundContainer").innerHTML =
+    `<div class="endRoundContanainer">
+      <p>Dein Zug ist beendet.</p>
+      <button class="gameBtn" onclick="finishLocalTurn()">Spieler 2</button>
+    </div>`;
 }
 
 export function getTemplateRoundFinished() {
@@ -181,7 +184,30 @@ export function getTemplateRoundFinished() {
       <p>Du hast diese Runde
       <span class="point">${state.playerPoints}</span> und dein Gegner 
       <span class="point">${state.enemyPoints}</span> erzielt.</p>
-      <button class="gameBtn" onclick="startNewRound('${state.mode}')">Nächste Runde</button>
+      <div class="btnSection" id="btnSection">
+        <button class="gameBtn" onclick="startNewRound('${state.mode}')">Nächste Runde</button>
+      </div>
+    </div>`;
+}
+
+export function getTemplateRoundFinishedLocal() {
+  document.getElementById("playgroundContainer").innerHTML =
+    `<div class="gameHeadline">
+      <div class="gameHeadlineBox" onclick="openDialogGameOverview()">
+        <img src="${IMAGE_PATHS.gameOverviewIcon}">${TEXTS.gameOverviewTitle}
+      </div>
+      <div class="gameHeadlineBox" onclick="openDialogSettings()">
+        ${TEXTS.settingsTitle}<img src="${IMAGE_PATHS.settingsIcon}">
+      </div>
+    </div>
+    <div class="endRoundContanainer">
+      <p>Die Runde ist beendet.</p>
+      <p>Du hast diese Runde
+      <span class="point">${state.player1Points}</span> und dein Gegner 
+      <span class="point">${state.player2Points}</span> erzielt.</p>
+      <div class="btnSection" id="btnSection">
+        <button class="gameBtn" onclick="finishLocalTurn('${state.mode}')">Nächste Runde</button>
+      </div>
     </div>`;
 }
 
