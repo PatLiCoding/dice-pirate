@@ -8,6 +8,7 @@ export const state = {
   ship: false,
   captain: false,
   crew: false,
+  selectedLootDice: false,
   currentRound: 0,
   gameRound: 1,
   mode: "",

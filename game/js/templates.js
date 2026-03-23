@@ -135,10 +135,19 @@ export function getTemplateEndgameLootAi() {
   document.getElementById("pointsContainer").innerHTML =
     `<img src="${IMAGE_PATHS.lootbox}" class="lootboxImages">`;
 }
+export function getTemplateRollbtn(mode) {
+  document.getElementById("btnSection").innerHTML = `
+      <button class="gameBtn" onclick="checkSelectMode('${mode}')">${BUTTON_LABELS.roll}</button>`;
+}
 
 export function getTemplateLastRound(mode) {
   document.getElementById("btnSection").innerHTML =
     `<button class="gameBtn" onclick="checkSelectMode('${mode}')">${BUTTON_LABELS.endRound}</button>`;
+}
+
+export function getTemplateFinishPlayerTurn(mode) {
+  document.getElementById("btnSection").innerHTML =
+    `<button class="gameBtn" onclick="finishPlayerTurn('${mode}')">${BUTTON_LABELS.endRound}</button>`;
 }
 
 export function getTemplateStartAiRound() {

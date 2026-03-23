@@ -6,6 +6,7 @@ import {
   checkRestartGame,
   gameStart,
   clickDice,
+  finishPlayerTurn,
 } from "./game.js";
 import {
   openDialogGameOverview,
@@ -29,3 +30,4 @@ window.clickDice = clickDice;
 window.soloGameStart = soloGameStart;
 window.startAiTurn = startAiTurn;
 window.startNewRound = startNewRound;
+window.finishPlayerTurn = finishPlayerTurn;

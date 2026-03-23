@@ -9,6 +9,8 @@ import {
   getTemplateSaveLoot,
   getTemplateEndgameLoot,
   getTemplateLastRound,
+  getTemplateRollbtn,
+  getTemplateFinishPlayerTurn,
   getTemplateStartAiRound,
   getTemplateGameEnd,
 } from "./templates.js";
@@ -32,16 +34,20 @@ export function playerRollTheDice(mode) {
   state.currentRound++;
   getTemplateByGameOverview(state.gameRound, state.currentRound);
   if (state.currentRound < MAX_ROLLS) (setButtonsDisabled(true), currentRoll());
-  if (state.currentRound > MAX_ROLLS) {
-    document.getElementById("diceContainer").innerHTML = "";
-    getTemplateByGameOverview(state.gameRound, MAX_ROLLS);
-    if (state.crew === true)
-      (addUpPlayerPoints(), getTemplateEndgameLoot(state.playerPoints));
-    if (mode === "ai") getTemplateStartAiRound();
-    state.playDiceCounter.push(state.playerPoints);
-  }
+  if (state.currentRound > MAX_ROLLS)
+    (finishPlayerTurn(), getTemplateByGameOverview(state.gameRound, MAX_ROLLS));
   if (state.currentRound === MAX_ROLLS)
     (getTemplateLastRound(mode), setButtonsDisabled(true), currentRoll());
+}
+
+export function finishPlayerTurn() {
+  document.getElementById("diceContainer").innerHTML = "";
+  getTemplateByGameOverview(state.gameRound, state.currentRound);
+  if (state.crew)
+    (addUpPlayerPoints(), getTemplateEndgameLoot(state.playerPoints));
+  if (state.mode === "ai") getTemplateStartAiRound();
+  state.playDiceCounter.push(state.playerPoints);
+  setButtonsDisabled(false);
 }
 
 export function currentRoll() {
@@ -130,6 +136,22 @@ export function clickDice(index) {
   dice.selected = !dice.selected;
   checkCondition();
   renderDice();
+  checkAllDiceSelected();
+}
+
+export function checkAllDiceSelected() {
+  const dice = state.rollDice;
+  let allSelected = true;
+  for (let i = 0; i < dice.length; i++) {
+    if (dice[i].type === "loot" && !dice[i].selected) {
+      allSelected = false;
+      state.selectedLootDice = false;
+      if (state.currentRound < MAX_ROLLS) getTemplateRollbtn(state.mode);
+      break;
+    }
+  }
+  if (allSelected)
+    ((state.selectedLootDice = true), getTemplateFinishPlayerTurn(state.mode));
 }
 
 export function addUpPlayerPoints() {

@@ -1,7 +1,7 @@
 export const MAX_ROUNDS = 5;
 export const MAX_ROLLS = 3;
 export const NUM_DICE = 6;
-export const ANIMATION_DURATION = 3400;
+export const ANIMATION_DURATION = 3000;
 
 export const IMAGE_PATHS = {
   ship: "../assets/img/game/ship.png",
