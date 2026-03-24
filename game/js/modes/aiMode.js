@@ -4,16 +4,6 @@ import {
   rerollUnselectedDice,
   addUpPlayerPoints,
 } from "../game.js";
-import {
-  getTemplateByGameStart,
-  getTemplateRollDiceAiAnimation,
-  getTemplateRoundFinished,
-  getTemplateStartAiRound,
-  getTemplateEndgameLootAi,
-  getTemplateEndgameLoot,
-  getTemplateLastRound,
-  getTemplateGameEnd,
-} from "../templates.js";
 import { state } from "../state.js";
 import { MAX_ROUNDS, MAX_ROLLS, ANIMATION_DURATION } from "../config.js";
 import {
@@ -22,6 +12,16 @@ import {
   updateOverviewEndGame,
   updateOverviewEndRoll,
 } from "../ui.js";
+import {
+  getTemplateByGameStart,
+  getTemplateRollDiceAiAnimation,
+  getTemplateEndgameLootAi,
+  getTemplateEndgameLoot,
+  getTemplateStartAiRound,
+  getTemplateLastRound,
+  getTemplateRoundFinished,
+  getTemplateGameEnd,
+} from "../templates/index.js";
 
 export function playerRollTheDice(mode) {
   state.currentRound++;

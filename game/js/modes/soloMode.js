@@ -1,14 +1,14 @@
 import { currentRoll, addUpPlayerPoints, resetTurnState } from "../game.js";
-import {
-  getTemplateEndgameLoot,
-  getTemplateLastRound,
-  getTemplateRoundFinishedSolo,
-  getTemplateByGameOverviewSolo,
-  getTemplateByGameStartSolo,
-} from "../templates.js";
 import { state } from "../state.js";
 import { setButtonsDisabled } from "../ui.js";
 import { MAX_ROLLS } from "../config.js";
+import {
+  getTemplateByGameOverviewSolo,
+  getTemplateByGameStartSolo,
+  getTemplateEndgameLoot,
+  getTemplateLastRound,
+  getTemplateRoundFinishedSolo,
+} from "../templates/index.js";
 
 export function playerRollTheDiceSolo(mode) {
   state.currentRound++;

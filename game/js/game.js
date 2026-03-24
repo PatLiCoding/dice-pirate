@@ -1,6 +1,9 @@
 import { playerRollTheDiceSolo, soloGameStart } from "./modes/soloMode.js";
 import { playerRollTheDice } from "./modes/aiMode.js";
 import { playerRollLocal } from "./modes/localMode.js";
+import { state } from "./state.js";
+import { setButtonsDisabled, renderDice, updateOverview } from "./ui.js";
+import { MAX_ROLLS, NUM_DICE, ANIMATION_DURATION } from "./config.js";
 import {
   getTemplateByGameStart,
   getTemplateShipImage,
@@ -12,10 +15,7 @@ import {
   getTemplateFinishPlayerTurnSolo,
   getTemplateFinishPlayerTurn,
   getTemplateFinishPlayerTurnLocal,
-} from "./templates.js";
-import { state } from "./state.js";
-import { setButtonsDisabled, renderDice, updateOverview } from "./ui.js";
-import { MAX_ROLLS, NUM_DICE, ANIMATION_DURATION } from "./config.js";
+} from "./templates/index.js";
 
 export function checkSelectMode(mode) {
   state.mode = mode;
