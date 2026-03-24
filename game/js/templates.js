@@ -185,7 +185,7 @@ export function getTemplateRoundFinished() {
       <span class="point">${state.playerPoints}</span> und dein Gegner 
       <span class="point">${state.enemyPoints}</span> erzielt.</p>
       <div class="btnSection" id="btnSection">
-        <button class="gameBtn" onclick="startNewRound('${state.mode}')">Nächste Runde</button>
+        <button class="gameBtn" onclick="startNewRound('${state.mode}')">Weiter</button>
       </div>
     </div>`;
 }
@@ -206,7 +206,7 @@ export function getTemplateRoundFinishedLocal() {
       <span class="point">${state.player1Points}</span> und dein Gegner 
       <span class="point">${state.player2Points}</span> erzielt.</p>
       <div class="btnSection" id="btnSection">
-        <button class="gameBtn" onclick="finishLocalTurn('${state.mode}')">Nächste Runde</button>
+        <button class="gameBtn" onclick="finishLocalTurn('${state.mode}')">Weiter</button>
       </div>
     </div>`;
 }

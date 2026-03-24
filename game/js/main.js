@@ -2,11 +2,9 @@ import "./templates.js";
 import "./game.js";
 import {
   checkSelectMode,
-  playerRollTheDice,
   checkRestartGame,
   gameStart,
   clickDice,
-  finishPlayerTurn,
 } from "./game.js";
 import {
   openDialogGameOverview,
@@ -14,7 +12,12 @@ import {
   closeDialog,
 } from "./ui.js";
 import { soloGameStart } from "./modes/soloMode.js";
-import { startAiTurn, startNewRound } from "./modes/aiMode.js";
+import {
+  startAiTurn,
+  startNewRound,
+  finishPlayerTurn,
+  playerRollTheDice,
+} from "./modes/aiMode.js";
 import {
   startLocalTurn,
   playerRollLocal,

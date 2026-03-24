@@ -58,8 +58,6 @@ function finishLocalPlayerTurn() {
   }
   if (state.activePlayer === "player1") getTemplateFinishPlayerTurnLocal();
   if (state.activePlayer === "player2") getTemplateRoundFinishedLocal();
-  if (state.gameRound > 2 && state.activePlayer === "player2")
-    checkWinnerLocal();
 }
 
 export function finishLocalTurn() {

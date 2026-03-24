@@ -8,11 +8,8 @@ import {
   getTemplateCrewImage,
   getTemplateRollDicePlayerAnimation,
   getTemplateSaveLoot,
-  getTemplateEndgameLoot,
-  getTemplateLastRound,
   getTemplateRollbtn,
   getTemplateFinishPlayerTurn,
-  getTemplateStartAiRound,
   getTemplateGameEnd,
 } from "./templates.js";
 import { state } from "./state.js";
@@ -31,25 +28,25 @@ export function checkSelectMode(mode) {
   if (mode === "local") playerRollLocal(mode);
 }
 
-export function playerRollTheDice(mode) {
-  state.currentRound++;
-  getTemplateByGameOverview(state.gameRound, state.currentRound);
-  if (state.currentRound < MAX_ROLLS) (setButtonsDisabled(true), currentRoll());
-  if (state.currentRound > MAX_ROLLS)
-    (finishPlayerTurn(), getTemplateByGameOverview(state.gameRound, MAX_ROLLS));
-  if (state.currentRound === MAX_ROLLS)
-    (getTemplateLastRound(mode), setButtonsDisabled(true), currentRoll());
-}
+// export function playerRollTheDice(mode) {
+//   state.currentRound++;
+//   getTemplateByGameOverview(state.gameRound, state.currentRound);
+//   if (state.currentRound < MAX_ROLLS) (setButtonsDisabled(true), currentRoll());
+//   if (state.currentRound > MAX_ROLLS)
+//     (finishPlayerTurn(), getTemplateByGameOverview(state.gameRound, MAX_ROLLS));
+//   if (state.currentRound === MAX_ROLLS)
+//     (getTemplateLastRound(mode), setButtonsDisabled(true), currentRoll());
+// }
 
-export function finishPlayerTurn() {
-  document.getElementById("diceContainer").innerHTML = "";
-  getTemplateByGameOverview(state.gameRound, state.currentRound);
-  if (state.crew)
-    (addUpPlayerPoints(), getTemplateEndgameLoot(state.playerPoints));
-  if (state.mode === "ai") getTemplateStartAiRound();
-  state.playDiceCounter.push(state.playerPoints);
-  setButtonsDisabled(false);
-}
+// export function finishPlayerTurn() {
+//   document.getElementById("diceContainer").innerHTML = "";
+//   getTemplateByGameOverview(state.gameRound, state.currentRound);
+//   if (state.crew)
+//     (addUpPlayerPoints(), getTemplateEndgameLoot(state.playerPoints));
+//   if (state.mode === "ai") getTemplateStartAiRound();
+//   state.playDiceCounter.push(state.playerPoints);
+//   setButtonsDisabled(false);
+// }
 
 export function currentRoll() {
   document.getElementById("diceContainer").innerHTML = "";
