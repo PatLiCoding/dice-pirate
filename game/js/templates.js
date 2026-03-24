@@ -145,9 +145,19 @@ export function getTemplateLastRound(mode) {
     `<button class="gameBtn" onclick="checkSelectMode('${mode}')">${BUTTON_LABELS.endRound}</button>`;
 }
 
+export function getTemplateFinishPlayerTurnSolo() {
+  document.getElementById("btnSection").innerHTML =
+    `<button class="gameBtn" onclick="endSoloGameEarly()">${BUTTON_LABELS.endRound}</button>`;
+}
+
 export function getTemplateFinishPlayerTurn(mode) {
   document.getElementById("btnSection").innerHTML =
     `<button class="gameBtn" onclick="finishPlayerTurn('${mode}')">${BUTTON_LABELS.endRound}</button>`;
+}
+
+export function getTemplateFinishPlayerTurnLocal() {
+  document.getElementById("btnSection").innerHTML =
+    `<button class="gameBtn" onclick="finishLocalPlayerTurn()">${BUTTON_LABELS.endRound}</button>`;
 }
 
 export function getTemplateStartAiRound() {
@@ -161,9 +171,17 @@ export function getTemplateRoundFinishedSolo(mode) {
      <p class="infoText">${TEXTS.roundFinished}</p>`;
 }
 
-export function getTemplateFinishPlayerTurnLocal() {
+export function getTemplateFinishPlayerRound() {
   document.getElementById("playgroundContainer").innerHTML =
-    `<div class="endRoundContanainer">
+    `<div class="gameHeadline">
+      <div class="gameHeadlineBox" onclick="openDialogGameOverview()">
+        <img src="${IMAGE_PATHS.gameOverviewIcon}">${TEXTS.gameOverviewTitle}
+      </div>
+      <div class="gameHeadlineBox" onclick="openDialogSettings()">
+        ${TEXTS.settingsTitle}<img src="${IMAGE_PATHS.settingsIcon}">
+      </div>
+    </div>
+    <div class="endRoundContanainer">
       <p>Dein Zug ist beendet.</p>
       <button class="gameBtn" onclick="finishLocalTurn()">Spieler 2</button>
     </div>`;

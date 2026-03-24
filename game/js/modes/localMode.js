@@ -8,6 +8,7 @@ import {
   getTemplateFinishPlayerTurnLocal,
   getTemplateRoundFinishedLocal,
   getTemplateGameEnd,
+  getTemplateFinishPlayerRound,
 } from "../templates.js";
 import { setButtonsDisabled } from "../ui.js";
 import { MAX_ROLLS, MAX_ROUNDS } from "../config.js";
@@ -44,11 +45,12 @@ export function playerRollLocal() {
     setButtonsDisabled(true);
     currentRoll();
   } else {
+    getTemplateByGameOverview(state.gameRound, MAX_ROLLS);
     finishLocalPlayerTurn();
   }
 }
 
-function finishLocalPlayerTurn() {
+export function finishLocalPlayerTurn() {
   document.getElementById("diceContainer").innerHTML = "";
   addUpPlayerPoints();
   if (state.activePlayer === "player1") {
@@ -56,7 +58,8 @@ function finishLocalPlayerTurn() {
   } else {
     state.enemyDiceCounter.push(state.playerPoints);
   }
-  if (state.activePlayer === "player1") getTemplateFinishPlayerTurnLocal();
+
+  if (state.activePlayer === "player1") getTemplateFinishPlayerRound();
   if (state.activePlayer === "player2") getTemplateRoundFinishedLocal();
 }
 
@@ -70,7 +73,9 @@ export function finishLocalTurn() {
   } else {
     state.gameRound++;
     startNextLocalRound();
-    if (state.gameRound > 2) checkWinnerLocal();
+    if (state.gameRound > 2)
+      (checkWinnerLocal(),
+        getTemplateByGameOverview(state.gameRound, MAX_ROLLS));
   }
 }
 

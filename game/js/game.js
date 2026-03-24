@@ -1,4 +1,4 @@
-import { playerRollTheDiceSolo } from "./modes/soloMode.js";
+import { playerRollTheDiceSolo, soloGameStart } from "./modes/soloMode.js";
 import { playerRollLocal } from "./modes/localMode.js";
 import {
   getTemplateByGameOverview,
@@ -9,8 +9,11 @@ import {
   getTemplateRollDicePlayerAnimation,
   getTemplateSaveLoot,
   getTemplateRollbtn,
+  getTemplateFinishPlayerTurnSolo,
   getTemplateFinishPlayerTurn,
+  getTemplateLastRound,
   getTemplateGameEnd,
+  getTemplateFinishPlayerTurnLocal,
 } from "./templates.js";
 import { state } from "./state.js";
 import { setButtonsDisabled, renderDice } from "./ui.js";
@@ -27,26 +30,6 @@ export function checkSelectMode(mode) {
   if (mode === "ai") playerRollTheDice(mode);
   if (mode === "local") playerRollLocal(mode);
 }
-
-// export function playerRollTheDice(mode) {
-//   state.currentRound++;
-//   getTemplateByGameOverview(state.gameRound, state.currentRound);
-//   if (state.currentRound < MAX_ROLLS) (setButtonsDisabled(true), currentRoll());
-//   if (state.currentRound > MAX_ROLLS)
-//     (finishPlayerTurn(), getTemplateByGameOverview(state.gameRound, MAX_ROLLS));
-//   if (state.currentRound === MAX_ROLLS)
-//     (getTemplateLastRound(mode), setButtonsDisabled(true), currentRoll());
-// }
-
-// export function finishPlayerTurn() {
-//   document.getElementById("diceContainer").innerHTML = "";
-//   getTemplateByGameOverview(state.gameRound, state.currentRound);
-//   if (state.crew)
-//     (addUpPlayerPoints(), getTemplateEndgameLoot(state.playerPoints));
-//   if (state.mode === "ai") getTemplateStartAiRound();
-//   state.playDiceCounter.push(state.playerPoints);
-//   setButtonsDisabled(false);
-// }
 
 export function currentRoll() {
   document.getElementById("diceContainer").innerHTML = "";
@@ -148,8 +131,14 @@ export function checkAllDiceSelected() {
       break;
     }
   }
-  if (allSelected)
-    ((state.selectedLootDice = true), getTemplateFinishPlayerTurn(state.mode));
+  if (allSelected) checkAllDiceSelectedByMode();
+}
+
+function checkAllDiceSelectedByMode() {
+  state.selectedLootDice = true;
+  if (state.mode === "solo") getTemplateFinishPlayerTurnSolo(state.mode);
+  if (state.mode === "ai") getTemplateFinishPlayerTurn(state.mode);
+  if (state.mode === "local") getTemplateFinishPlayerTurnLocal(state.mode);
 }
 
 export function addUpPlayerPoints() {

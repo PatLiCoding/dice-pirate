@@ -26,6 +26,11 @@ export function playerRollTheDiceSolo(mode) {
     (getTemplateLastRound(mode), setButtonsDisabled(true), currentRoll());
 }
 
+export function endSoloGameEarly() {
+  document.getElementById("diceContainer").innerHTML = "";
+  getTemplateRoundFinishedSolo(state.mode);
+}
+
 export function soloGameStart(mode) {
   document.getElementById("playgroundContainer").innerHTML = "";
   state.rollDice = [];
