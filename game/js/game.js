@@ -9,17 +9,13 @@ import {
   getTemplateShipImage,
   getTemplateCaptainImage,
   getTemplateCrewImage,
-} from "./templates/gameLayoutTemplates.js";
-import {
   getTemplateRollDicePlayerAnimation,
   getTemplateSaveLoot,
-} from "./templates/diceTemplates.js";
-import {
   getTemplateRollbtn,
   getTemplateFinishPlayerTurnSolo,
   getTemplateFinishPlayerTurn,
   getTemplateFinishPlayerTurnLocal,
-} from "./templates/buttonTemplates.js";
+} from "./templates/index.js";
 
 export function checkSelectMode(mode) {
   state.mode = mode;

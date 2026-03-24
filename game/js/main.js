@@ -23,7 +23,7 @@ import {
   finishLocalTurn,
   finishLocalPlayerTurn,
 } from "./modes/localMode.js";
-import { getTemplateSelectMode } from "./templates/selectModeTemplates.js";
+import { getTemplateSelectMode } from "./templates/index.js";
 
 window.onload = getTemplateSelectMode();
 window.openDialogGameOverview = openDialogGameOverview;

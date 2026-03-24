@@ -5,10 +5,10 @@ import { MAX_ROLLS } from "../config.js";
 import {
   getTemplateByGameOverviewSolo,
   getTemplateByGameStartSolo,
-} from "../templates/gameLayoutTemplates.js";
-import { getTemplateEndgameLoot } from "../templates/diceTemplates.js";
-import { getTemplateLastRound } from "../templates/buttonTemplates.js";
-import { getTemplateRoundFinishedSolo } from "../templates/roundTemplates.js";
+  getTemplateEndgameLoot,
+  getTemplateLastRound,
+  getTemplateRoundFinishedSolo,
+} from "../templates/index.js";
 
 export function playerRollTheDiceSolo(mode) {
   state.currentRound++;

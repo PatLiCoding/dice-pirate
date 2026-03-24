@@ -12,18 +12,16 @@ import {
   updateOverviewEndGame,
   updateOverviewEndRoll,
 } from "../ui.js";
-import { getTemplateByGameStart } from "../templates/gameLayoutTemplates.js";
 import {
+  getTemplateByGameStart,
   getTemplateRollDiceAiAnimation,
   getTemplateEndgameLootAi,
   getTemplateEndgameLoot,
-} from "../templates/diceTemplates.js";
-import {
   getTemplateStartAiRound,
   getTemplateLastRound,
-} from "../templates/buttonTemplates.js";
-import { getTemplateRoundFinished } from "../templates/roundTemplates.js";
-import { getTemplateGameEnd } from "../templates/endgameTemplates.js";
+  getTemplateRoundFinished,
+  getTemplateGameEnd,
+} from "../templates/index.js";
 
 export function playerRollTheDice(mode) {
   state.currentRound++;
