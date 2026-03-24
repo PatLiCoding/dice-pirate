@@ -44,8 +44,8 @@ export const IMAGE_PATHS = {
  * @type {Object.<string, string|string[]>}
  */
 export const BUTTON_LABELS = {
-  roll: "Würfeln",
-  endRound: "Runde Beenden",
+  roll: "würfeln",
+  endRound: "Runde beenden",
   restart: "Neustart",
   back: "Zurück",
   modeSelect: "Spielmodus",

@@ -59,7 +59,7 @@ export function getTemplatePointsTableRound(index) {
  */
 export function getTemplatePointsTableTotalNumber() {
   document.getElementById("pointsTable").innerHTML += `<tr>
-    <td>Total</td>
+    <td>Gesamt</td>
     <td>${state.playDiceCounter.reduce((totalValue, currentValue) => totalValue + currentValue, 0)}</td>
     <td>${state.enemyDiceCounter.reduce((totalValue, currentValue) => totalValue + currentValue, 0)}</td>
   </tr>`;

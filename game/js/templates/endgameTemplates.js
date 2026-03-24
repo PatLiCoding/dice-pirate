@@ -18,7 +18,7 @@ export function getTemplateGameEnd(mode, pointDifference, gameResult) {
     </div>
     <div class="endRoundContanainer">
       <p>Das Spiel ist beendet.</p>
-      <p>Du hast mit <span class="point">${pointDifference}</span> Punkten unterschied ein ${gameResult}.</p>
+      <p>Du ${gameResult} mit <span class="point">${pointDifference}</span> Punkten Unterschied.</p>
       <div class="btnSection" id="btnSection">
         <div class="gameOverviewEndGame" onclick="openDialogGameOverview()">Punktetabelle ansehen</div>
         <button class="gameBtn" onclick="checkRestartGame('${mode}')">${BUTTON_LABELS.restart}</button>
@@ -44,7 +44,7 @@ export function getTemplateGameEndLocal(mode, pointDifference, gameResult) {
     </div>
     <div class="endRoundContanainer">
       <p>Das Spiel ist beendet.</p>
-      <p>${gameResult} mit <span class="point">${pointDifference}</span> Punkten unterschied.</p>
+      <p>${gameResult} mit <span class="point">${pointDifference}</span> Punkten Unterschied.</p>
       <div class="btnSection" id="btnSection">
         <div class="gameOverviewEndGame" onclick="openDialogGameOverview()">Punktetabelle ansehen</div>
         <button class="gameBtn" onclick="checkRestartGame('${mode}')">${BUTTON_LABELS.restart}</button>

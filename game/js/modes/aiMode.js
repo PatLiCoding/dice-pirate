@@ -136,9 +136,9 @@ export function checkWinner() {
   const pointDifference = Math.abs(playerTotal - enemyTotal);
   let gameResult =
     playerTotal > enemyTotal
-      ? "Sieg"
+      ? "siegst"
       : playerTotal < enemyTotal
-        ? "Lose"
-        : "Unentschieden";
+        ? "verlierst"
+        : "hast ein Unentschieden";
   getTemplateGameEnd(state.mode, pointDifference, gameResult);
 }

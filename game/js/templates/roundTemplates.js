@@ -46,8 +46,8 @@ export function getTemplateRoundFinished() {
     <div class="endRoundContanainer">
       <p>Die Runde ist beendet.</p>
       <p>Du hast diese Runde
-      <span class="point">${state.playerPoints}</span> und dein Gegner 
-      <span class="point">${state.enemyPoints}</span> erzielt.</p>
+      <span class="point">${state.playerPoints}</span> Punkte erzielt, dein Gegner 
+      <span class="point">${state.enemyPoints}</span>.</p>
       <div class="btnSection" id="btnSection">
         <button class="gameBtn" onclick="startNewRound('${state.mode}')">Weiter</button>
       </div>
