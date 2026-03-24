@@ -1,15 +1,15 @@
 import { MAX_ROLLS, MAX_ROUNDS, TEXTS } from "./config.js";
 import { state } from "./state.js";
+import { getTemplateByGameOverview } from "./templates/gameLayoutTemplates.js";
+import { getTemplateFromRollDice } from "./templates/diceTemplates.js";
 import {
-  getTemplateFromRollDice,
   getTemplateDialogSettings,
   getTemplateDialogGameOverview,
   getTemplatePointsTableHeaderAi,
   getTemplatePointsTableHeaderLocal,
   getTemplatePointsTableRound,
   getTemplatePointsTableTotalNumber,
-  getTemplateByGameOverview,
-} from "./templates.js";
+} from "./templates/dialogTemplates.js";
 
 export function setButtonsDisabled(disabled) {
   const buttons = document.querySelectorAll("#btnSection button");

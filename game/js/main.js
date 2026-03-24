@@ -1,4 +1,3 @@
-import "./templates.js";
 import "./game.js";
 import {
   gameStart,
@@ -24,7 +23,7 @@ import {
   finishLocalTurn,
   finishLocalPlayerTurn,
 } from "./modes/localMode.js";
-import { getTemplateSelectMode } from "./templates.js";
+import { getTemplateSelectMode } from "./templates/selectModeTemplates.js";
 
 window.onload = getTemplateSelectMode();
 window.openDialogGameOverview = openDialogGameOverview;

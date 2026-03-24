@@ -1,19 +1,19 @@
 import { state } from "../state.js";
 import { currentRoll, addUpPlayerPoints, resetTurnState } from "../game.js";
 import {
-  getTemplateByGameStart,
-  getTemplateLastRound,
-  getTemplateRoundFinishedLocal,
-  getTemplateFinishPlayerRound,
-  getTemplateGameEndLocal,
-} from "../templates.js";
-import {
   setButtonsDisabled,
   updateOverview,
   updateOverviewEndGame,
   updateOverviewEndRoll,
 } from "../ui.js";
 import { MAX_ROLLS, MAX_ROUNDS } from "../config.js";
+import { getTemplateByGameStart } from "../templates/gameLayoutTemplates.js";
+import { getTemplateLastRound } from "../templates/buttonTemplates.js";
+import {
+  getTemplateRoundFinishedLocal,
+  getTemplateFinishPlayerRound,
+} from "../templates/roundTemplates.js";
+import { getTemplateGameEndLocal } from "../templates/endgameTemplates.js";
 
 export function startLocalTurn(mode) {
   state.mode = mode;
