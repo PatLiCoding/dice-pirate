@@ -1,0 +1,51 @@
+.diceContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 120px;
+}
+
+.dice {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(145deg, #ffffff, #dcdcdc);
+  border-radius: 12px;
+  border: 2px solid #999;
+  box-shadow:
+    inset -4px -4px 8px rgba(0, 0, 0, 0.2),
+    inset 4px 4px 8px rgba(255, 255, 255, 0.7),
+    4px 4px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+.rollAnimation {
+  height: 100px;
+}
+
+.defaultDice {
+  background: linear-gradient(145deg, #ffffff, #dcdcdc);
+}
+
+.conditionDice {
+  background: linear-gradient(145deg, #ffffff, #5f5f5e);
+}
+
+.lootDice {
+  background: linear-gradient(145deg, #ffffff, #f4f135);
+}
+
+.lootDice:hover {
+  cursor: pointer;
+  background: linear-gradient(145deg, #ffffff, #45ee0d);
+}
+
+.saveLootDice {
+  background: linear-gradient(145deg, #ffffff, #45ee0d);
+}
+
+.saveLootDice:hover {
+  cursor: pointer;
+}

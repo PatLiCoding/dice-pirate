@@ -82,16 +82,16 @@ export function openDialogGameOverview() {
     getTemplatePointsTableRound(index);
   getTemplatePointsTableTotalNumber();
   document.body.classList.add("noScroll");
-  document.getElementById("dialogOverlay").classList.remove("d-none");
+  document.getElementById("dialogOverlay").style.display = "flex";
 }
 
 export function openDialogSettings() {
   getTemplateDialogSettings();
   document.body.classList.add("noScroll");
-  document.getElementById("dialogOverlay").classList.remove("d-none");
+  document.getElementById("dialogOverlay").style.display = "flex";
 }
 
 export function closeDialog() {
-  document.getElementById("dialogOverlay").classList.add("d-none");
+  document.getElementById("dialogOverlay").style.display = "none";
   document.body.classList.remove("noScroll");
 }

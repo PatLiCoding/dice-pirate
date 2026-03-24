@@ -1,0 +1,141 @@
+.SelectMode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  font-size: 24px;
+}
+
+.backToIndex {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  height: 40px;
+}
+
+.backToIndex:hover {
+  cursor: pointer;
+  border-radius: 50px;
+  background-color: #2494f5;
+}
+
+.playgroundContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+  padding: 40px 32px;
+  background-color: rgba(240, 255, 255, 0.6);
+  border-radius: 25px 0 0 25px;
+  height: 550px;
+  width: 600px;
+  position: relative;
+}
+
+.gameOverview {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 12px 40px;
+  border-radius: 0 25px 25px 0;
+  background-color: rgba(11, 11, 11, 0.6);
+  color: white;
+  height: 550px;
+  font-size: 24px;
+}
+
+.gameOverview,
+p {
+  text-align: center;
+}
+
+.gameOverviewPlayerName {
+  white-space: nowrap;
+}
+
+.gameHeadline {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  height: 40px;
+  position: absolute;
+  top: 12px;
+}
+
+.gameHeadlineBox {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.gameHeadlineBox:hover {
+  cursor: pointer;
+  padding: 2px 12px;
+  border-radius: 25px;
+  color: white;
+  background-color: #2494f5;
+}
+
+.conditionImages {
+  height: 100px;
+}
+
+.lootboxImages {
+  height: 64px;
+}
+
+.pointsContainer {
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  height: 120px;
+}
+
+.btnSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  min-height: 120px;
+}
+
+.endRoundContanainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  font-size: 40px;
+  font-weight: bold;
+  word-break: normal;
+}
+
+.point {
+  display: inline-block;
+  width: 60px;
+  background-color: #ffffff80;
+  color: #2494f5;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.infoText {
+  color: black;
+  font-size: 40px;
+}
+
+.gameOverviewEndGame {
+  font-size: 28px;
+  border-bottom: 2px solid #2494f5;
+}
+
+.gameOverviewEndGame:hover {
+  cursor: pointer;
+  padding: 2px 12px;
+  border-radius: 25px;
+  color: white;
+  background-color: #2494f5;
+}
