@@ -23,11 +23,11 @@ export function getTemplateByGameOverview(
       <p>${currentRound} / ${MAX_ROLLS}</p>
     </div>
     <div>
-      <p>${player1}</p>
+      <p class="gameOverviewPlayerName">${player1}</p>
       <p>${state.playDiceCounter.reduce((totalValue, currentValue) => totalValue + currentValue, 0)}</p>
     </div>
     <div>
-      <p>${player2}</p>
+      <p class="gameOverviewPlayerName">${player2}</p>
       <p>${state.enemyDiceCounter.reduce((totalValue, currentValue) => totalValue + currentValue, 0)}</p>
     </div>`;
 }

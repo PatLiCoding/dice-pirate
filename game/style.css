@@ -64,6 +64,10 @@ p {
   text-align: center;
 }
 
+.gameOverviewPlayerName {
+  white-space: nowrap;
+}
+
 .menuBtn {
   height: 48px;
   border-radius: 25px;
@@ -389,7 +393,8 @@ tr:hover {
     padding: 32px;
   }
 
-  h2 {
+  /* h2 {
+    text-align: center;
     font-size: 40px;
   }
 
@@ -398,6 +403,10 @@ tr:hover {
     max-height: 90vh;
     padding: 20px;
   }
+
+  .SelectMode {
+    gap: 24px;
+  } */
 
   .gameHeadline {
     position: static;
@@ -433,22 +442,21 @@ tr:hover {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   body {
     padding: 24px;
   }
   h2 {
-    font-size: 28px;
-  }
-
-  .SelectMode {
-    gap: 20px;
-    font-size: 18px;
+    text-align: center;
+    font-size: 40px;
   }
 
   .playgroundContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    padding: 16px;
   }
 
   .gameOverview {
@@ -520,16 +528,6 @@ tr:hover {
 }
 
 @media (max-width: 450px) {
-  h2 {
-    font-size: 22px;
-    text-align: center;
-  }
-
-  .SelectMode {
-    font-size: 16px;
-    gap: 12px;
-  }
-
   .playgroundContainer {
     padding: 10px;
   }
