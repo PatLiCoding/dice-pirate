@@ -15,6 +15,11 @@ import {
   getTemplateGameEndLocal,
 } from "../templates/index.js";
 
+/**
+ * Initializes a new local game turn.
+ * Resets state and sets up the first player.
+ * @param {string} mode - The game mode ("local" or "solo").
+ */
 export function startLocalTurn(mode) {
   state.mode = mode;
   state.activePlayer = "player1";
@@ -27,6 +32,10 @@ export function startLocalTurn(mode) {
   setButtonsDisabled(false);
 }
 
+/**
+ * Handles the current player's dice roll in local mode.
+ * Increments round and updates templates accordingly.
+ */
 export function playerRollLocal() {
   state.currentRound++;
   updateOverview();
@@ -43,6 +52,10 @@ export function playerRollLocal() {
   }
 }
 
+/**
+ * Ends the current local player's turn.
+ * Adds points and updates templates based on which player was active.
+ */
 export function finishLocalPlayerTurn() {
   document.getElementById("diceContainer").innerHTML = "";
   addUpPlayerPoints();
@@ -58,6 +71,9 @@ export function finishLocalPlayerTurn() {
   state.playerPoints = 0;
 }
 
+/**
+ * Ends the current local turn and switches players or starts a new round.
+ */
 export function finishLocalTurn() {
   if (state.activePlayer === "player1") {
     state.activePlayer = "player2";
@@ -73,6 +89,9 @@ export function finishLocalTurn() {
   }
 }
 
+/**
+ * Starts the next local round and resets the first player's state.
+ */
 export function startNextLocalRound() {
   state.activePlayer = "player1";
   resetTurnState();
@@ -80,6 +99,10 @@ export function startNextLocalRound() {
   updateOverview();
 }
 
+/**
+ * Checks the winner in local mode and displays the end game template.
+ * @private
+ */
 function checkWinnerLocal() {
   const sum = (arr) => arr.reduce((a, b) => a + b, 0);
   const p1Total = sum(state.playDiceCounter);

@@ -1,5 +1,8 @@
 import { IMAGE_PATHS, BUTTON_LABELS } from "../config.js";
 
+/**
+ * Displays the mode selection screen.
+ */
 export function getTemplateSelectMode() {
   document.getElementById("playgroundContainer").innerHTML = `
     <div class="SelectMode" id="SelectMode">

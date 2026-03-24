@@ -1,12 +1,19 @@
 import { IMAGE_PATHS, BUTTON_LABELS, TEXTS } from "../config.js";
 import { state } from "../state.js";
 
+/**
+ * Displays the "Round Finished" screen for Solo mode.
+ * @param {string} mode - Current game mode.
+ */
 export function getTemplateRoundFinishedSolo(mode) {
   document.getElementById("btnSection").innerHTML =
     `<button class="gameBtn" onclick="checkRestartGame('${mode}')">${BUTTON_LABELS.restart}</button>
      <p class="infoText">${TEXTS.roundFinished}</p>`;
 }
 
+/**
+ * Displays the "Finish Player Turn" screen for local mode (Player 1 finished).
+ */
 export function getTemplateFinishPlayerRound() {
   document.getElementById("playgroundContainer").innerHTML =
     `<div class="gameHeadline">
@@ -23,6 +30,9 @@ export function getTemplateFinishPlayerRound() {
     </div>`;
 }
 
+/**
+ * Displays the "Round Finished" screen for AI mode with player and enemy points.
+ */
 export function getTemplateRoundFinished() {
   document.getElementById("playgroundContainer").innerHTML =
     `<div class="gameHeadline">
@@ -44,6 +54,9 @@ export function getTemplateRoundFinished() {
     </div>`;
 }
 
+/**
+ * Displays the "Round Finished" screen for Local mode with both players' points.
+ */
 export function getTemplateRoundFinishedLocal() {
   document.getElementById("playgroundContainer").innerHTML =
     `<div class="gameHeadline">

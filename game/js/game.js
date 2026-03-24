@@ -17,6 +17,10 @@ import {
   getTemplateFinishPlayerTurnLocal,
 } from "./templates/index.js";
 
+/**
+ * Sets the selected game mode and starts the corresponding game.
+ * @param {string} mode - The game mode to start ("solo", "ai", or "local").
+ */
 export function checkSelectMode(mode) {
   state.mode = mode;
   if (mode === "solo") playerRollTheDiceSolo(mode);
@@ -24,6 +28,9 @@ export function checkSelectMode(mode) {
   if (mode === "local") playerRollLocal(mode);
 }
 
+/**
+ * Executes the current dice roll animation and updates the game state.
+ */
 export function currentRoll() {
   document.getElementById("diceContainer").innerHTML = "";
   getTemplateRollDicePlayerAnimation();
@@ -35,6 +42,9 @@ export function currentRoll() {
   }, ANIMATION_DURATION);
 }
 
+/**
+ * Rerolls all dice that are not selected or part of a condition.
+ */
 export function rerollUnselectedDice() {
   let newRoll = [];
   state.rollDice = state.rollDice.filter(
@@ -51,6 +61,9 @@ export function rerollUnselectedDice() {
   state.rollDice = state.rollDice.concat(newRoll);
 }
 
+/**
+ * Checks the current game conditions for ship, captain, and crew, and updates templates accordingly.
+ */
 export function checkCondition() {
   checkShip();
   if (state.ship) {
@@ -62,6 +75,9 @@ export function checkCondition() {
   }
 }
 
+/**
+ * Checks if a ship has been rolled and updates the state.
+ */
 export function checkShip() {
   for (let i = 0; i < state.rollDice.length; i++) {
     if (state.rollDice[i].value === 6 && !state.ship) {
@@ -73,6 +89,9 @@ export function checkShip() {
   }
 }
 
+/**
+ * Checks if a captain has been rolled and updates the state.
+ */
 export function checkCaptain() {
   for (let i = 0; i < state.rollDice.length; i++) {
     if (state.rollDice[i].value === 5 && !state.captain) {
@@ -84,6 +103,9 @@ export function checkCaptain() {
   }
 }
 
+/**
+ * Checks if a crew has been rolled and updates the state.
+ */
 export function checkCrew() {
   for (let i = 0; i < state.rollDice.length; i++) {
     if (state.rollDice[i].value === 4 && !state.crew) {
@@ -95,6 +117,9 @@ export function checkCrew() {
   }
 }
 
+/**
+ * Converts all default dice to loot dice and updates the template.
+ */
 export function setLootDice() {
   for (let i = 0; i < state.rollDice.length; i++) {
     if (state.rollDice[i].type === "default") state.rollDice[i].type = "loot";
@@ -104,6 +129,10 @@ export function setLootDice() {
   renderDice();
 }
 
+/**
+ * Handles a click on a dice, toggling its selection and updating game state.
+ * @param {number} index - The index of the clicked dice in state.rollDice.
+ */
 export function clickDice(index) {
   let dice = state.rollDice[index];
   if (dice.type !== "loot") return;
@@ -113,6 +142,9 @@ export function clickDice(index) {
   checkAllDiceSelected();
 }
 
+/**
+ * Checks if all loot dice are selected and updates the game accordingly.
+ */
 export function checkAllDiceSelected() {
   const dice = state.rollDice;
   let allSelected = true;
@@ -127,6 +159,10 @@ export function checkAllDiceSelected() {
   if (allSelected) checkAllDiceSelectedByMode();
 }
 
+/**
+ * Handles the end of a turn depending on the game mode.
+ * @private
+ */
 function checkAllDiceSelectedByMode() {
   state.selectedLootDice = true;
   if (state.mode === "solo") getTemplateFinishPlayerTurnSolo(state.mode);
@@ -134,6 +170,9 @@ function checkAllDiceSelectedByMode() {
   if (state.mode === "local") getTemplateFinishPlayerTurnLocal(state.mode);
 }
 
+/**
+ * Adds up all loot dice values and updates the player's points.
+ */
 export function addUpPlayerPoints() {
   state.playerPoints = 0;
   for (let i = 0; i < state.rollDice.length; i++) {
@@ -142,12 +181,19 @@ export function addUpPlayerPoints() {
   }
 }
 
+/**
+ * Restarts the game based on the selected mode.
+ * @param {string} mode - The game mode to restart ("solo", "ai", "local").
+ */
 export function checkRestartGame(mode) {
   if (mode === "solo") soloGameStart(mode);
   if (mode === "ai") gameStart(mode);
   if (mode === "local") gameStart(mode);
 }
 
+/**
+ * Resets the turn state to initial values.
+ */
 export function resetTurnState() {
   state.currentRound = 0;
   state.rollDice = [];
@@ -158,6 +204,10 @@ export function resetTurnState() {
   state.selectedLootDice = false;
 }
 
+/**
+ * Starts a new game, resets the state, and renders the initial game template.
+ * @param {string} mode - The game mode to start ("solo", "ai", "local").
+ */
 export function gameStart(mode) {
   state.mode = mode;
   document.getElementById("playgroundContainer").innerHTML = "";

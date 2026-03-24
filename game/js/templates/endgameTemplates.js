@@ -1,5 +1,11 @@
 import { IMAGE_PATHS, BUTTON_LABELS, TEXTS } from "../config.js";
 
+/**
+ * Displays the game end screen for AI or Solo mode.
+ * @param {string} mode - The current game mode.
+ * @param {number} pointDifference - Difference in points between player and AI.
+ * @param {string} gameResult - Result of the game ("Win", "Lose", "Draw").
+ */
 export function getTemplateGameEnd(mode, pointDifference, gameResult) {
   document.getElementById("playgroundContainer").innerHTML =
     `<div class="gameHeadline">
@@ -20,6 +26,12 @@ export function getTemplateGameEnd(mode, pointDifference, gameResult) {
     </div>`;
 }
 
+/**
+ * Displays the game end screen for Local mode.
+ * @param {string} mode - The current game mode.
+ * @param {number} pointDifference - Difference in points between player 1 and player 2.
+ * @param {string} gameResult - Result string ("Player 1 wins", "Player 2 wins", "Draw").
+ */
 export function getTemplateGameEndLocal(mode, pointDifference, gameResult) {
   document.getElementById("playgroundContainer").innerHTML =
     `<div class="gameHeadline">

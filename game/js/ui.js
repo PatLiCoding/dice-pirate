@@ -11,11 +11,18 @@ import {
   getTemplatePointsTableTotalNumber,
 } from "./templates/index.js";
 
+/**
+ * Enables or disables all buttons in the button section.
+ * @param {boolean} disabled - Whether buttons should be disabled.
+ */
 export function setButtonsDisabled(disabled) {
   const buttons = document.querySelectorAll("#btnSection button");
   buttons.forEach((btn) => (btn.disabled = disabled));
 }
 
+/**
+ * Renders all dice in the dice container based on their type and selection.
+ */
 export function renderDice() {
   document.getElementById("diceContainer").innerHTML = "";
   for (let i = 0; i < state.rollDice.length; i++) {
@@ -28,6 +35,9 @@ export function renderDice() {
   }
 }
 
+/**
+ * Updates the game overview display based on the current round and mode.
+ */
 export function updateOverview() {
   if (state.mode === "ai")
     getTemplateByGameOverview(
@@ -45,6 +55,9 @@ export function updateOverview() {
     );
 }
 
+/**
+ * Updates the game overview at the end of the roll.
+ */
 export function updateOverviewEndRoll() {
   if (state.mode === "ai")
     getTemplateByGameOverview(
@@ -62,6 +75,9 @@ export function updateOverviewEndRoll() {
     );
 }
 
+/**
+ * Updates the game overview at the end of the game.
+ */
 export function updateOverviewEndGame() {
   if (state.mode === "ai")
     getTemplateByGameOverview(MAX_ROUNDS, MAX_ROLLS, TEXTS.player, TEXTS.enemy);
@@ -74,6 +90,9 @@ export function updateOverviewEndGame() {
     );
 }
 
+/**
+ * Opens the game overview dialog with points table.
+ */
 export function openDialogGameOverview() {
   getTemplateDialogGameOverview();
   if (state.mode === "ai") getTemplatePointsTableHeaderAi();
@@ -85,12 +104,18 @@ export function openDialogGameOverview() {
   document.getElementById("dialogOverlay").style.display = "flex";
 }
 
+/**
+ * Opens the settings dialog.
+ */
 export function openDialogSettings() {
   getTemplateDialogSettings();
   document.body.classList.add("noScroll");
   document.getElementById("dialogOverlay").style.display = "flex";
 }
 
+/**
+ * Closes any open dialog and re-enables scrolling.
+ */
 export function closeDialog() {
   document.getElementById("dialogOverlay").style.display = "none";
   document.body.classList.remove("noScroll");

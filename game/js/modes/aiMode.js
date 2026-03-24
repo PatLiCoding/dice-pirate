@@ -23,6 +23,11 @@ import {
   getTemplateGameEnd,
 } from "../templates/index.js";
 
+/**
+ * Handles the player's dice roll in the current mode.
+ * Increments the current round, updates the overview, and handles different game end scenarios.
+ * @param {string} mode - The current game mode ("ai" or "local").
+ */
 export function playerRollTheDice(mode) {
   state.currentRound++;
   updateOverview();
@@ -33,6 +38,9 @@ export function playerRollTheDice(mode) {
     (getTemplateLastRound(mode), setButtonsDisabled(true), currentRoll());
 }
 
+/**
+ * Ends the player's turn, updates the overview, and calculates points if crew is completed.
+ */
 export function finishPlayerTurn() {
   document.getElementById("diceContainer").innerHTML = "";
   updateOverview();
@@ -43,6 +51,9 @@ export function finishPlayerTurn() {
   setButtonsDisabled(false);
 }
 
+/**
+ * Starts the AI's turn by resetting relevant states and triggering the AI roll loop.
+ */
 export function startAiTurn() {
   document.getElementById("gameConditionContainer").innerHTML = "";
   document.getElementById("pointsContainer").innerHTML = "";
@@ -55,6 +66,10 @@ export function startAiTurn() {
   aiRollLoop();
 }
 
+/**
+ * Private function: Loops AI dice rolls with a delay and updates the state.
+ * @private
+ */
 function aiRollLoop() {
   state.currentRound++;
   updateOverview();
@@ -71,6 +86,10 @@ function aiRollLoop() {
   }, ANIMATION_DURATION);
 }
 
+/**
+ * Private function: Ends the AI's turn, calculates points, and shows round finished template.
+ * @private
+ */
 function finishAiTurn() {
   document.getElementById("diceContainer").innerHTML = "";
   state.enemyPoints = 0;
@@ -82,6 +101,10 @@ function finishAiTurn() {
   showRoundFinished();
 }
 
+/**
+ * Private function: Resets round state and displays the round finished template.
+ * @private
+ */
 function showRoundFinished() {
   state.currentRound = 0;
   document.getElementById("playgroundContainer").innerHTML = "";
@@ -89,6 +112,9 @@ function showRoundFinished() {
   updateOverviewEndRoll();
 }
 
+/**
+ * Starts a new game round and updates templates, checks for game end.
+ */
 export function startNewRound() {
   state.gameRound++;
   if (state.gameRound > MAX_ROUNDS) {
@@ -100,6 +126,9 @@ export function startNewRound() {
   getTemplateByGameStart(state.mode);
 }
 
+/**
+ * Determines the winner of the game and displays the game end template.
+ */
 export function checkWinner() {
   const sum = (arr) => arr.reduce((a, b) => a + b, 0);
   const playerTotal = sum(state.playDiceCounter);

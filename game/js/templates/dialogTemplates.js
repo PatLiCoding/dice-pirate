@@ -1,6 +1,9 @@
 import { IMAGE_PATHS, BUTTON_LABELS, TEXTS } from "../config.js";
 import { state } from "../state.js";
 
+/**
+ * Renders the game overview dialog with points table and close button.
+ */
 export function getTemplateDialogGameOverview() {
   document.getElementById("dialogBox").innerHTML = `
     <div class="dialogHeader">
@@ -17,6 +20,9 @@ export function getTemplateDialogGameOverview() {
     </div>`;
 }
 
+/**
+ * Renders the header row of the points table for AI mode.
+ */
 export function getTemplatePointsTableHeaderAi() {
   document.getElementById("pointsTable").innerHTML += `<tr>
             <th>${TEXTS.rounds}</th>
@@ -25,6 +31,9 @@ export function getTemplatePointsTableHeaderAi() {
           </tr>`;
 }
 
+/**
+ * Renders the header row of the points table for Local mode.
+ */
 export function getTemplatePointsTableHeaderLocal() {
   document.getElementById("pointsTable").innerHTML += `<tr>
             <th>${TEXTS.rounds}</th>
@@ -33,6 +42,10 @@ export function getTemplatePointsTableHeaderLocal() {
           </tr>`;
 }
 
+/**
+ * Adds a round row to the points table.
+ * @param {number} index - The round index.
+ */
 export function getTemplatePointsTableRound(index) {
   document.getElementById("pointsTable").innerHTML += ` <tr>
     <td>Runde ${index + 1}</td>
@@ -41,14 +54,20 @@ export function getTemplatePointsTableRound(index) {
   </tr>`;
 }
 
+/**
+ * Adds a total row to the points table summing up player and enemy points.
+ */
 export function getTemplatePointsTableTotalNumber() {
   document.getElementById("pointsTable").innerHTML += `<tr>
-    <td>Gesamt</td>
+    <td>Total</td>
     <td>${state.playDiceCounter.reduce((totalValue, currentValue) => totalValue + currentValue, 0)}</td>
     <td>${state.enemyDiceCounter.reduce((totalValue, currentValue) => totalValue + currentValue, 0)}</td>
   </tr>`;
 }
 
+/**
+ * Renders the settings dialog with buttons for mode select, rules, and home.
+ */
 export function getTemplateDialogSettings() {
   document.getElementById("dialogBox").innerHTML = `
     <div class="dialogHeader">

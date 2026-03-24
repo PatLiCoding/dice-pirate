@@ -10,6 +10,11 @@ import {
   getTemplateRoundFinishedSolo,
 } from "../templates/index.js";
 
+/**
+ * Handles the player's dice roll in solo mode.
+ * Updates templates and manages end-of-round logic.
+ * @param {string} mode - The current game mode ("solo").
+ */
 export function playerRollTheDiceSolo(mode) {
   state.currentRound++;
   document.getElementById("diceContainer").innerHTML = "";
@@ -26,11 +31,19 @@ export function playerRollTheDiceSolo(mode) {
     (getTemplateLastRound(mode), setButtonsDisabled(true), currentRoll());
 }
 
+/**
+ * Ends the solo game early and displays the round finished template.
+ */
 export function endSoloGameEarly() {
   document.getElementById("diceContainer").innerHTML = "";
   getTemplateRoundFinishedSolo(state.mode);
 }
 
+/**
+ * Starts a new solo game.
+ * Resets relevant state and displays starting templates.
+ * @param {string} mode - The solo game mode.
+ */
 export function soloGameStart(mode) {
   document.getElementById("playgroundContainer").innerHTML = "";
   resetTurnState();

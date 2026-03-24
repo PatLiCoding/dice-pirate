@@ -1,8 +1,31 @@
+/**
+ * Maximum number of rounds in the game.
+ * @type {number}
+ */
 export const MAX_ROUNDS = 5;
+
+/**
+ * Maximum number of rolls per round.
+ * @type {number}
+ */
 export const MAX_ROLLS = 3;
+
+/**
+ * Number of dice in the game.
+ * @type {number}
+ */
 export const NUM_DICE = 6;
+
+/**
+ * Duration of dice roll animations in milliseconds.
+ * @type {number}
+ */
 export const ANIMATION_DURATION = 3000;
 
+/**
+ * Paths to all images used in the game.
+ * @type {Object.<string, string>}
+ */
 export const IMAGE_PATHS = {
   ship: "../assets/img/game/ship.png",
   captain: "../assets/img/game/captain.png",
@@ -16,6 +39,10 @@ export const IMAGE_PATHS = {
   closeIcon: "../assets/icon/close.png",
 };
 
+/**
+ * Labels for all buttons in the game.
+ * @type {Object.<string, string|string[]>}
+ */
 export const BUTTON_LABELS = {
   roll: "Würfeln",
   endRound: "Runde Beenden",
@@ -27,6 +54,10 @@ export const BUTTON_LABELS = {
   home: "Startseite",
 };
 
+/**
+ * Texts used in the UI.
+ * @type {Object.<string, string>}
+ */
 export const TEXTS = {
   gameOverviewTitle: "Punktestand",
   settingsTitle: "Settings",
