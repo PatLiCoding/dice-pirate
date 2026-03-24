@@ -29,7 +29,12 @@ export function getTemplateByGameOverviewSolo(currentRound) {
     </div>`;
 }
 
-export function getTemplateByGameOverview(gameRound, currentRound) {
+export function getTemplateByGameOverview(
+  gameRound,
+  currentRound,
+  player1,
+  player2,
+) {
   document.getElementById("gameOverview").innerHTML = `
     <div>
       <p>${TEXTS.rounds}</p>
@@ -40,11 +45,11 @@ export function getTemplateByGameOverview(gameRound, currentRound) {
       <p>${currentRound} / ${MAX_ROLLS}</p>
     </div>
     <div>
-      <p>${TEXTS.player}</p>
+      <p>${player1}</p>
       <p>${state.playDiceCounter.reduce((totalValue, currentValue) => totalValue + currentValue, 0)}</p>
     </div>
     <div>
-      <p>${TEXTS.enemy}</p>
+      <p>${player2}</p>
       <p>${state.enemyDiceCounter.reduce((totalValue, currentValue) => totalValue + currentValue, 0)}</p>
     </div>`;
 }
@@ -220,9 +225,8 @@ export function getTemplateRoundFinishedLocal() {
     </div>
     <div class="endRoundContanainer">
       <p>Die Runde ist beendet.</p>
-      <p>Du hast diese Runde
-      <span class="point">${state.player1Points}</span> und dein Gegner 
-      <span class="point">${state.player2Points}</span> erzielt.</p>
+      <p>Spieler 1 hat <span class="point">${state.player1Points}</span></p>
+       <p>Spieler 2 hat <span class="point">${state.player2Points}</span></p>
       <div class="btnSection" id="btnSection">
         <button class="gameBtn" onclick="finishLocalTurn('${state.mode}')">Weiter</button>
       </div>
@@ -249,6 +253,26 @@ export function getTemplateGameEnd(mode, pointDifference, gameResult) {
     </div>`;
 }
 
+export function getTemplateGameEndLocal(mode, pointDifference, gameResult) {
+  document.getElementById("playgroundContainer").innerHTML =
+    `<div class="gameHeadline">
+      <div class="gameHeadlineBox" onclick="openDialogGameOverview()">
+        <img src="${IMAGE_PATHS.gameOverviewIcon}">${TEXTS.gameOverviewTitle}
+      </div>
+      <div class="gameHeadlineBox" onclick="openDialogSettings()">
+        ${TEXTS.settingsTitle}<img src="${IMAGE_PATHS.settingsIcon}">
+      </div>
+    </div>
+    <div class="endRoundContanainer">
+      <p>Das Spiel ist beendet.</p>
+      <p>${gameResult} mit <span class="point">${pointDifference}</span> Punkten unterschied.</p>
+      <div class="btnSection" id="btnSection">
+        <div class="gameOverviewEndGame" onclick="openDialogGameOverview()">Punktetabelle ansehen</div>
+        <button class="gameBtn" onclick="checkRestartGame('${mode}')">${BUTTON_LABELS.restart}</button>
+      </div>
+    </div>`;
+}
+
 export function getTemplateDialogGameOverview() {
   document.getElementById("dialogBox").innerHTML = `
     <div class="dialogHeader">
@@ -265,11 +289,19 @@ export function getTemplateDialogGameOverview() {
     </div>`;
 }
 
-export function getTemplatePointsTableHeader() {
+export function getTemplatePointsTableHeaderAi() {
   document.getElementById("pointsTable").innerHTML += `<tr>
             <th>${TEXTS.rounds}</th>
             <th>${TEXTS.player}</th>
             <th>${TEXTS.enemy}</th>
+          </tr>`;
+}
+
+export function getTemplatePointsTableHeaderLocal() {
+  document.getElementById("pointsTable").innerHTML += `<tr>
+            <th>${TEXTS.rounds}</th>
+            <th>${TEXTS.player1}</th>
+            <th>${TEXTS.player2}</th>
           </tr>`;
 }
 

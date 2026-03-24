@@ -1,11 +1,14 @@
+import { MAX_ROLLS, MAX_ROUNDS, TEXTS } from "./config.js";
 import { state } from "./state.js";
 import {
   getTemplateFromRollDice,
   getTemplateDialogSettings,
   getTemplateDialogGameOverview,
-  getTemplatePointsTableHeader,
+  getTemplatePointsTableHeaderAi,
+  getTemplatePointsTableHeaderLocal,
   getTemplatePointsTableRound,
   getTemplatePointsTableTotalNumber,
+  getTemplateByGameOverview,
 } from "./templates.js";
 
 export function setButtonsDisabled(disabled) {
@@ -25,9 +28,56 @@ export function renderDice() {
   }
 }
 
+export function updateOverview() {
+  if (state.mode === "ai")
+    getTemplateByGameOverview(
+      state.gameRound,
+      state.currentRound,
+      TEXTS.player,
+      TEXTS.enemy,
+    );
+  if (state.mode === "local")
+    getTemplateByGameOverview(
+      state.gameRound,
+      state.currentRound,
+      TEXTS.player1,
+      TEXTS.player2,
+    );
+}
+
+export function updateOverviewEndRoll() {
+  if (state.mode === "ai")
+    getTemplateByGameOverview(
+      state.gameRound,
+      MAX_ROLLS,
+      TEXTS.player,
+      TEXTS.enemy,
+    );
+  if (state.mode === "local")
+    getTemplateByGameOverview(
+      state.gameRound,
+      MAX_ROLLS,
+      TEXTS.player1,
+      TEXTS.player2,
+    );
+}
+
+export function updateOverviewEndGame() {
+  if (state.mode === "ai")
+    getTemplateByGameOverview(MAX_ROUNDS, MAX_ROLLS, TEXTS.player, TEXTS.enemy);
+  if (state.mode === "local")
+    getTemplateByGameOverview(
+      MAX_ROUNDS,
+      MAX_ROLLS,
+      TEXTS.player1,
+      TEXTS.player2,
+    );
+}
+
 export function openDialogGameOverview() {
   getTemplateDialogGameOverview();
-  getTemplatePointsTableHeader();
+  if (state.mode === "ai") getTemplatePointsTableHeaderAi();
+  if (state.mode === "local") getTemplatePointsTableHeaderLocal();
   for (let index = 0; index < state.enemyDiceCounter.length; index++)
     getTemplatePointsTableRound(index);
   getTemplatePointsTableTotalNumber();

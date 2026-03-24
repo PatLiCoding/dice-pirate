@@ -1,4 +1,4 @@
-import { currentRoll, addUpPlayerPoints } from "../game.js";
+import { currentRoll, addUpPlayerPoints, resetTurnState } from "../game.js";
 import {
   getTemplateEndgameLoot,
   getTemplateLastRound,
@@ -33,14 +33,9 @@ export function endSoloGameEarly() {
 
 export function soloGameStart(mode) {
   document.getElementById("playgroundContainer").innerHTML = "";
-  state.rollDice = [];
+  resetTurnState();
   state.saveRolledDice = 0;
   state.playDiceCounter = [];
-  state.playerPoints = 0;
-  state.ship = false;
-  state.captain = false;
-  state.crew = false;
-  state.currentRound = 0;
   getTemplateByGameStartSolo(mode);
   getTemplateByGameOverviewSolo(state.currentRound);
 }

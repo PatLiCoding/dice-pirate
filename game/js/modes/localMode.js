@@ -1,42 +1,35 @@
 import { state } from "../state.js";
-import { currentRoll, addUpPlayerPoints } from "../game.js";
+import { currentRoll, addUpPlayerPoints, resetTurnState } from "../game.js";
 import {
   getTemplateByGameStart,
-  getTemplateByGameOverview,
-  getTemplateRoundFinished,
   getTemplateLastRound,
-  getTemplateFinishPlayerTurnLocal,
   getTemplateRoundFinishedLocal,
-  getTemplateGameEnd,
   getTemplateFinishPlayerRound,
+  getTemplateGameEndLocal,
 } from "../templates.js";
-import { setButtonsDisabled } from "../ui.js";
+import {
+  setButtonsDisabled,
+  updateOverview,
+  updateOverviewEndGame,
+  updateOverviewEndRoll,
+} from "../ui.js";
 import { MAX_ROLLS, MAX_ROUNDS } from "../config.js";
 
-function resetTurnState() {
-  state.currentRound = 0;
-  state.rollDice = [];
-  state.ship = false;
-  state.captain = false;
-  state.crew = false;
-  state.playerPoints = 0;
-  state.selectedLootDice = false;
-}
-
 export function startLocalTurn(mode) {
+  state.mode = mode;
   state.activePlayer = "player1";
   state.gameRound = 1;
   state.playDiceCounter = [];
   state.enemyDiceCounter = [];
   resetTurnState();
   getTemplateByGameStart(mode);
-  getTemplateByGameOverview(state.gameRound, state.currentRound);
+  updateOverview();
   setButtonsDisabled(false);
 }
 
 export function playerRollLocal() {
   state.currentRound++;
-  getTemplateByGameOverview(state.gameRound, state.currentRound);
+  updateOverview();
   if (state.currentRound < MAX_ROLLS) {
     setButtonsDisabled(true);
     currentRoll();
@@ -45,7 +38,7 @@ export function playerRollLocal() {
     setButtonsDisabled(true);
     currentRoll();
   } else {
-    getTemplateByGameOverview(state.gameRound, MAX_ROLLS);
+    updateOverviewEndRoll();
     finishLocalPlayerTurn();
   }
 }
@@ -55,12 +48,14 @@ export function finishLocalPlayerTurn() {
   addUpPlayerPoints();
   if (state.activePlayer === "player1") {
     state.playDiceCounter.push(state.playerPoints);
+    state.player1Points = state.playerPoints;
+    getTemplateFinishPlayerRound();
   } else {
     state.enemyDiceCounter.push(state.playerPoints);
+    state.player2Points = state.playerPoints;
+    getTemplateRoundFinishedLocal();
   }
-
-  if (state.activePlayer === "player1") getTemplateFinishPlayerRound();
-  if (state.activePlayer === "player2") getTemplateRoundFinishedLocal();
+  state.playerPoints = 0;
 }
 
 export function finishLocalTurn() {
@@ -68,14 +63,13 @@ export function finishLocalTurn() {
     state.activePlayer = "player2";
     resetTurnState();
     getTemplateByGameStart(state.mode);
-    getTemplateByGameOverview(state.gameRound, state.currentRound);
+    updateOverview();
     setButtonsDisabled(false);
   } else {
     state.gameRound++;
     startNextLocalRound();
-    if (state.gameRound > 2)
-      (checkWinnerLocal(),
-        getTemplateByGameOverview(state.gameRound, MAX_ROLLS));
+    if (state.gameRound > MAX_ROUNDS)
+      (checkWinnerLocal(), updateOverviewEndGame());
   }
 }
 
@@ -83,7 +77,7 @@ export function startNextLocalRound() {
   state.activePlayer = "player1";
   resetTurnState();
   getTemplateByGameStart(state.mode);
-  getTemplateByGameOverview(state.gameRound, state.currentRound);
+  updateOverview();
 }
 
 function checkWinnerLocal() {
@@ -92,8 +86,8 @@ function checkWinnerLocal() {
   const p2Total = sum(state.enemyDiceCounter);
   const pointDifference = Math.abs(p1Total - p2Total);
   let gameResult = "";
-  if (p1Total > p2Total) gameResult = "Player 1 gewinnt";
-  else if (p2Total > p1Total) gameResult = "Player 2 gewinnt";
+  if (p1Total > p2Total) gameResult = "Spieler 1 gewinnt";
+  else if (p2Total > p1Total) gameResult = "Spieler 2 gewinnt";
   else gameResult = "Unentschieden";
-  getTemplateGameEnd(state.mode, pointDifference, gameResult);
+  getTemplateGameEndLocal(state.mode, pointDifference, gameResult);
 }

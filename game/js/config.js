@@ -34,4 +34,6 @@ export const TEXTS = {
   player: "Spieler",
   enemy: "Gegner",
   roundFinished: "Die Runde ist beendet.",
+  player1: "Spieler 1",
+  player2: "Spieler 2",
 };

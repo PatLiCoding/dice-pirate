@@ -2,11 +2,9 @@ import {
   currentRoll,
   checkCondition,
   rerollUnselectedDice,
-  checkWinner,
   addUpPlayerPoints,
 } from "../game.js";
 import {
-  getTemplateByGameOverview,
   getTemplateByGameStart,
   getTemplateRollDiceAiAnimation,
   getTemplateRoundFinished,
@@ -14,10 +12,36 @@ import {
   getTemplateEndgameLootAi,
   getTemplateEndgameLoot,
   getTemplateLastRound,
+  getTemplateGameEnd,
 } from "../templates.js";
 import { state } from "../state.js";
 import { MAX_ROUNDS, MAX_ROLLS, ANIMATION_DURATION } from "../config.js";
-import { setButtonsDisabled } from "../ui.js";
+import {
+  setButtonsDisabled,
+  updateOverview,
+  updateOverviewEndGame,
+  updateOverviewEndRoll,
+} from "../ui.js";
+
+export function playerRollTheDice(mode) {
+  state.currentRound++;
+  updateOverview();
+  if (state.currentRound < MAX_ROLLS) (setButtonsDisabled(true), currentRoll());
+  if (state.currentRound > MAX_ROLLS)
+    (finishPlayerTurn(), updateOverviewEndRoll());
+  if (state.currentRound === MAX_ROLLS)
+    (getTemplateLastRound(mode), setButtonsDisabled(true), currentRoll());
+}
+
+export function finishPlayerTurn() {
+  document.getElementById("diceContainer").innerHTML = "";
+  updateOverview();
+  if (state.crew)
+    (addUpPlayerPoints(), getTemplateEndgameLoot(state.playerPoints));
+  if (state.mode === "ai") getTemplateStartAiRound();
+  state.playDiceCounter.push(state.playerPoints);
+  setButtonsDisabled(false);
+}
 
 export function startAiTurn() {
   document.getElementById("gameConditionContainer").innerHTML = "";
@@ -31,29 +55,9 @@ export function startAiTurn() {
   aiRollLoop();
 }
 
-export function playerRollTheDice(mode) {
-  state.currentRound++;
-  getTemplateByGameOverview(state.gameRound, state.currentRound);
-  if (state.currentRound < MAX_ROLLS) (setButtonsDisabled(true), currentRoll());
-  if (state.currentRound > MAX_ROLLS)
-    (finishPlayerTurn(), getTemplateByGameOverview(state.gameRound, MAX_ROLLS));
-  if (state.currentRound === MAX_ROLLS)
-    (getTemplateLastRound(mode), setButtonsDisabled(true), currentRoll());
-}
-
-export function finishPlayerTurn() {
-  document.getElementById("diceContainer").innerHTML = "";
-  getTemplateByGameOverview(state.gameRound, state.currentRound);
-  if (state.crew)
-    (addUpPlayerPoints(), getTemplateEndgameLoot(state.playerPoints));
-  if (state.mode === "ai") getTemplateStartAiRound();
-  state.playDiceCounter.push(state.playerPoints);
-  setButtonsDisabled(false);
-}
-
 function aiRollLoop() {
   state.currentRound++;
-  getTemplateByGameOverview(state.gameRound, state.currentRound);
+  updateOverview();
   if (state.currentRound > MAX_ROLLS) {
     finishAiTurn();
     return;
@@ -82,16 +86,30 @@ function showRoundFinished() {
   state.currentRound = 0;
   document.getElementById("playgroundContainer").innerHTML = "";
   getTemplateRoundFinished(state.mode);
-  getTemplateByGameOverview(state.gameRound, MAX_ROLLS);
+  updateOverviewEndRoll();
 }
 
 export function startNewRound() {
   state.gameRound++;
   if (state.gameRound > MAX_ROUNDS) {
     checkWinner();
+    updateOverviewEndGame();
     return;
   }
   document.getElementById("playgroundContainer").innerHTML = "";
   getTemplateByGameStart(state.mode);
-  getTemplateByGameOverview(state.gameRound, state.currentRound);
+}
+
+export function checkWinner() {
+  const sum = (arr) => arr.reduce((a, b) => a + b, 0);
+  const playerTotal = sum(state.playDiceCounter);
+  const enemyTotal = sum(state.enemyDiceCounter);
+  const pointDifference = Math.abs(playerTotal - enemyTotal);
+  let gameResult =
+    playerTotal > enemyTotal
+      ? "Sieg"
+      : playerTotal < enemyTotal
+        ? "Lose"
+        : "Unentschieden";
+  getTemplateGameEnd(state.mode, pointDifference, gameResult);
 }

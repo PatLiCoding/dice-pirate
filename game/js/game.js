@@ -1,7 +1,7 @@
 import { playerRollTheDiceSolo, soloGameStart } from "./modes/soloMode.js";
+import { playerRollTheDice } from "./modes/aiMode.js";
 import { playerRollLocal } from "./modes/localMode.js";
 import {
-  getTemplateByGameOverview,
   getTemplateByGameStart,
   getTemplateShipImage,
   getTemplateCaptainImage,
@@ -11,18 +11,11 @@ import {
   getTemplateRollbtn,
   getTemplateFinishPlayerTurnSolo,
   getTemplateFinishPlayerTurn,
-  getTemplateLastRound,
-  getTemplateGameEnd,
   getTemplateFinishPlayerTurnLocal,
 } from "./templates.js";
 import { state } from "./state.js";
-import { setButtonsDisabled, renderDice } from "./ui.js";
-import {
-  MAX_ROUNDS,
-  MAX_ROLLS,
-  NUM_DICE,
-  ANIMATION_DURATION,
-} from "./config.js";
+import { setButtonsDisabled, renderDice, updateOverview } from "./ui.js";
+import { MAX_ROLLS, NUM_DICE, ANIMATION_DURATION } from "./config.js";
 
 export function checkSelectMode(mode) {
   state.mode = mode;
@@ -149,39 +142,31 @@ export function addUpPlayerPoints() {
   }
 }
 
-export function checkWinner() {
-  const sum = (arr) => arr.reduce((a, b) => a + b, 0);
-  const playerTotal = sum(state.playDiceCounter);
-  const enemyTotal = sum(state.enemyDiceCounter);
-  const pointDifference = Math.abs(playerTotal - enemyTotal);
-  let gameResult =
-    playerTotal > enemyTotal
-      ? "Sieg"
-      : playerTotal < enemyTotal
-        ? "Lose"
-        : "Unentschieden";
-  getTemplateGameEnd(state.mode, pointDifference, gameResult);
-}
-
 export function checkRestartGame(mode) {
   if (mode === "solo") soloGameStart(mode);
   if (mode === "ai") gameStart(mode);
   if (mode === "local") gameStart(mode);
 }
 
-export function gameStart(mode) {
-  document.getElementById("playgroundContainer").innerHTML = "";
+export function resetTurnState() {
+  state.currentRound = 0;
   state.rollDice = [];
-  state.saveRolledDice = 0;
-  state.playDiceCounter = [];
-  state.playerPoints = 0;
-  state.enemyDiceCounter = [];
-  state.enemyPoints = 0;
   state.ship = false;
   state.captain = false;
   state.crew = false;
-  state.currentRound = 0;
+  state.playerPoints = 0;
+  state.selectedLootDice = false;
+}
+
+export function gameStart(mode) {
+  state.mode = mode;
+  document.getElementById("playgroundContainer").innerHTML = "";
+  resetTurnState();
+  state.saveRolledDice = 0;
+  state.playDiceCounter = [];
+  state.enemyDiceCounter = [];
+  state.enemyPoints = 0;
   state.gameRound = 1;
   getTemplateByGameStart(mode);
-  getTemplateByGameOverview(state.gameRound, state.currentRound);
+  updateOverview();
 }

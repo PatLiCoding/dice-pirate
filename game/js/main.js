@@ -1,9 +1,9 @@
 import "./templates.js";
 import "./game.js";
 import {
+  gameStart,
   checkSelectMode,
   checkRestartGame,
-  gameStart,
   clickDice,
 } from "./game.js";
 import {
