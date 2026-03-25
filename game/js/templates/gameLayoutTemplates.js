@@ -26,7 +26,7 @@ export function getTemplateByGameOverview(
       <p>${gameRound} / ${MAX_ROUNDS}</p>
     </div>
     <div>
-      <p>Wurf</p>
+      <p>${TEXTS.rolls}</p>
       <p>${currentRound} / ${MAX_ROLLS}</p>
     </div>
     <div>
@@ -46,7 +46,7 @@ export function getTemplateByGameOverview(
 export function getTemplateByGameOverviewSolo(currentRound) {
   document.getElementById("gameOverview").innerHTML = `
     <div>
-      <p>Wurf</p>
+      <p>${TEXTS.rolls}</p>
       <p>${currentRound} / ${MAX_ROLLS}</p>
     </div>`;
 }

@@ -8,7 +8,7 @@ import { state } from "../state.js";
 export function getTemplateRoundFinishedSolo(mode) {
   document.getElementById("btnSection").innerHTML =
     `<button class="gameBtn" onclick="checkRestartGame('${mode}')">${BUTTON_LABELS.restart}</button>
-     <p class="infoText">${TEXTS.roundFinished}</p>`;
+     <p class="infoText">${TEXTS.roundFinishedTitel}</p>`;
 }
 
 /**
@@ -25,8 +25,8 @@ export function getTemplateFinishPlayerRound() {
       </div>
     </div>
     <div class="endRoundContanainer">
-      <p>Dein Zug ist beendet.</p>
-      <button class="gameBtn" onclick="finishLocalTurn()">Spieler 2</button>
+      <p>${TEXTS.finishedPlayerTurn}</p>
+      <button class="gameBtn" onclick="finishLocalTurn()">${BUTTON_LABELS.playerTurn}</button>
     </div>`;
 }
 
@@ -44,12 +44,12 @@ export function getTemplateRoundFinished() {
       </div>
     </div>
     <div class="endRoundContanainer">
-      <p>Die Runde ist beendet.</p>
-      <p>Du hast diese Runde
-      <span class="point">${state.playerPoints}</span> Punkte erzielt, dein Gegner 
-      <span class="point">${state.enemyPoints}</span>.</p>
+      <p>${TEXTS.roundFinishedTitel}</p>
+      <p>${TEXTS.roundFinishedAi[0]}
+      <span class="point">${state.playerPoints}</span>${TEXTS.roundFinishedAi[1]}
+      <span class="point">${state.enemyPoints}</span>${TEXTS.roundFinishedAi[2]}</p>
       <div class="btnSection" id="btnSection">
-        <button class="gameBtn" onclick="startNewRound('${state.mode}')">Weiter</button>
+        <button class="gameBtn" onclick="startNewRound('${state.mode}')">${BUTTON_LABELS.continue}</button>
       </div>
     </div>`;
 }
@@ -68,11 +68,11 @@ export function getTemplateRoundFinishedLocal() {
       </div>
     </div>
     <div class="endRoundContanainer">
-      <p>Die Runde ist beendet.</p>
-      <p>Spieler 1 hat <span class="point">${state.player1Points}</span></p>
-       <p>Spieler 2 hat <span class="point">${state.player2Points}</span></p>
+      <p>${TEXTS.roundFinishedTitel}</p>
+      <p>${TEXTS.roundFinishedLocal[0]}<span class="point">${state.player1Points}</span>${TEXTS.roundFinishedLocal[2]}</p>
+       <p>${TEXTS.roundFinishedLocal[1]}<span class="point">${state.player2Points}</span>${TEXTS.roundFinishedLocal[2]}</p>
       <div class="btnSection" id="btnSection">
-        <button class="gameBtn" onclick="finishLocalTurn('${state.mode}')">Weiter</button>
+        <button class="gameBtn" onclick="finishLocalTurn('${state.mode}')">${BUTTON_LABELS.continue}</button>
       </div>
     </div>`;
 }

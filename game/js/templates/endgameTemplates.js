@@ -17,10 +17,10 @@ export function getTemplateGameEnd(mode, pointDifference, gameResult) {
       </div>
     </div>
     <div class="endRoundContanainer">
-      <p>Das Spiel ist beendet.</p>
-      <p>Du ${gameResult} mit <span class="point">${pointDifference}</span> Punkten Unterschied.</p>
+      <p>${TEXTS.endgameTitel}</p>
+      <p>${TEXTS.endgameAi[0]} ${gameResult} ${TEXTS.endgameAi[1]} <span class="point">${pointDifference}</span> ${TEXTS.endgameAi[2]}</p>
       <div class="btnSection" id="btnSection">
-        <div class="gameOverviewEndGame" onclick="openDialogGameOverview()">Punktetabelle ansehen</div>
+        <div class="gameOverviewEndGame" onclick="openDialogGameOverview()">${TEXTS.gameOverviewText}</div>
         <button class="gameBtn" onclick="checkRestartGame('${mode}')">${BUTTON_LABELS.restart}</button>
       </div>
     </div>`;
@@ -43,10 +43,10 @@ export function getTemplateGameEndLocal(mode, pointDifference, gameResult) {
       </div>
     </div>
     <div class="endRoundContanainer">
-      <p>Das Spiel ist beendet.</p>
-      <p>${gameResult} mit <span class="point">${pointDifference}</span> Punkten Unterschied.</p>
+      <p>${TEXTS.endgameTitel}</p>
+      <p>${gameResult} ${TEXTS.endgameLocal[0]} <span class="point">${pointDifference}</span> ${TEXTS.endgameLocal[1]}</p>
       <div class="btnSection" id="btnSection">
-        <div class="gameOverviewEndGame" onclick="openDialogGameOverview()">Punktetabelle ansehen</div>
+        <div class="gameOverviewEndGame" onclick="openDialogGameOverview()">${TEXTS.gameOverviewText}</div>
         <button class="gameBtn" onclick="checkRestartGame('${mode}')">${BUTTON_LABELS.restart}</button>
       </div>
     </div>`;

@@ -6,7 +6,7 @@ import {
   updateOverviewEndGame,
   updateOverviewEndRoll,
 } from "../ui.js";
-import { MAX_ROLLS, MAX_ROUNDS } from "../config.js";
+import { MAX_ROLLS, MAX_ROUNDS, TEXTS } from "../config.js";
 import {
   getTemplateByGameStart,
   getTemplateLastRound,
@@ -109,8 +109,8 @@ function checkWinnerLocal() {
   const p2Total = sum(state.enemyDiceCounter);
   const pointDifference = Math.abs(p1Total - p2Total);
   let gameResult = "";
-  if (p1Total > p2Total) gameResult = "Spieler 1 gewinnt";
-  else if (p2Total > p1Total) gameResult = "Spieler 2 gewinnt";
-  else gameResult = "Unentschieden";
+  if (p1Total > p2Total) gameResult = TEXTS.localPlayer1;
+  else if (p2Total > p1Total) gameResult = TEXTS.localPlayer2;
+  else gameResult = TEXTS.localdraw;
   getTemplateGameEndLocal(state.mode, pointDifference, gameResult);
 }

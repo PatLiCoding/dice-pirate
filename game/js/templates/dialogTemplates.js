@@ -48,7 +48,7 @@ export function getTemplatePointsTableHeaderLocal() {
  */
 export function getTemplatePointsTableRound(index) {
   document.getElementById("pointsTable").innerHTML += ` <tr>
-    <td>Runde ${index + 1}</td>
+    <td>${TEXTS.round}${index + 1}</td>
     <td>${state.playDiceCounter[index]}</td>
     <td>${state.enemyDiceCounter[index]}</td>
   </tr>`;
@@ -59,7 +59,7 @@ export function getTemplatePointsTableRound(index) {
  */
 export function getTemplatePointsTableTotalNumber() {
   document.getElementById("pointsTable").innerHTML += `<tr>
-    <td>Gesamt</td>
+    <td>${TEXTS.total}</td>
     <td>${state.playDiceCounter.reduce((totalValue, currentValue) => totalValue + currentValue, 0)}</td>
     <td>${state.enemyDiceCounter.reduce((totalValue, currentValue) => totalValue + currentValue, 0)}</td>
   </tr>`;

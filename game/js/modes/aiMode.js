@@ -5,7 +5,7 @@ import {
   addUpPlayerPoints,
 } from "../game.js";
 import { state } from "../state.js";
-import { MAX_ROUNDS, MAX_ROLLS, ANIMATION_DURATION } from "../config.js";
+import { MAX_ROUNDS, MAX_ROLLS, ANIMATION_DURATION, TEXTS } from "../config.js";
 import {
   setButtonsDisabled,
   updateOverview,
@@ -136,9 +136,9 @@ export function checkWinner() {
   const pointDifference = Math.abs(playerTotal - enemyTotal);
   let gameResult =
     playerTotal > enemyTotal
-      ? "siegst"
+      ? TEXTS.aiWinner
       : playerTotal < enemyTotal
-        ? "verlierst"
-        : "hast ein Unentschieden";
+        ? TEXTS.aiLose
+        : TEXTS.aidraw;
   getTemplateGameEnd(state.mode, pointDifference, gameResult);
 }

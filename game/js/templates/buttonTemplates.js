@@ -48,5 +48,5 @@ export function getTemplateFinishPlayerTurnLocal() {
  */
 export function getTemplateStartAiRound() {
   document.getElementById("btnSection").innerHTML =
-    `<button class="gameBtn" onclick="startAiTurn()">Gegner würfeln</button>`;
+    `<button class="gameBtn" onclick="startAiTurn()">${BUTTON_LABELS.aiTurn}</button>`;
 }
