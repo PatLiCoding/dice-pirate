@@ -1,6 +1,8 @@
-import { TEXTS, BUTTON_LABELS, IMAGE_PATHS } from "../config.js";
+import { getTEXTS, getBUTTON_LABELS, IMAGE_PATHS } from "../config.js";
 
 export function getTemplatesIndex() {
+  const TEXTS = getTEXTS();
+  const BUTTON_LABELS = getBUTTON_LABELS();
   document.getElementById("menuContainer").innerHTML =
     `<h1>${TEXTS.indexTitel}</h1>
         <div class="navBtnContainer">
@@ -11,5 +13,11 @@ export function getTemplatesIndex() {
             ${BUTTON_LABELS.rules}
           </button>
         </div>
-        <img src="${IMAGE_PATHS.dices}" />`;
+        <img src="${IMAGE_PATHS.dices}" />
+        <div class="lang-menu">
+        <img id="burgerBtn" class="burger-btn" src="${IMAGE_PATHS.language}" onclick="toggleLangDropdown()"/>
+        <div id="langDropdown" class="lang-dropdown">
+          <div class="lang" onclick="selectLanguage('de')">Deutsch</div>
+          <div class="lang" onclick="selectLanguage('en')">English</div>
+        </div>`;
 }

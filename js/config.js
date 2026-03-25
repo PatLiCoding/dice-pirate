@@ -1,21 +1,20 @@
-import { LANG } from "./langLoader.js";
+import { getLang } from "./langLoader.js";
+import { state } from "./state.js";
 
-/**
- * Paths to all images used at index.
- * @type {Object.<string, string>}
- */
 export const IMAGE_PATHS = {
   dices: "assets/img/menu-dice.png",
+  language: "assets/icon/language.png",
 };
 
-/**
- * Labels for all buttons in the game.
- * @type {Object.<string, string|string[]>}
- */
-export const BUTTON_LABELS = LANG.BUTTON_LABELS;
+export function getTEXTS() {
+  return getLang().TEXTS;
+}
 
-/**
- * Texts used in the UI.
- * @type {Object.<string, string>}
- */
-export const TEXTS = LANG.TEXTS;
+export function getBUTTON_LABELS() {
+  return getLang().BUTTON_LABELS;
+}
+
+export function changeLanguage(lang) {
+  state.lang = lang;
+  localStorage.setItem("lang", lang);
+}

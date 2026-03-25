@@ -1,3 +1,3 @@
 export const state = {
-  lang: "de",
+  lang: localStorage.getItem("lang") || "de",
 };

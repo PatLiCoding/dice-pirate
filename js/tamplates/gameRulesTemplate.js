@@ -1,6 +1,8 @@
-import { TEXTS, BUTTON_LABELS } from "../config.js";
+import { getTEXTS, getBUTTON_LABELS } from "../config.js";
 
 export function getTemplatesGameRules() {
+  const TEXTS = getTEXTS();
+  const BUTTON_LABELS = getBUTTON_LABELS();
   document.getElementById("menuContainer").innerHTML = `
   <h1>${TEXTS.rulesTitle}</h1>
   <div>

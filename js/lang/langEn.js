@@ -14,7 +14,7 @@ export const LANG = {
    * @type {Object.<string, string>}
    */
   TEXTS: {
-    indexTitle: "Dice Pirates",
+    indexTitel: "Dice Pirates",
     rulesTitle: "Game Rules",
     rulesIntro: "Played with 6 dice over 5 rounds.",
     goalTitle: "Goal of the game",
