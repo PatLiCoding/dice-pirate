@@ -1,63 +1,16 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dice Pirate</title>
     <link rel="shortcut icon" href="assets/icon/fav.png" type="image/x-icon" />
     <link rel="stylesheet" href="style.css" />
+    <script type="module" src="./js/gameRules.js"></script>
   </head>
-  <body>
+  <body onload="oninit()">
     <section>
-      <div class="menuContainer">
-        <h1>Spielregeln</h1>
-        <div>
-          <p>Gespielt wird mit 6 Würfeln und über 5 Runden.</p>
-
-          <h3>Ziel des Spiels</h3>
-          <p>
-            Du musst zuerst ein Schiff (6), dann einen Kapitän (5) und danach
-            eine Mannschaft (4) würfeln.
-          </p>
-          <p>Erst wenn du alle drei hast, kannst du Punkte sammeln.</p>
-
-          <h3>Ablauf einer Runde</h3>
-          <p>
-            Du darfst bis zu 3-mal würfeln. Nach jedem Wurf legst du passende
-            Würfel zur Seite.
-          </p>
-          <p>Du musst die Reihenfolge einhalten:</p>
-          <ul>
-            <li>6 → Schiff</li>
-            <li>5 → Kapitän</li>
-            <li>4 → Mannschaft</li>
-          </ul>
-
-          <h3>Beute / Punkte</h3>
-          <p>
-            Sobald du Schiff, Kapitän und Mannschaft hast, zählen die 3 übrigen
-            Würfel als Beute.
-          </p>
-          <p>
-            Die Augenzahlen dieser Würfel werden addiert = Punkte der Runde.
-          </p>
-          <p>Kein Schiff, kein Kapitän, keine Mannschaft?</p>
-          <p>
-            Wenn du nach drei Würfen nicht alle drei in der richtigen
-            Reihenfolge hast, bekommst du 0 Punkte in dieser Runde.
-          </p>
-          <p>
-            Wenn du schon vor dem dritten Wurf alles hast und mit deiner Beute
-            zufrieden bist, musst du nicht weiter würfeln.
-          </p>
-
-          <h3>Spielende</h3>
-
-          <p>Nach 5 Runden gewinnt der Spieler mit den meisten Punkten.</p>
-        </div>
-
-        <button onclick="window.location.href = 'index.html'">Zurück</button>
-      </div>
+      <div class="menuContainer" id="menuContainer"></div>
     </section>
   </body>
 </html>
