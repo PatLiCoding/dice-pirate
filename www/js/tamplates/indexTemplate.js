@@ -1,5 +1,11 @@
 import { getTEXTS, getBUTTON_LABELS, IMAGE_PATHS } from "../config.js";
 
+/**
+ * Renders the main index/menu view, including navigation buttons,
+ * decorative assets, and the language selection dropdown.
+ * * @function getTemplatesIndex
+ * @returns {void}
+ */
 export function getTemplatesIndex() {
   const TEXTS = getTEXTS();
   const BUTTON_LABELS = getBUTTON_LABELS();

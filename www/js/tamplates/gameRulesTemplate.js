@@ -1,5 +1,11 @@
 import { getTEXTS, getBUTTON_LABELS } from "../config.js";
 
+/**
+ * Renders the game rules view by injecting the localized texts 
+ * and buttons into the menu container element.
+ * * @function getTemplatesGameRules
+ * @returns {void}
+ */
 export function getTemplatesGameRules() {
   const TEXTS = getTEXTS();
   const BUTTON_LABELS = getBUTTON_LABELS();
