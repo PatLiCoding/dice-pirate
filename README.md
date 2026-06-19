@@ -15,12 +15,6 @@
 
 ---
 
-> ** Live Demo:** [Klicke hier, um das Spiel direkt im Browser zu spielen!](https://dein-username.github.io/wuerfelspiel) *(Füge hier den Link zu GitHub Pages ein, falls du es hostest)*
-
-<p align="center">
-  <img src="pfad/zu/deinem/screenshot.png" alt="Screenshot des Würfelspiels" width="600">
-</p>
-
 ##  Inhaltsverzeichnis
 - [Features](#-features)
 - [Spielmodi](#-spielmodi)
@@ -43,7 +37,7 @@ Da es sich um ein browserbasiertes Spiel handelt, brauchst du keine komplizierte
 
 1. **Repository klonen:**
    ```bash
-   git clone [https://github.com/dein-username/wuerfelspiel.git](https://github.com/dein-username/wuerfelspiel.git)
+   git clone <https://github.com/PatLiCoding/dice-pirate.git>
 
 ## Author
 Developed by Patricia Linne
