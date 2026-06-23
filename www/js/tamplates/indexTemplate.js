@@ -20,6 +20,7 @@ export function getTemplatesIndex() {
           </button>
         </div>
         <img src="${IMAGE_PATHS.dices}" alt="Dices"/>
+        <a href="./legal.html">${TEXTS.legalTitle}</a>
         <div class="lang-menu">
         <img id="burgerBtn" class="burger-btn" src="${IMAGE_PATHS.language}" aria-label="${TEXTS.langChoise}" onclick="toggleLangDropdown()"/>
         <div id="langDropdown" class="lang-dropdown">

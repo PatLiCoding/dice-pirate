@@ -40,5 +40,50 @@ export const LANG = {
     endTitle: "Spielende",
     endDescription:
       "Nach 5 Runden gewinnt der Spieler mit den meisten Punkten.",
+    legalTitle: "Impressum & Datenschutzerklärung",
+    imprintTitle: "Impressum",
+    imprintInfoTitle: "Kontakt",
+    imprintName: "Name:",
+    imprintAddress: "Anschrift:",
+    imprintEmail: "E-Mail:",
+    imprintResponsibleTitle:
+      "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV",
+    imprintDescriptionTitle: "Projektbeschreibung",
+    imprintDescription:
+      "Dieses Projekt ist ein browserbasiertes Würfelspiel für Einzelspieler und Gruppen. Es dient ausschließlich zu Demonstrations- und Portfoliozwecken und verfolgt keine kommerziellen Interessen.",
+    liabilityTitle: "Haftung für Inhalte",
+    liabilityText:
+      "Die Inhalte dieses Projekts wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte wird jedoch keine Gewähr übernommen.",
+    linksTitle: "Haftung für Links",
+    linksText:
+      "Dieses Projekt kann Links zu externen Websites enthalten. Für die Inhalte der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.",
+    copyrightTitle: "Urheberrecht",
+    copyrightText:
+      "Die durch den Betreiber erstellten Inhalte und Werke unterliegen dem geltenden Urheberrecht.",
+    privacyTitle: "Datenschutzerklärung",
+    privacyGeneralTitle: "Allgemeine Hinweise",
+    privacyGeneralText:
+      "Der Schutz Ihrer persönlichen Daten ist mir wichtig. Personenbezogene Daten werden ausschließlich im Rahmen der gesetzlichen Datenschutzvorschriften verarbeitet.",
+    privacyResponsibleTitle: "Verantwortliche Stelle",
+    privacyResponsibleText: "Bei Fragen zum Datenschutz können Sie sich jederzeit an folgende E-Mail-Adresse wenden:",
+    privacyHostingTitle: "Hosting und Server-Logfiles",
+    privacyHostingText:
+      "Beim Besuch dieser Website können durch den Hosting-Anbieter technische Informationen wie IP-Adresse, Browsertyp, Betriebssystem sowie Datum und Uhrzeit des Zugriffs erfasst werden.",
+    privacyStorageTitle: "Local Storage",
+    privacyStorageText:
+      "Dieses Spiel verwendet die lokale Speicherfunktion Ihres Browsers, um beispielsweise Spracheinstellungen oder Spielstände auf Ihrem Endgerät zu speichern.",
+    privacyCookiesTitle: "Cookies",
+    privacyCookiesText:
+      "Dieses Projekt verwendet keine Cookies zu Analyse-, Tracking- oder Werbezwecken.",
+    privacyContactTitle: "Kontaktaufnahme",
+    privacyContactText:
+      "Wenn Sie per E-Mail Kontakt aufnehmen, werden die übermittelten Daten ausschließlich zur Bearbeitung Ihrer Anfrage verwendet.",
+    privacyRightsTitle: "Ihre Rechte",
+    privacyRightsText:
+      "Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Widerspruch sowie Datenübertragbarkeit im Rahmen der geltenden Datenschutzgesetze.",
+    privacyChangesTitle: "Änderungen",
+    privacyChangesText:
+      "Diese Datenschutzerklärung kann angepasst werden, wenn sich rechtliche Anforderungen oder Funktionen dieser Website ändern.",
+    privacyDate: "Stand: Juni 2026",
   },
 };

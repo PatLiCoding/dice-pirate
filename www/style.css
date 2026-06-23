@@ -73,6 +73,22 @@ p {
   color: rgb(254, 252, 255);
 }
 
+a{
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover{
+  color: #004080;
+  background-color: #efefef;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
+  border-radius: 25px;
+  padding: 0px 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 button {
   height: 52px;
   width: 250px;
