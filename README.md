@@ -13,6 +13,12 @@
   <!-- <img src="https://img.shields.io/badge/Lizenz-MIT-green?style=flat-square" alt="Lizenz" /> -->
 </p>
 
+<div align="center">
+  <strong>Live Demo:</strong><br>
+
+  [Klicke hier, um das Spiel direkt im Browser zu spielen!](https://dice-pirate.de/)
+</div>
+
 ---
 
 ##  Inhaltsverzeichnis
