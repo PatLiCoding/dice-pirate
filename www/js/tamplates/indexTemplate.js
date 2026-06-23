@@ -19,9 +19,9 @@ export function getTemplatesIndex() {
             ${BUTTON_LABELS.rules}
           </button>
         </div>
-        <img src="${IMAGE_PATHS.dices}" />
+        <img src="${IMAGE_PATHS.dices}" alt="Dices"/>
         <div class="lang-menu">
-        <img id="burgerBtn" class="burger-btn" src="${IMAGE_PATHS.language}" onclick="toggleLangDropdown()"/>
+        <img id="burgerBtn" class="burger-btn" src="${IMAGE_PATHS.language}" aria-label="${TEXTS.langChoise}" onclick="toggleLangDropdown()"/>
         <div id="langDropdown" class="lang-dropdown">
           <div class="lang" onclick="selectLanguage('de')">Deutsch</div>
           <div class="lang" onclick="selectLanguage('en')">English</div>

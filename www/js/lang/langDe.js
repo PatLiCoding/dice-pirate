@@ -15,6 +15,7 @@ export const LANG = {
    */
   TEXTS: {
     indexTitel: "Würfel-Piraten",
+    langChoise: "Sprachauswahl öffnen",
     rulesTitle: "Spielregeln",
     rulesIntro: "Gespielt wird mit 6 Würfeln und über 5 Runden.",
     goalTitle: "Ziel des Spiels",

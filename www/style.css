@@ -79,7 +79,8 @@ button {
   border-radius: 25px;
   font-size: 24px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
-  color: #2494f5;
+  color: #004080;
+  background-color: #efefef;
   border: none;
 }
 

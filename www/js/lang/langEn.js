@@ -15,6 +15,7 @@ export const LANG = {
    */
   TEXTS: {
     indexTitel: "Dice Pirates",
+    langChoise: "Open language selection",
     rulesTitle: "Game Rules",
     rulesIntro: "Played with 6 dice over 5 rounds.",
     goalTitle: "Goal of the game",
